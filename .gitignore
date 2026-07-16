@@ -1,0 +1,21 @@
+# Python and tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+dist/
+build/
+
+# Local scientific artifacts and credentials
+artifacts/
+releases/
+workspaces/
+*.lock.local
+.env
+.env.*
+!*.env.example
+
+# Office temporary files
+~$*

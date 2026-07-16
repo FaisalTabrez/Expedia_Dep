@@ -1,0 +1,3 @@
+transport: local-query-core-or-rest
+api_version: v1
+default_profile: EXPLICIT_SELECTION_REQUIRED

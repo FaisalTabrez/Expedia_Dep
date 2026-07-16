@@ -1,0 +1,9 @@
+# Preserve canonical source and schema bytes across developer environments.
+*.py text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.toml text eol=lf
+*.editorconfig text eol=lf
+*.docx binary

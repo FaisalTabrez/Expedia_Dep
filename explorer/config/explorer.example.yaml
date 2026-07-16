@@ -1,0 +1,3 @@
+query_endpoint: REQUIRED_QUERY_CORE_OR_REST_ADAPTER
+release_open_policy: verify-before-display
+visualization_adapters: []

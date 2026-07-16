@@ -1,0 +1,11 @@
+openapi: 3.1.0
+info:
+  title: EXPEDIA REST API
+  version: 0.1.0-placeholder
+  description: >-
+    Transport placeholder only. Query semantics are owned by Query Core and no
+    endpoints are implemented in the repository skeleton.
+servers: []
+paths: {}
+components:
+  schemas: {}

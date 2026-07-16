@@ -1,0 +1,11 @@
+# Placeholder only. A real BuildManifest must validate against schemas/json/build-manifest.schema.json.
+build_id: REQUIRED_BUILD_ID
+source_inventory: []
+canonicalization_profile: REQUIRED_PROFILE_ID
+quality_rules: {}
+embedding_profiles: []
+plugins: []
+derivations: []
+validation_suite: {}
+output_schema: REQUIRED_SCHEMA_VERSION
+release_metadata: {}

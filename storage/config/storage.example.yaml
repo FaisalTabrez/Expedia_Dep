@@ -1,0 +1,4 @@
+canonical_table_format: parquet
+interchange_format: arrow
+catalog_engine: duckdb
+vector_index: exact-reference-path-only
