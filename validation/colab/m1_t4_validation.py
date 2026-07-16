@@ -112,7 +112,7 @@ def load_batch_records(
 def _m1_batch_inputs() -> tuple[tuple[str, ...], str]:
     inventory = json.loads((ROOT / "atlas-builder" / "manifests" / "m1" / "m1-refseq-accessions.json").read_text())
     accessions = tuple(item["accession"] for item in inventory["assemblies"])
-    stage = json.loads((ROOT / "atlas-builder" / "manifests" / "m1-canonicalization-stage-outcome.json").read_text())
+    stage = json.loads((ROOT / "atlas-builder" / "manifests" / "m1" / "m1-canonicalization-stage-outcome.json").read_text())
     record_versions = next(
         artifact for artifact in stage["output_artifacts"] if artifact["path"].endswith("genome-record-versions.jsonl")
     )

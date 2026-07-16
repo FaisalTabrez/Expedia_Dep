@@ -14,6 +14,7 @@ from m1_t4_validation import (  # noqa: E402
     PROFILE_ID,
     REVISION,
     WEIGHT_DIGEST,
+    _m1_batch_inputs,
     load_batch_records,
     sha256,
 )
@@ -54,6 +55,11 @@ class T4ValidationHarnessTests(unittest.TestCase):
 
             with self.assertRaisesRegex(RuntimeError, "digest"):
                 load_batch_records(canonical, table, accessions, "sha256:" + "0" * 64)
+
+    def test_batch_mode_resolves_the_committed_m1_canonicalization_evidence(self) -> None:
+        accessions, record_table_digest = _m1_batch_inputs()
+        self.assertEqual(EXPECTED_RECORD_COUNT, len(accessions))
+        self.assertRegex(record_table_digest, r"^sha256:[0-9a-f]{64}$")
 
 
 if __name__ == "__main__":
