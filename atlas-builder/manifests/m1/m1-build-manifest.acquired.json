@@ -1,0 +1,48 @@
+{
+  "build_id": "m1-build-acquired-v1",
+  "source_inventory": [
+    {
+      "inventory_id": "m1-refseq-prokaryote-12-v1",
+      "inventory_path": "atlas-builder/manifests/m1/m1-refseq-accessions.json",
+      "pre-acquisition_provenance_path": "atlas-builder/manifests/m1/m1-source-provenance.json",
+      "acquisition_stage_outcome_path": "atlas-builder/manifests/m1/m1-acquisition-stage-outcome.json",
+      "tool": {
+        "name": "NCBI Datasets CLI",
+        "version": "18.33.1",
+        "platform": "windows-amd64",
+        "package_digest": "sha256:06a96e86ec9010acaa4e2291b9e7ec1c9c28591bbdee556ecb2592bdb69f7596"
+      },
+      "package_archive_digest": "sha256:4318617de3c1c4ef5dc87bc52bc6af4f9cf09121aa8caf5f57a31051084d4778",
+      "dataset_catalogue_digest": "sha256:ba4aac1fa4895164b2ecb7f50c32c4977ba8f5df6c2a82d2063767e6f08b2a9b",
+      "retrieved_at": "2026-07-16T11:44:09.558536Z"
+    }
+  ],
+  "inclusion_policy": {
+    "quality_rule": "NCBI RefSeq source quality with Complete Genome as the sole M1 technical filter",
+    "technical_exclusions": "none"
+  },
+  "canonicalization_profile": "m1-assembly-canonical-v1",
+  "quality_rules": {
+    "source_quality_policy": "NCBI RefSeq",
+    "assembly_level": "Complete Genome"
+  },
+  "embedding_profiles": [
+    "m1-generanno-prokaryote-0.5b-assembly-v1"
+  ],
+  "plugins": [
+    {
+      "descriptor_id": "m1-generanno-huggingface-adapter-input-v1",
+      "descriptor_path": "profiles/plugins/m1-generanno-huggingface-adapter-input-v1.json"
+    }
+  ],
+  "validation_suite": {
+    "profile": "m1-release-integrity-v1",
+    "status": "M1.2 contract fixture work complete"
+  },
+  "output_schema": "release-manifest/0.1.0",
+  "release_metadata": {
+    "target_state": "Draft",
+    "scope": "internal reproducibility proof of concept",
+    "public_distribution": "not authorized"
+  }
+}

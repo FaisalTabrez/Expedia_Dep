@@ -1,0 +1,49 @@
+{
+  "stage_id": "acquire",
+  "input_artifacts": [
+    {
+      "path": "atlas-builder/manifests/m1/m1-refseq-accessions.json",
+      "media_type": "application/json"
+    }
+  ],
+  "output_artifacts": [
+    {
+      "path": "workspaces/m1/acquire/run-20260716-catalogue/ncbi-datasets-m1-source.zip",
+      "media_type": "application/zip",
+      "digest": "sha256:4318617de3c1c4ef5dc87bc52bc6af4f9cf09121aa8caf5f57a31051084d4778"
+    },
+    {
+      "path": "workspaces/m1/acquire/run-20260716-catalogue/source-provenance.json",
+      "media_type": "application/json",
+      "digest": "sha256:b1fa89fa340c31eb695885a55f775d79d02fb7a4565c65b2c971469fd5f84eb6"
+    }
+  ],
+  "exclusions": [],
+  "outcome": "succeeded",
+  "verification": {
+    "expected_accession_count": 12,
+    "registered_accessions": [
+      "GCF_000005845.2",
+      "GCF_000006765.1",
+      "GCF_000006945.2",
+      "GCF_000007065.1",
+      "GCF_000007225.1",
+      "GCF_000009045.1",
+      "GCF_000009965.1",
+      "GCF_000010465.1",
+      "GCF_000022005.1",
+      "GCF_000023265.1",
+      "GCF_000025685.1",
+      "GCF_000195955.2"
+    ],
+    "missing_accessions": [],
+    "unexpected_accessions": [],
+    "duplicate_observations": [],
+    "archive_digest": "sha256:4318617de3c1c4ef5dc87bc52bc6af4f9cf09121aa8caf5f57a31051084d4778",
+    "catalogue_digest": "sha256:ba4aac1fa4895164b2ecb7f50c32c4977ba8f5df6c2a82d2063767e6f08b2a9b",
+    "retrieved_at": "2026-07-16T11:44:09.558536Z"
+  },
+  "recovery": {
+    "retry_requires": "a new empty acquisition workspace"
+  }
+}
