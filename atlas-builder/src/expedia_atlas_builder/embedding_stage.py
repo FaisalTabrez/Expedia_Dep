@@ -8,6 +8,7 @@ weights, profile, or build identity.
 
 from __future__ import annotations
 
+import argparse
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
 import json
@@ -318,3 +319,29 @@ def _write_json(path: Path, value: Mapping[str, object]) -> None:
 
 def _write_jsonl(path: Path, rows: Sequence[Mapping[str, object]]) -> None:
     path.write_text("".join(json.dumps(row, sort_keys=True, separators=(",", ":")) + "\n" for row in rows), encoding="utf-8")
+
+
+def main(argv: list[str] | None = None) -> int:
+    """Run the complete, release-eligible M1.5 stage from explicit inputs."""
+
+    parser = argparse.ArgumentParser(description="Run the frozen M1.5 CPU embedding stage.")
+    parser.add_argument("--record-versions", type=Path, required=True)
+    parser.add_argument("--canonical-directory", type=Path, required=True)
+    parser.add_argument("--snapshot", type=Path, required=True)
+    parser.add_argument("--weight-digest", required=True)
+    parser.add_argument("--workspace", type=Path, required=True)
+    parser.add_argument("--build-id", required=True)
+    args = parser.parse_args(argv)
+    execute_embedding_stage(
+        record_versions_path=args.record_versions,
+        canonical_directory=args.canonical_directory,
+        snapshot_path=args.snapshot,
+        expected_weight_digest=args.weight_digest,
+        workspace=args.workspace,
+        build_id=args.build_id,
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
