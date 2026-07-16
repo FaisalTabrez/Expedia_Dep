@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/validation-bundle/0.1.0",
+  "title": "ValidationBundle",
+  "type": "object",
+  "required": ["bundle_id", "release_digest", "checks", "review_status"],
+  "properties": {
+    "bundle_id": {"type": "string"},
+    "release_digest": {"type": "string"},
+    "checks": {"type": "array", "items": {"type": "object"}},
+    "waivers": {"type": "array", "items": {"type": "object"}},
+    "review_status": {"type": "string"},
+    "approvals": {"type": "array", "items": {"type": "object"}}
+  },
+  "additionalProperties": false
+}

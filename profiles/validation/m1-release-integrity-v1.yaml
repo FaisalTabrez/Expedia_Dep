@@ -1,0 +1,13 @@
+profile_id: m1-release-integrity-v1
+kind: validation
+status: draft
+contract_version: 0.1.0
+checks:
+  - schema-version
+  - manifest-artifact-digest
+  - artifact-size
+  - record-referential-integrity
+  - embedding-profile-referential-integrity
+  - vector-shard-mapping
+  - clean-room-reader
+failure_policy: mandatory-failure-blocks-completion

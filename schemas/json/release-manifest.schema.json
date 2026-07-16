@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/release-manifest/0.1.0",
+  "title": "Atlas ReleaseManifest",
+  "type": "object",
+  "required": ["release_id", "schema_version", "state", "scope", "artifacts", "validation"],
+  "properties": {
+    "release_id": {"type": "string", "minLength": 1},
+    "schema_version": {"type": "string"},
+    "state": {"enum": ["Draft", "Candidate", "Published", "Superseded", "Withdrawn"]},
+    "scope": {"type": "object", "minProperties": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "base_release": {"type": ["string", "null"]},
+    "citation": {"type": ["object", "null"]},
+    "licenses": {"type": "array", "items": {"type": "object"}},
+    "artifacts": {"type": "array", "items": {"$ref": "#/$defs/artifact"}},
+    "validation": {"type": "object", "minProperties": 1},
+    "contract": {"$ref": "contract-meta.schema.json"}
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "required": ["path", "media_type", "digest", "size", "contract_version"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"},
+        "media_type": {"type": "string", "minLength": 1},
+        "digest": {"type": "string", "minLength": 1},
+        "size": {"type": "integer", "minimum": 0},
+        "contract_version": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

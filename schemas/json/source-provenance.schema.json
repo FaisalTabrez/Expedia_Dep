@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/source-provenance/0.1.0",
+  "title": "SourceProvenance",
+  "type": "object",
+  "required": ["source_provenance_id", "source", "source_version", "acquired_at", "license_notice"],
+  "properties": {
+    "source_provenance_id": {"type": "string"},
+    "source": {"type": "string"},
+    "source_version": {"type": "string"},
+    "source_identifier": {"type": "string"},
+    "acquired_at": {"type": "string", "format": "date-time"},
+    "acquisition_artifact_digest": {"type": "string"},
+    "license_notice": {"type": "object"}
+  },
+  "additionalProperties": false
+}

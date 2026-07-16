@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/build-manifest/0.1.0",
+  "title": "BuildManifest",
+  "type": "object",
+  "required": ["build_id", "source_inventory", "canonicalization_profile", "quality_rules", "embedding_profiles", "plugins", "validation_suite", "output_schema", "release_metadata"],
+  "properties": {
+    "build_id": {"type": "string"},
+    "source_inventory": {"type": "array", "items": {"type": "object"}},
+    "inclusion_policy": {"type": "object"},
+    "canonicalization_profile": {"type": "string"},
+    "quality_rules": {"type": "object"},
+    "embedding_profiles": {"type": "array", "items": {"type": "string"}},
+    "plugins": {"type": "array", "items": {"type": "object"}},
+    "derivations": {"type": "array", "items": {"type": "object"}},
+    "validation_suite": {"type": "object"},
+    "output_schema": {"type": "string"},
+    "release_metadata": {"type": "object"}
+  },
+  "additionalProperties": false
+}

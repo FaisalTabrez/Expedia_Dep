@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/query-result/0.1.0",
+  "title": "QueryResult",
+  "description": "M2 contract placeholder; no Query Core behavior is implemented in M1.",
+  "type": "object",
+  "required": ["release", "schema_version", "rows", "warnings", "evidence_status"],
+  "properties": {
+    "release": {"type": "object"},
+    "schema_version": {"type": "string"},
+    "profile": {"type": ["object", "null"]},
+    "metric": {"type": ["object", "null"]},
+    "mode": {"type": ["object", "null"]},
+    "provenance": {"type": "object"},
+    "rows": {"type": "array", "items": {"type": "object"}},
+    "cursor": {"type": ["string", "null"]},
+    "warnings": {"type": "array", "items": {"type": "object"}},
+    "evidence_status": {"type": "string"}
+  },
+  "additionalProperties": false
+}

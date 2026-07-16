@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/stage-envelope/0.1.0",
+  "title": "Builder stage envelope",
+  "type": "object",
+  "required": ["stage_id", "input_artifacts", "output_artifacts", "outcome", "verification"],
+  "properties": {
+    "stage_id": {"type": "string"},
+    "input_artifacts": {"type": "array", "items": {"type": "object"}},
+    "output_artifacts": {"type": "array", "items": {"type": "object"}},
+    "exclusions": {"type": "array", "items": {"type": "object"}},
+    "outcome": {"enum": ["succeeded", "failed", "quarantined", "reused"]},
+    "verification": {"type": "object"},
+    "recovery": {"type": "object"}
+  },
+  "additionalProperties": false
+}

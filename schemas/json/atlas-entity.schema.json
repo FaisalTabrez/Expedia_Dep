@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/atlas-entity/0.1.0",
+  "title": "AtlasEntity",
+  "type": "object",
+  "required": ["entity_id", "entity_type", "record_versions"],
+  "properties": {
+    "entity_id": {"type": "string"},
+    "entity_type": {"type": "string"},
+    "record_versions": {"type": "array", "items": {"type": "string"}},
+    "aliases": {"type": "array", "items": {"type": "object"}}
+  },
+  "additionalProperties": false
+}

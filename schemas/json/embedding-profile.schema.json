@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/embedding-profile/0.1.0",
+  "title": "EmbeddingProfile",
+  "type": "object",
+  "required": ["profile_id", "version", "input_contract", "model", "tokenization", "pooling", "preprocessing", "output", "metric", "compatibility", "provenance", "lifecycle", "validation_links"],
+  "properties": {
+    "profile_id": {"type": "string"},
+    "version": {"type": "string"},
+    "input_contract": {"type": "object", "minProperties": 1},
+    "model": {"type": "object", "required": ["artifact", "revision", "content_digest"]},
+    "tokenization": {"type": "object", "minProperties": 1},
+    "pooling": {"type": "object", "minProperties": 1},
+    "preprocessing": {"type": "object"},
+    "output": {"type": "object", "required": ["dimension", "dtype"], "properties": {"dimension": {"type": "integer", "minimum": 1}, "dtype": {"type": "string", "minLength": 1}}},
+    "metric": {"type": "object", "required": ["name", "direction"], "properties": {"name": {"type": "string", "minLength": 1}, "direction": {"type": "string", "minLength": 1}}},
+    "compatibility": {"type": "object", "minProperties": 1},
+    "provenance": {"type": "object", "required": ["plugin_descriptor", "runner_environment", "determinism"]},
+    "lifecycle": {"type": "string", "minLength": 1},
+    "validation_links": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/plugin-descriptor/0.1.0",
+  "title": "PluginDescriptor",
+  "type": "object",
+  "required": ["plugin_id", "interface_version", "capabilities", "configuration_schema", "media_types", "license", "identity_digest", "compatibility"],
+  "properties": {
+    "plugin_id": {"type": "string"},
+    "interface_version": {"type": "string"},
+    "capabilities": {"type": "array", "items": {"type": "string"}},
+    "determinism": {"type": "object"},
+    "configuration_schema": {"type": "string"},
+    "media_types": {"type": "array", "items": {"type": "string"}},
+    "license": {"type": "string"},
+    "identity_digest": {"type": "string"},
+    "signature": {"type": ["object", "null"]},
+    "compatibility": {"type": "object"}
+  },
+  "additionalProperties": false
+}

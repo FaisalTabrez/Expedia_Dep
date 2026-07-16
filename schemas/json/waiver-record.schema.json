@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/waiver-record/0.1.0",
+  "title": "ReleaseWaiverRecord",
+  "type": "object",
+  "required": ["waiver_id", "owner", "rationale", "scope", "review_point", "manifest_reference"],
+  "properties": {
+    "waiver_id": {"type": "string"},
+    "owner": {"type": "string"},
+    "rationale": {"type": "string"},
+    "scope": {"type": "string"},
+    "review_point": {"type": "string"},
+    "manifest_reference": {"type": "string"}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/vector-shard-manifest/0.1.0",
+  "title": "VectorShardManifest",
+  "type": "object",
+  "required": ["profile_id", "shard_id", "dimension", "dtype", "row_mapping", "digest", "build_provenance"],
+  "properties": {
+    "profile_id": {"type": "string"},
+    "shard_id": {"type": "string"},
+    "dimension": {"type": "integer", "minimum": 1},
+    "dtype": {"type": "string"},
+    "row_mapping": {"type": "object"},
+    "digest": {"type": "string"},
+    "build_provenance": {"type": "object"}
+  },
+  "additionalProperties": false
+}

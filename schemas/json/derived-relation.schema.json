@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/derived-relation/0.1.0",
+  "title": "DerivedRelation",
+  "type": "object",
+  "required": ["relation_id", "source", "target", "relation_type", "derivation_id", "release_scope", "artifact_digest"],
+  "properties": {
+    "relation_id": {"type": "string"},
+    "source": {"type": "string"},
+    "target": {"type": "string"},
+    "relation_type": {"type": "string"},
+    "derivation_id": {"type": "string"},
+    "parameters": {"type": "object"},
+    "score": {},
+    "release_scope": {"type": "string"},
+    "profile_scope": {"type": ["string", "null"]},
+    "artifact_digest": {"type": "string"}
+  },
+  "additionalProperties": false
+}

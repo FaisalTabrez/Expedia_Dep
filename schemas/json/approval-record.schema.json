@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/approval-record/0.1.0",
+  "title": "ReleaseApprovalRecord",
+  "type": "object",
+  "required": ["approval_id", "actor", "action", "subject_id", "recorded_at"],
+  "properties": {
+    "approval_id": {"type": "string"},
+    "actor": {"type": "string"},
+    "action": {"type": "string"},
+    "subject_id": {"type": "string"},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "rationale": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}

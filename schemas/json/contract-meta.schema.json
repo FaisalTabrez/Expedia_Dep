@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/contract-meta/0.1.0",
+  "title": "EXPEDIA contract metadata",
+  "type": "object",
+  "required": ["contract_id", "contract_version", "status"],
+  "properties": {
+    "contract_id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+    "contract_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "status": {"enum": ["draft", "active", "deprecated", "experimental"]}
+  },
+  "additionalProperties": false
+}

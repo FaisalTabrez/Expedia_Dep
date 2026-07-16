@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/annotation-assertion/0.1.0",
+  "title": "AnnotationAssertion",
+  "type": "object",
+  "required": ["annotation_id", "target", "predicate", "value", "source", "source_version", "evidence"],
+  "properties": {
+    "annotation_id": {"type": "string"},
+    "target": {"type": "string"},
+    "predicate": {"type": "string"},
+    "value": {},
+    "source": {"type": "string"},
+    "source_version": {"type": "string"},
+    "evidence": {"type": "object"},
+    "confidence": {},
+    "supersession": {"type": ["object", "null"]}
+  },
+  "additionalProperties": false
+}

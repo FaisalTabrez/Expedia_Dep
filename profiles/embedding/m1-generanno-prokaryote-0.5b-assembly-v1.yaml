@@ -1,0 +1,34 @@
+profile_id: m1-generanno-prokaryote-0.5b-assembly-v1
+kind: embedding
+status: draft
+contract_version: 0.1.0
+input_contract:
+  canonicalization_profile: m1-assembly-canonical-v1
+model:
+  artifact: GenerTeam/GENERanno-prokaryote-0.5b-base
+  revision: REQUIRED_IMMUTABLE_REVISION
+  content_digest: REQUIRED_CONTENT_DIGEST
+  license: MIT
+tokenization:
+  tokenizer_digest: REQUIRED_CONTENT_DIGEST
+  bos_prefix: "<s>"
+  add_special_tokens: false
+  maximum_positions: 8192
+pooling:
+  window: final-layer-bos
+  assembly: arithmetic-mean-of-window-vectors
+preprocessing: {}
+output:
+  dimension: 1280
+  dtype: float32
+  normalization: l2
+metric:
+  name: cosine
+  direction: higher-is-more-similar
+compatibility:
+  class: REQUIRED_COMPATIBILITY_CLASS
+provenance:
+  plugin_descriptor: REQUIRED_PINNED_DESCRIPTOR
+  runner_environment: REQUIRED_PINNED_ENVIRONMENT
+  determinism: REQUIRED_DECLARATION
+validation_links: []

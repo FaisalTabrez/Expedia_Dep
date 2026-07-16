@@ -1,0 +1,22 @@
+profile_id: m1-assembly-canonical-v1
+kind: canonicalization
+status: draft
+contract_version: 0.1.0
+source_unit: ncbi-refseq-assembly-version
+representation:
+  record_encoding: "accession<TAB>sequence<LF>"
+  ordering: sequence-accession-lexicographic
+  sequence_normalization:
+    uppercase: true
+    remove_ascii_whitespace: true
+    allowed_iupac_dna: ACGTRYSWKMBDHVN
+  digest:
+    algorithm: sha256
+    encoding: utf-8
+identity:
+  entity_id: ncbi-assembly-accession-without-version
+  record_id: versioned-assembly-accession-plus-profile-id
+policy:
+  automatic_merge: false
+  automatic_split: false
+  invalid_input: quarantine-with-recorded-reason
