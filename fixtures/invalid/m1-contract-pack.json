@@ -1,0 +1,30 @@
+{
+  "fixture_pack_id": "m1-contract-pack-invalid-v1",
+  "fixtures": [
+    {
+      "name": "malformed-release-manifest",
+      "schema": "schemas/json/release-manifest.schema.json",
+      "instance": {"release_id": "broken", "schema_version": "0.1.0", "state": "Draft", "scope": {"population": "test"}, "artifacts": [{"path": "records.jsonl", "media_type": "application/x-ndjson", "digest": "sha256:fixture", "contract_version": "0.1.0"}], "validation": {"status": "pending"}}
+    },
+    {
+      "name": "corrupted-artifact-digest",
+      "schema": "schemas/json/release-manifest.schema.json",
+      "instance": {"release_id": "broken", "schema_version": "0.1.0", "state": "Draft", "scope": {"population": "test"}, "artifacts": [{"path": "records.jsonl", "media_type": "application/x-ndjson", "digest": false, "size": 1, "contract_version": "0.1.0"}], "validation": {"status": "pending"}}
+    },
+    {
+      "name": "invalid-profile-missing-model-digest",
+      "schema": "schemas/json/embedding-profile.schema.json",
+      "instance": {"profile_id": "broken", "version": "0.1.0", "input_contract": {"canonicalization_profile": "m1"}, "model": {"artifact": "model", "revision": "revision"}, "tokenization": {"mode": "single"}, "pooling": {"mode": "bos"}, "preprocessing": {}, "output": {"dimension": 1280, "dtype": "float32"}, "metric": {"name": "cosine", "direction": "higher"}, "compatibility": {"class": "m1"}, "provenance": {"plugin_descriptor": "plugin", "runner_environment": "environment", "determinism": "declared"}, "lifecycle": "draft", "validation_links": []}
+    },
+    {
+      "name": "identity-record-has-undeclared-runtime-field",
+      "schema": "schemas/json/genome-record-version.schema.json",
+      "instance": {"record_id": "record:1", "entity_id": "entity:1", "sequence_digest": "sha256:sequence", "canonicalization_id": "m1-assembly-canonical-v1", "source_provenance_id": "source:1", "lifecycle_state": "eligible", "runtime_cache_path": "C:/not-a-contract-field"}
+    },
+    {
+      "name": "source-provenance-has-invalid-timestamp",
+      "schema": "schemas/json/source-provenance.schema.json",
+      "instance": {"source_provenance_id": "source:1", "source": "NCBI RefSeq", "source_version": "v2", "acquired_at": "2026-13-40T25:61:61Z", "license_notice": {"scope": "internal"}}
+    }
+  ]
+}

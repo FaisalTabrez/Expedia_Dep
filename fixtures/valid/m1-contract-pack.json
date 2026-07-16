@@ -1,0 +1,73 @@
+{
+  "fixture_pack_id": "m1-contract-pack-valid-v1",
+  "fixtures": [
+    {
+      "contract": "release-manifest",
+      "schema": "schemas/json/release-manifest.schema.json",
+      "instance": {
+        "release_id": "expedia-m1-draft-fixture",
+        "schema_version": "0.1.0",
+        "state": "Draft",
+        "scope": {"population": "prokaryotic-genomes", "record_count": 12},
+        "created_at": "2026-07-16T11:26:23Z",
+        "artifacts": [{"path": "records/genome-records.jsonl", "media_type": "application/x-ndjson", "digest": "sha256:fixture-records", "size": 1, "contract_version": "0.1.0"}],
+        "validation": {"review_status": "pending"}
+      }
+    },
+    {
+      "contract": "genome-record-version",
+      "schema": "schemas/json/genome-record-version.schema.json",
+      "instance": {"record_id": "ncbi-assembly:GCF_000005845.2:m1-assembly-canonical-v1", "entity_id": "ncbi-assembly:GCF_000005845", "sequence_digest": "sha256:fixture-sequence", "canonicalization_id": "m1-assembly-canonical-v1", "source_provenance_id": "source:ncbi-refseq", "lifecycle_state": "eligible"}
+    },
+    {
+      "contract": "atlas-entity",
+      "schema": "schemas/json/atlas-entity.schema.json",
+      "instance": {"entity_id": "ncbi-assembly:GCF_000005845", "entity_type": "genome-assembly", "record_versions": ["ncbi-assembly:GCF_000005845.2:m1-assembly-canonical-v1"]}
+    },
+    {
+      "contract": "source-provenance",
+      "schema": "schemas/json/source-provenance.schema.json",
+      "instance": {"source_provenance_id": "source:ncbi-refseq", "source": "NCBI RefSeq", "source_version": "NCBI Datasets API v2", "source_identifier": "GCF_000005845.2", "acquired_at": "2026-07-16T11:26:23Z", "license_notice": {"scope": "internal M1 reproducibility validation only"}}
+    },
+    {
+      "contract": "embedding-profile",
+      "schema": "schemas/json/embedding-profile.schema.json",
+      "instance": {"profile_id": "m1-generanno-prokaryote-0.5b-assembly-v1", "version": "0.1.0", "input_contract": {"canonicalization_profile": "m1-assembly-canonical-v1"}, "model": {"artifact": "GenerTeam/GENERanno-prokaryote-0.5b-base", "revision": "d02db0f24f2c62fa1efde760217cdf75771b0228", "content_digest": "sha256:fixture-model"}, "tokenization": {"maximum_positions": 8192}, "pooling": {"window": "final-layer-bos"}, "preprocessing": {}, "output": {"dimension": 1280, "dtype": "float32"}, "metric": {"name": "cosine", "direction": "higher-is-more-similar"}, "compatibility": {"class": "m1-generanno-cpu-fp32-window-bos-v1"}, "provenance": {"plugin_descriptor": "m1-generanno-huggingface-adapter-input-v1", "runner_environment": "m1-generanno-reference-runner-v1", "determinism": "m1-generanno-cpu-fp32-determinism-v1"}, "lifecycle": "draft", "validation_links": []}
+    },
+    {
+      "contract": "embedding-instance",
+      "schema": "schemas/json/embedding-instance.schema.json",
+      "instance": {"instance_id": "embedding:GCF_000005845.2:m1", "record_id": "ncbi-assembly:GCF_000005845.2:m1-assembly-canonical-v1", "profile_id": "m1-generanno-prokaryote-0.5b-assembly-v1", "vector_reference": {"shard_id": "m1-vectors-000", "row": 0, "shard_digest": "sha256:fixture-shard"}, "created_in": "m1-build-fixture", "runner_provenance": {"environment": "m1-generanno-reference-runner-v1"}, "eligibility_status": "eligible"}
+    },
+    {
+      "contract": "build-manifest",
+      "schema": "schemas/json/build-manifest.schema.json",
+      "instance": {"build_id": "m1-build-fixture", "source_inventory": [{"inventory_id": "m1-refseq-prokaryote-12-v1"}], "canonicalization_profile": "m1-assembly-canonical-v1", "quality_rules": {"assembly_level": "Complete Genome"}, "embedding_profiles": ["m1-generanno-prokaryote-0.5b-assembly-v1"], "plugins": [{"plugin_id": "m1-generanno-huggingface-adapter-input-v1"}], "validation_suite": {"profile": "m1-release-integrity-v1"}, "output_schema": "release-manifest/0.1.0", "release_metadata": {"target_state": "Draft"}}
+    },
+    {
+      "contract": "stage-envelope",
+      "schema": "schemas/json/stage-envelope.schema.json",
+      "instance": {"stage_id": "acquire", "input_artifacts": [], "output_artifacts": [], "outcome": "succeeded", "verification": {"status": "fixture-only"}}
+    },
+    {
+      "contract": "validation-bundle",
+      "schema": "schemas/json/validation-bundle.schema.json",
+      "instance": {"bundle_id": "validation:m1-fixture", "release_digest": "sha256:fixture-release", "checks": [{"check_id": "schema-conformance", "outcome": "passed"}], "review_status": "pending"}
+    },
+    {
+      "contract": "approval-record",
+      "schema": "schemas/json/approval-record.schema.json",
+      "instance": {"approval_id": "approval:m1-fixture", "actor": "M1 Release Approver", "action": "draft-approved", "subject_id": "expedia-m1-draft-fixture", "recorded_at": "2026-07-16T11:26:23Z", "rationale": "fixture-only"}
+    },
+    {
+      "contract": "waiver-record",
+      "schema": "schemas/json/waiver-record.schema.json",
+      "instance": {"waiver_id": "waiver:m1-fixture", "owner": "M1 Release Owner", "rationale": "fixture-only", "scope": "non-production fixture", "review_point": "M1.8", "manifest_reference": "expedia-m1-draft-fixture"}
+    },
+    {
+      "contract": "vector-shard-manifest",
+      "schema": "schemas/json/vector-shard-manifest.schema.json",
+      "instance": {"profile_id": "m1-generanno-prokaryote-0.5b-assembly-v1", "shard_id": "m1-vectors-000", "dimension": 1280, "dtype": "float32", "row_mapping": {"0": "embedding:GCF_000005845.2:m1"}, "digest": "sha256:fixture-shard", "build_provenance": {"build_id": "m1-build-fixture"}}
+    }
+  ]
+}
