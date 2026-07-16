@@ -1,0 +1,47 @@
+{
+  "build_id": "m1-build-input-freeze-v1",
+  "source_inventory": [
+    {
+      "inventory_id": "m1-refseq-prokaryote-12-v1",
+      "inventory_path": "atlas-builder/manifests/m1/m1-refseq-accessions.json",
+      "provenance_path": "atlas-builder/manifests/m1/m1-source-provenance.json",
+      "acquisition": {
+        "tool": "NCBI Datasets CLI",
+        "version": "18.33.1",
+        "platform": "windows-amd64",
+        "package_digest": "sha256:06a96e86ec9010acaa4e2291b9e7ec1c9c28591bbdee556ecb2592bdb69f7596",
+        "package_url": "https://github.com/ncbi/datasets/releases/download/v18.33.1/windows-amd64.cli.package.zip",
+        "planned_command": "datasets download genome accession --inputfile <committed-versioned-accession-list> --include genome,seq-report --filename <output-archive>",
+        "status": "not-executed; M1.3 must record the acquired archive digest, catalogue digest, and retrieval timestamp"
+      }
+    }
+  ],
+  "inclusion_policy": {
+    "quality_rule": "NCBI RefSeq source quality with Complete Genome as the sole M1 technical filter",
+    "technical_exclusions": "none at input-freeze time; later exclusions require a recorded quarantine or exclusion assertion"
+  },
+  "canonicalization_profile": "m1-assembly-canonical-v1",
+  "quality_rules": {
+    "source_quality_policy": "NCBI RefSeq",
+    "assembly_level": "Complete Genome"
+  },
+  "embedding_profiles": [
+    "m1-generanno-prokaryote-0.5b-assembly-v1"
+  ],
+  "plugins": [
+    {
+      "descriptor_id": "m1-generanno-huggingface-adapter-input-v1",
+      "descriptor_path": "profiles/plugins/m1-generanno-huggingface-adapter-input-v1.json"
+    }
+  ],
+  "validation_suite": {
+    "profile": "m1-release-integrity-v1",
+    "status": "M1.2 contract fixture work pending"
+  },
+  "output_schema": "release-manifest/0.1.0",
+  "release_metadata": {
+    "target_state": "Draft",
+    "scope": "internal reproducibility proof of concept",
+    "public_distribution": "not authorized"
+  }
+}

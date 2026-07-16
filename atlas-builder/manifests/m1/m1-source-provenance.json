@@ -1,0 +1,13 @@
+{
+  "source_provenance_id": "m1-ncbi-refseq-inventory-verification-20260716",
+  "source": "NCBI RefSeq assembly metadata",
+  "source_version": "NCBI Datasets API v2; acquisition CLI pinned to v18.33.1",
+  "source_identifier": "m1-refseq-prokaryote-12-v1",
+  "acquired_at": "2026-07-16T11:26:23Z",
+  "license_notice": {
+    "scope": "internal M1 reproducibility validation only",
+    "source_policy": "https://www.ncbi.nlm.nih.gov/home/about/policies/",
+    "notice": "NCBI molecular-data usage terms and any third-party rights apply. This record does not grant redistribution rights for source data, metadata, or derived artifacts.",
+    "public_release_status": "deferred pending the licensing matrix"
+  }
+}

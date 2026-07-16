@@ -1,0 +1,75 @@
+{
+  "inventory_id": "m1-refseq-prokaryote-12-v1",
+  "source": "NCBI RefSeq",
+  "selection_rules": {
+    "assembly_level": "Complete Genome",
+    "assembly_accession_prefix": "GCF_",
+    "domains": [
+      "Bacteria",
+      "Archaea"
+    ],
+    "record_count": 12
+  },
+  "assemblies": [
+    {
+      "accession": "GCF_000005845.2",
+      "domain": "Bacteria",
+      "organism_name": "Escherichia coli str. K-12 substr. MG1655"
+    },
+    {
+      "accession": "GCF_000006765.1",
+      "domain": "Bacteria",
+      "organism_name": "Pseudomonas aeruginosa PAO1"
+    },
+    {
+      "accession": "GCF_000006945.2",
+      "domain": "Bacteria",
+      "organism_name": "Salmonella enterica subsp. enterica serovar Typhimurium str. LT2"
+    },
+    {
+      "accession": "GCF_000009045.1",
+      "domain": "Bacteria",
+      "organism_name": "Bacillus subtilis subsp. subtilis str. 168"
+    },
+    {
+      "accession": "GCF_000010465.1",
+      "domain": "Bacteria",
+      "organism_name": "Staphylococcus aureus subsp. aureus str. Newman"
+    },
+    {
+      "accession": "GCF_000022005.1",
+      "domain": "Bacteria",
+      "organism_name": "Caulobacter vibrioides NA1000"
+    },
+    {
+      "accession": "GCF_000023265.1",
+      "domain": "Bacteria",
+      "organism_name": "Acidimicrobium ferrooxidans DSM 10331"
+    },
+    {
+      "accession": "GCF_000195955.2",
+      "domain": "Bacteria",
+      "organism_name": "Mycobacterium tuberculosis H37Rv"
+    },
+    {
+      "accession": "GCF_000007065.1",
+      "domain": "Archaea",
+      "organism_name": "Methanosarcina mazei Go1"
+    },
+    {
+      "accession": "GCF_000007225.1",
+      "domain": "Archaea",
+      "organism_name": "Pyrobaculum aerophilum str. IM2"
+    },
+    {
+      "accession": "GCF_000009965.1",
+      "domain": "Archaea",
+      "organism_name": "Thermococcus kodakarensis KOD1"
+    },
+    {
+      "accession": "GCF_000025685.1",
+      "domain": "Archaea",
+      "organism_name": "Haloferax volcanii DS2"
+    }
+  ]
+}

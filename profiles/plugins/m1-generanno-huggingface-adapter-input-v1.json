@@ -1,0 +1,49 @@
+{
+  "plugin_id": "m1-generanno-huggingface-adapter-input-v1",
+  "interface_version": "0.1.0",
+  "capabilities": [
+    "profile-specific-embedding",
+    "contig-window-processing",
+    "final-layer-bos-pooling"
+  ],
+  "determinism": {
+    "declaration_id": "m1-generanno-cpu-fp32-determinism-v1",
+    "accelerator": "CPU only",
+    "precision": "float32",
+    "seed": 0,
+    "optional_flash_attention": "not installed and not permitted",
+    "verification_status": "runtime verification required in M1.5"
+  },
+  "configuration_schema": "profiles/embedding/m1-generanno-prokaryote-0.5b-assembly-v1.yaml",
+  "media_types": [
+    "application/vnd.expedia.canonical-assembly+utf-8;version=1",
+    "application/vnd.expedia.embedding-vector+float32;version=1"
+  ],
+  "license": "MIT, declared by the pinned model card; EXPEDIA adapter implementation not yet created",
+  "identity_digest": "hf-git-revision:d02db0f24f2c62fa1efde760217cdf75771b0228",
+  "signature": null,
+  "compatibility": {
+    "model_repository": "GenerTeam/GENERanno-prokaryote-0.5b-base",
+    "license_evidence": {
+      "model_card_path": "README.md",
+      "model_card_git_blob_sha1": "e8a29ee908cddf7d96308c498009346495d5d031",
+      "declared_license_identifier": "MIT",
+      "notice_path": "profiles/licenses/generanno-prokaryote-0.5b-base-MIT-notice.md"
+    },
+    "model_weight_digest": "sha256:ed1cfcc64fe890a6a72017d24c02ad6af3b15c9cfa6950e850908cca92882d51",
+    "required_transformers_version": "4.44.0",
+    "tokenizer_identity": {
+      "repository_revision": "d02db0f24f2c62fa1efde760217cdf75771b0228",
+      "files": {
+        "tokenization_generanno.py": "git-blob-sha1:75af993520324422165b40025c4ffa4dbfea54eb",
+        "tokenizer_config.json": "git-blob-sha1:acaa3ef3aba49ead11b9c91b1f7092d188bf1fbd",
+        "special_tokens_map.json": "git-blob-sha1:141699bc7422269ce9701a26eaf810e048856973",
+        "vocab.txt": "git-blob-sha1:4ea24eb5e7611fe71801c97d5811b32aafaf6425"
+      }
+    },
+    "custom_model_code": {
+      "configuration_generanno.py": "git-blob-sha1:40d03c748818d68821b14ca068afe07dcb9e7eff",
+      "modeling_generanno.py": "git-blob-sha1:85898ba8ac07cce82df5afc091bcacae45f01ddb"
+    }
+  }
+}

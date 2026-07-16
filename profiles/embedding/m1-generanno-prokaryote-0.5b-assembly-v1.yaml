@@ -6,11 +6,11 @@ input_contract:
   canonicalization_profile: m1-assembly-canonical-v1
 model:
   artifact: GenerTeam/GENERanno-prokaryote-0.5b-base
-  revision: REQUIRED_IMMUTABLE_REVISION
-  content_digest: REQUIRED_CONTENT_DIGEST
+  revision: d02db0f24f2c62fa1efde760217cdf75771b0228
+  content_digest: sha256:ed1cfcc64fe890a6a72017d24c02ad6af3b15c9cfa6950e850908cca92882d51
   license: MIT
 tokenization:
-  tokenizer_digest: REQUIRED_CONTENT_DIGEST
+  tokenizer_digest: hf-git-revision:d02db0f24f2c62fa1efde760217cdf75771b0228
   bos_prefix: "<s>"
   add_special_tokens: false
   maximum_positions: 8192
@@ -26,9 +26,9 @@ metric:
   name: cosine
   direction: higher-is-more-similar
 compatibility:
-  class: REQUIRED_COMPATIBILITY_CLASS
+  class: m1-generanno-cpu-fp32-window-bos-v1
 provenance:
-  plugin_descriptor: REQUIRED_PINNED_DESCRIPTOR
-  runner_environment: REQUIRED_PINNED_ENVIRONMENT
-  determinism: REQUIRED_DECLARATION
+  plugin_descriptor: m1-generanno-huggingface-adapter-input-v1
+  runner_environment: m1-generanno-reference-runner-v1
+  determinism: m1-generanno-cpu-fp32-determinism-v1
 validation_links: []
