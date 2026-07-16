@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import platform
 import sys
@@ -12,6 +13,10 @@ import time
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "atlas-builder" / "src"))
+
+# Required by CUDA >= 10.2 for deterministic CuBLAS operations. This must be
+# set before importing torch or initializing CUDA.
+os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
 
 from expedia_atlas_builder.embedding import (  # noqa: E402
     BOS_PREFIX,
@@ -78,7 +83,7 @@ def run(canonical_path: Path, output_dir: Path) -> None:
         "profile_id": PROFILE_ID,
         "model": {"id": MODEL_ID, "revision": REVISION, "weight_digest": WEIGHT_DIGEST},
         "algorithm": {"bos_prefix": BOS_PREFIX, "window_bases": 8191, "window_count": len(windows), "pooling": "arithmetic-mean-of-window-vectors", "normalization": "l2", "dtype": "float32"},
-        "runtime": {"python": platform.python_version(), "torch": torch.__version__, "transformers": transformers.__version__, "cuda": torch.version.cuda, "gpu": torch.cuda.get_device_name(0), "deterministic_algorithms": True, "tf32": False},
+        "runtime": {"python": platform.python_version(), "torch": torch.__version__, "transformers": transformers.__version__, "cuda": torch.version.cuda, "gpu": torch.cuda.get_device_name(0), "deterministic_algorithms": True, "tf32": False, "cublas_workspace_config": os.environ["CUBLAS_WORKSPACE_CONFIG"]},
         "timing": {"forward_pipeline_seconds": time.perf_counter() - started},
         "vector_digest": sha256(vector_path),
     }

@@ -17,6 +17,7 @@ class T4ValidationHarnessTests(unittest.TestCase):
         instructions = (ROOT / "validation" / "colab" / "README.md").read_text()
         self.assertIn("validation evidence only", " ".join(instructions.replace("**", "").split()))
         self.assertIn("byte-for-byte", instructions)
+        self.assertIn("CUBLAS_WORKSPACE_CONFIG", instructions)
 
 
 if __name__ == "__main__":

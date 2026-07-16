@@ -11,6 +11,8 @@ they were the CPU reference profile.
 1. In Colab, choose **Runtime → Change runtime type → T4 GPU**.
 2. Clone this repository and run `pip install torch==2.4.1
    transformers==4.44.0 huggingface_hub==0.36.2`.
+   The harness sets `CUBLAS_WORKSPACE_CONFIG=:4096:8` before importing PyTorch;
+   do not override or remove it.
 3. Make the acquired canonical record available in the notebook workspace; do
    not re-canonicalize source FASTA in Colab.
 4. Run `m1_t4_validation.py` with the canonical record, output directory, and
