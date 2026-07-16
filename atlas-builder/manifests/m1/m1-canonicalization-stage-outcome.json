@@ -1,0 +1,12 @@
+{
+  "stage_id": "register-canonicalize",
+  "input_artifacts": [{"path": "workspaces/m1/acquire/run-20260716-catalogue/ncbi-datasets-m1-source.zip", "media_type": "application/zip", "digest": "sha256:4318617de3c1c4ef5dc87bc52bc6af4f9cf09121aa8caf5f57a31051084d4778"}],
+  "output_artifacts": [
+    {"path": "workspaces/m1/canonicalize/run-20260716/genome-record-versions.jsonl", "media_type": "application/x-ndjson", "digest": "sha256:1d711c8d67b88ce4da9907933d67208eac3c2d0487cd49ceab2443c17f0beb48"},
+    {"path": "workspaces/m1/canonicalize/run-20260716/atlas-entities.jsonl", "media_type": "application/x-ndjson", "digest": "sha256:606da528b00c058209eb52c825fc709331bea17ac62e3b8af9b0bab666738a54"}
+  ],
+  "exclusions": [],
+  "outcome": "succeeded",
+  "verification": {"eligible_record_count": 12, "quarantine_count": 0, "matching_sequence_digests": {}, "automatic_merge": false, "automatic_split": false},
+  "recovery": {"retry_requires": "a new empty canonicalization workspace"}
+}
