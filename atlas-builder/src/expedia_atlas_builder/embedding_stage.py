@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
+from datetime import datetime, timezone
 import json
 import math
 from pathlib import Path
@@ -56,6 +57,7 @@ class EligibleRecord:
 
 
 Embedder = Callable[[Path, Path, str, dict[str, float]], tuple[float, ...]]
+ProgressReporter = Callable[[str], None]
 
 
 def collect_cpu_runner_provenance() -> dict[str, object]:
@@ -97,6 +99,7 @@ def execute_embedding_stage(
     build_id: str,
     runner_provenance: Mapping[str, object] | None = None,
     embedder: Embedder = embed_assembly_from_local_snapshot,
+    progress: ProgressReporter | None = None,
 ) -> dict[str, object]:
     """Create one M1 vector shard and one EmbeddingInstance per eligible record.
 
@@ -121,7 +124,11 @@ def execute_embedding_stage(
     try:
         for row, record in enumerate(records):
             if row < completed:
+                if progress is not None:
+                    progress(f"reused row {row + 1}/{len(records)}: {record.record_id}")
                 continue
+            if progress is not None:
+                progress(f"embedding row {row + 1}/{len(records)}: {record.record_id}")
             timings: dict[str, float] = {}
             vector = embedder(record.canonical_path, snapshot_path, expected_weight_digest, timings)
             _validate_vector(vector)
@@ -130,6 +137,8 @@ def execute_embedding_stage(
                 checkpoint_path,
                 {"run_spec": run_spec, "completed_rows": row + 1, "last_timings": timings},
             )
+            if progress is not None:
+                progress(f"completed row {row + 1}/{len(records)}: {record.record_id}")
         return _finalize_stage(workspace, records, build_id, expected_weight_digest, provenance, partial_path)
     except Exception as error:
         envelope = _failed_envelope(record_versions_path, workspace, str(error))
@@ -332,6 +341,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--workspace", type=Path, required=True)
     parser.add_argument("--build-id", required=True)
     args = parser.parse_args(argv)
+
+    def report(message: str) -> None:
+        timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+        print(f"{timestamp} {message}", flush=True)
+
     execute_embedding_stage(
         record_versions_path=args.record_versions,
         canonical_directory=args.canonical_directory,
@@ -339,6 +353,7 @@ def main(argv: list[str] | None = None) -> int:
         expected_weight_digest=args.weight_digest,
         workspace=args.workspace,
         build_id=args.build_id,
+        progress=report,
     )
     return 0
 
