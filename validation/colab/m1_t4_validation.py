@@ -37,6 +37,8 @@ WEIGHT_DIGEST = "sha256:ed1cfcc64fe890a6a72017d24c02ad6af3b15c9cfa6950e850908cca
 PROFILE_ID = "m1-generanno-prokaryote-0.5b-assembly-v1"
 CANONICALIZATION_ID = "m1-assembly-canonical-v1"
 EXPECTED_RECORD_COUNT = 12
+SNAPSHOT_DOWNLOAD_WORKERS = 1
+SNAPSHOT_DOWNLOAD_ATTEMPTS = 5
 
 
 def sha256(path: Path) -> str:
@@ -123,11 +125,31 @@ def _load_pinned_model(output_dir: Path) -> tuple[Any, Any, Any, dict[str, objec
     import torch
     import transformers
     from huggingface_hub import snapshot_download
+    from huggingface_hub.errors import HfHubHTTPError, LocalEntryNotFoundError
     from transformers import AutoModelForMaskedLM, AutoTokenizer
 
     configure_t4_determinism(torch)
     started = time.perf_counter()
-    snapshot = Path(snapshot_download(MODEL_ID, revision=REVISION, local_dir=output_dir / "snapshot"))
+    snapshot_error: Exception | None = None
+    snapshot: Path | None = None
+    for attempt in range(1, SNAPSHOT_DOWNLOAD_ATTEMPTS + 1):
+        try:
+            snapshot = Path(
+                snapshot_download(
+                    MODEL_ID,
+                    revision=REVISION,
+                    local_dir=output_dir / "snapshot",
+                    max_workers=SNAPSHOT_DOWNLOAD_WORKERS,
+                )
+            )
+            break
+        except (HfHubHTTPError, LocalEntryNotFoundError) as error:
+            snapshot_error = error
+            if attempt == SNAPSHOT_DOWNLOAD_ATTEMPTS:
+                raise RuntimeError("pinned model snapshot download failed after retrying") from error
+            time.sleep(2 ** (attempt - 1))
+    if snapshot is None:
+        raise RuntimeError("pinned model snapshot download did not return a local path") from snapshot_error
     if sha256(snapshot / "model.safetensors") != WEIGHT_DIGEST:
         raise RuntimeError("pinned model weight digest mismatch")
     tokenizer = AutoTokenizer.from_pretrained(snapshot, trust_remote_code=True, local_files_only=True)
@@ -143,6 +165,8 @@ def _load_pinned_model(output_dir: Path) -> tuple[Any, Any, Any, dict[str, objec
         "deterministic_algorithms": True,
         "tf32": False,
         "cublas_workspace_config": os.environ["CUBLAS_WORKSPACE_CONFIG"],
+        "snapshot_download_workers": SNAPSHOT_DOWNLOAD_WORKERS,
+        "snapshot_download_attempt_limit": SNAPSHOT_DOWNLOAD_ATTEMPTS,
         "model_load_seconds": time.perf_counter() - started,
     }
     return torch, tokenizer, model, runtime

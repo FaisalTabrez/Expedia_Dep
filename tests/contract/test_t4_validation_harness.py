@@ -13,6 +13,8 @@ from m1_t4_validation import (  # noqa: E402
     EXPECTED_RECORD_COUNT,
     PROFILE_ID,
     REVISION,
+    SNAPSHOT_DOWNLOAD_ATTEMPTS,
+    SNAPSHOT_DOWNLOAD_WORKERS,
     WEIGHT_DIGEST,
     _m1_batch_inputs,
     load_batch_records,
@@ -25,6 +27,8 @@ class T4ValidationHarnessTests(unittest.TestCase):
         self.assertEqual("m1-generanno-prokaryote-0.5b-assembly-v1", PROFILE_ID)
         self.assertEqual("d02db0f24f2c62fa1efde760217cdf75771b0228", REVISION)
         self.assertRegex(WEIGHT_DIGEST, r"^sha256:[0-9a-f]{64}$")
+        self.assertEqual(1, SNAPSHOT_DOWNLOAD_WORKERS)
+        self.assertGreaterEqual(SNAPSHOT_DOWNLOAD_ATTEMPTS, 1)
         instructions = (ROOT / "validation" / "colab" / "README.md").read_text()
         self.assertIn("validation evidence only", " ".join(instructions.replace("**", "").split()))
         self.assertIn("byte-for-byte", instructions)

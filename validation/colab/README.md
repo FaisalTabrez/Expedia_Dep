@@ -29,6 +29,9 @@ they were the CPU reference profile.
    frozen model revision. It downloads the exact snapshot, verifies the
    `model.safetensors` SHA-256, enables deterministic CUDA settings, and emits
    a vector plus runtime metadata.
+   Snapshot retrieval is deliberately sequential and retries transient Hub rate
+   limits; rerun the identical command with the same output directory if a
+   network interruption exhausts those retries.
 5. Restart the Colab runtime and repeat the same command. Compare the two
    `vector.float32le` files byte-for-byte. Stop if they differ.
 6. Retain the two metadata files, vector digests, and comparison result as
