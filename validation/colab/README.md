@@ -9,8 +9,18 @@ they were the CPU reference profile.
 ## Colab procedure
 
 1. In Colab, choose **Runtime → Change runtime type → T4 GPU**.
-2. Clone this repository and run `pip install torch==2.4.1
-   transformers==4.44.0 huggingface_hub==0.36.2`.
+2. Clone this repository and install the pinned runtime packages with a clean
+   reinstall. Colab can otherwise retain incompatible files from a previously
+   installed Transformers version:
+
+   ```bash
+   pip uninstall -y transformers tokenizers huggingface_hub
+   pip install --no-cache-dir --force-reinstall --no-deps \
+     torch==2.4.1 transformers==4.44.0 tokenizers==0.19.1 huggingface_hub==0.36.2
+   ```
+
+   Restart the Colab runtime immediately after this installation, then clone
+   or pull the repository again before running the harness.
    The harness sets `CUBLAS_WORKSPACE_CONFIG=:4096:8` before importing PyTorch;
    do not override or remove it.
 3. Make the acquired canonical record available in the notebook workspace; do
