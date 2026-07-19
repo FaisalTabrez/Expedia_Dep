@@ -67,6 +67,13 @@ class T4ValidationHarnessTests(unittest.TestCase):
         self.assertEqual(EXPECTED_RECORD_COUNT, len(accessions))
         self.assertRegex(record_table_digest, r"^sha256:[0-9a-f]{64}$")
 
+    def test_committed_t4_evidence_record_is_explicitly_non_release(self) -> None:
+        evidence = (ROOT / "validation" / "colab" / "evidence" / "m1-t4-accelerator-implementation-validation-2026-07-19.md").read_text()
+        self.assertIn("**Status:** Passed", evidence)
+        self.assertIn("Not eligible for an Atlas Release", evidence)
+        self.assertIn("sha256:f7b4ba4a6f45eb69120f799a520b297d497705e5380e82ebb109afb7e3f69cff", evidence)
+        self.assertIn("does not replace the CPU-only M1 reference runner", evidence)
+
 
 if __name__ == "__main__":
     unittest.main()
