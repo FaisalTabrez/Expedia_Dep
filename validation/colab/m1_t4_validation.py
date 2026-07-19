@@ -79,6 +79,10 @@ def load_batch_records(
 ) -> tuple[BatchRecord, ...]:
     """Accept only the exact M1.4 record table and all of its canonical inputs."""
 
+    if not record_versions_path.is_file():
+        raise RuntimeError(f"missing uploaded M1.4 record-version table: {record_versions_path}")
+    if not canonical_directory.is_dir():
+        raise RuntimeError(f"missing uploaded M1.4 canonical directory: {canonical_directory}")
     if sha256(record_versions_path) != expected_record_versions_digest:
         raise RuntimeError("canonical record-version table digest does not match committed M1.4 evidence")
     try:

@@ -59,6 +59,8 @@ class T4ValidationHarnessTests(unittest.TestCase):
 
             with self.assertRaisesRegex(RuntimeError, "digest"):
                 load_batch_records(canonical, table, accessions, "sha256:" + "0" * 64)
+            with self.assertRaisesRegex(RuntimeError, "missing uploaded"):
+                load_batch_records(canonical, root / "missing.jsonl", accessions, sha256(table))
 
     def test_batch_mode_resolves_the_committed_m1_canonicalization_evidence(self) -> None:
         accessions, record_table_digest = _m1_batch_inputs()

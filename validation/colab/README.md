@@ -68,11 +68,16 @@ In Colab, upload and unpack that folder, then use a persistent output location
 
 ```python
 from google.colab import files
-files.upload()  # Upload m1-canonical-inputs.zip
+uploaded = files.upload()  # Upload m1-canonical-inputs.zip
+assert "m1-canonical-inputs.zip" in uploaded
 ```
 
 ```bash
-!unzip -q /content/m1-canonical-inputs.zip -d /content
+!mkdir -p /content/m1-upload
+!mv m1-canonical-inputs.zip /content/m1-upload/
+!unzip -q /content/m1-upload/m1-canonical-inputs.zip -d /content
+!test -f /content/m1-canonical-inputs/genome-record-versions.jsonl
+!test -d /content/m1-canonical-inputs/canonical
 !python validation/colab/m1_t4_validation.py \
   --canonical-directory /content/m1-canonical-inputs/canonical \
   --record-versions /content/m1-canonical-inputs/genome-record-versions.jsonl \
