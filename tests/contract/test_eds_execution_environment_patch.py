@@ -26,6 +26,11 @@ class EDSExecutionEnvironmentPatchTests(unittest.TestCase):
         self.assertIn("No JSON Schema, Python contract binding, canonicalization profile", patch)
         self.assertIn("sha256:f7b4ba4a6f45eb69120f799a520b297d497705e5380e82ebb109afb7e3f69cff", patch)
 
+    def test_accepted_successor_is_present(self) -> None:
+        patch = (ROOT / "specification" / "changes" / "EDS-v2.1.1-M1-deterministic-execution-environment-patch.md").read_text(encoding="utf-8")
+        self.assertIn("**Status:** Accepted controlled amendment, effective 20 July 2026.", patch)
+        self.assertTrue((ROOT / "EXPEDIA_Design_Specification_EDS_v2.1.1.docx").is_file())
+
 
 if __name__ == "__main__":
     unittest.main()

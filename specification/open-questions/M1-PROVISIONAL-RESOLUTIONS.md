@@ -105,6 +105,22 @@ The profile declaration is:
   digest, runner/plugin digest, numeric library/environment, deterministic
   settings, and this profile declaration digest.
 
+### M1 execution environment
+
+**Decision.** EDS v2.1.1 replaces the former CPU-only implementation
+assumption with an Approved Deterministic Execution Environment (ADEE). M1
+release generation may use the approved
+`m1-generanno-t4-cuda12.1-fp32-deterministic-v1` environment, subject to its
+pinned runtime declaration and deterministic-reproduction evidence. This
+decision approves an execution environment only: it does not create or alter
+the sole M1 embedding profile, record unit, canonicalization policy, vector
+format, pooling, normalization, model pin, or tokenizer pin.
+
+The selected ADEE identifier and declaration digest must be recorded in the
+BuildManifest, runner provenance, and StageOutcome. Existing T4 validation
+outputs remain validation evidence; the release embedding stage must generate
+its own canonical vector shard, EmbeddingInstance table, and StageOutcome.
+
 The GENERanno model card identifies the prokaryote base artifact as a
 single-nucleotide-resolution model with an 8 kb context; its pinned
 configuration declares a 1,280-dimensional hidden representation and an

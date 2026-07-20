@@ -1,8 +1,9 @@
-# EDS v2.1.1 proposed normative patch: M1 deterministic execution environments
+# EDS v2.1.1 normative amendment: M1 deterministic execution environments
 
-**Status:** Proposed controlled amendment; not effective until accepted by the
-M1 Release Owner under EDS document control.  
-**Target:** `EXPEDIA_Design_Specification_EDS_v2.1.docx`  
+**Status:** Accepted controlled amendment, effective 20 July 2026.
+**Target:** `EXPEDIA_Design_Specification_EDS_v2.1.docx`; preserved as an
+immutable historical controlled source.
+**Successor:** `EXPEDIA_Design_Specification_EDS_v2.1.1.docx`
 **Scope:** M1 embedding execution policy only.  
 **Non-goals:** No change to the M1 architecture, milestones, contracts,
 schemas, canonicalization, embedding-profile representation semantics, model,
@@ -15,7 +16,8 @@ M1 release eligibility MUST be determined by embedding-profile conformance,
 pinned model and tokenizer identities, an Approved Deterministic Execution
 Environment (ADEE), complete provenance, and successful contract validation.
 Processor type alone MUST NOT determine release eligibility or embedding-profile
-identity.
+identity. This amendment is effective only for M1 execution policy; every
+unamended EDS v2.1 clause remains in force in the v2.1.1 successor.
 
 An ADEE is a versioned, digest-pinned execution declaration selected by one
 BuildManifest. It MAY use CPU or validated accelerator hardware. It MUST record
