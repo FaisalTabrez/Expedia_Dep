@@ -1,0 +1,45 @@
+{
+  "build_id": "m1-t4-release-build-v1",
+  "source_inventory": [
+    {
+      "inventory_id": "m1-refseq-prokaryote-12-v1",
+      "inventory_path": "atlas-builder/manifests/m1/m1-refseq-accessions.json",
+      "canonicalization_stage_outcome_path": "atlas-builder/manifests/m1/m1-canonicalization-stage-outcome.json",
+      "record_versions_digest": "sha256:1d711c8d67b88ce4da9907933d67208eac3c2d0487cd49ceab2443c17f0beb48"
+    }
+  ],
+  "inclusion_policy": {
+    "quality_rule": "NCBI RefSeq source quality with Complete Genome as the sole M1 technical filter",
+    "technical_exclusions": "none"
+  },
+  "canonicalization_profile": "m1-assembly-canonical-v1",
+  "quality_rules": {
+    "source_quality_policy": "NCBI RefSeq",
+    "assembly_level": "Complete Genome"
+  },
+  "embedding_profiles": [
+    "m1-generanno-prokaryote-0.5b-assembly-v1"
+  ],
+  "plugins": [
+    {
+      "descriptor_id": "m1-generanno-huggingface-adapter-input-v1",
+      "descriptor_path": "profiles/plugins/m1-generanno-huggingface-adapter-input-v1.json",
+      "execution_environment": {
+        "id": "m1-generanno-t4-cuda12.1-fp32-deterministic-v1",
+        "declaration_path": "profiles/environments/m1-generanno-t4-cuda12.1-fp32-deterministic-v1.json",
+        "declaration_digest": "sha256:85d5a7ed3b395b9c23c344967e6a0b456b7a51735ac385347a6ab4378bc029a8"
+      }
+    }
+  ],
+  "validation_suite": {
+    "profile": "m1-release-integrity-v1",
+    "deterministic_execution_evidence": "validation/colab/evidence/m1-t4-accelerator-implementation-validation-2026-07-19.md",
+    "status": "T4 ADEE approved by EDS v2.1.1; release-stage contract validation required"
+  },
+  "output_schema": "release-manifest/0.1.0",
+  "release_metadata": {
+    "target_state": "Draft",
+    "scope": "internal reproducibility proof of concept",
+    "public_distribution": "not authorized"
+  }
+}

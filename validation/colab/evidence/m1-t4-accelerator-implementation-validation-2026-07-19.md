@@ -51,7 +51,8 @@ profile.
 ## Boundary and remaining work
 
 This result validates the frozen embedding implementation on accelerator
-hardware. It does not replace the CPU-only M1 reference runner, create
-`EmbeddingInstance` records, create a vector shard, or authorize M1.6 Draft
-packaging. The CPU reference release-artifact execution remains the open M1.5
-release gate.
+hardware. It does not itself create `EmbeddingInstance` records, create a
+vector shard, or authorize M1.6 Draft packaging. EDS v2.1.1 later promoted the
+documented T4 environment—not these validation outputs—to an approved M1
+release-generation environment. A separate Builder execution must generate
+its own canonical artifacts with ADEE provenance.

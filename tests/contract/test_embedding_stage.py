@@ -85,6 +85,7 @@ class EmbeddingStageTests(unittest.TestCase):
                 Draft202012Validator(instance_schema).validate(instance)
             self.assertEqual(2, len(instances))
             self.assertEqual(manifest["digest"], instances[0]["vector_reference"]["shard_digest"])
+            self.assertEqual({"environment": "test"}, envelope["verification"]["runner_provenance"])
             self.assertFalse((workspace / CHECKPOINT_NAME).exists())
 
     def test_failed_run_resumes_without_recomputing_completed_vectors(self) -> None:

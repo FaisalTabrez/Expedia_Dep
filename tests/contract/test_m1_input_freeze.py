@@ -50,7 +50,13 @@ class M1InputFreezeTests(unittest.TestCase):
 
         self.assertEqual("hf-git-revision:d02db0f24f2c62fa1efde760217cdf75771b0228", descriptor["identity_digest"])
         self.assertEqual("4.44.0", descriptor["compatibility"]["required_transformers_version"])
-        self.assertEqual("CPU only", descriptor["determinism"]["accelerator"])
+        self.assertEqual("Tesla T4", descriptor["determinism"]["accelerator"])
+        self.assertEqual(
+            "m1-generanno-t4-cuda12.1-fp32-deterministic-v1",
+            descriptor["determinism"]["declaration_id"],
+        )
+        declaration = ROOT / descriptor["determinism"]["declaration_path"]
+        self.assertTrue(declaration.is_file())
         self.assertIn("modeling_generanno.py", descriptor["compatibility"]["custom_model_code"])
         notice = ROOT / descriptor["compatibility"]["license_evidence"]["notice_path"]
         self.assertIn("MIT license text", notice.read_text())

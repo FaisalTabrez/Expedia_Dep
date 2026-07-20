@@ -2,9 +2,9 @@
 
 This harness validates the frozen M1 embedding algorithm on a Google Colab T4.
 It is **not** an Atlas Builder stage and its vectors are **validation evidence
-only**. Do not place its outputs in an M1 release, register them as
-`EmbeddingInstance` records, or compare them across accelerator classes as if
-they were the CPU reference profile.
+only**. Do not place its outputs in an M1 release or register them as
+`EmbeddingInstance` records. The approved Builder release path is documented
+in `atlas-builder/README.md`; this harness remains evidence-only.
 
 ## Colab procedure
 
@@ -45,8 +45,10 @@ they cannot be mistaken for CPU-profile provenance.
 ## Full M1.5 implementation validation (12 records)
 
 This mode validates the complete frozen implementation on the already-verified
-T4 runtime. It does **not** change the CPU-only release profile and never emits
-release vectors, vector shards, or `EmbeddingInstance` records.
+T4 runtime. It never emits release vectors, vector shards, or
+`EmbeddingInstance` records. EDS v2.1.1 separately approves the documented T4
+environment for Builder release generation; use the Builder path, not this
+harness, for that work.
 
 Before uploading anything to Colab, prepare an input folder from the existing
 M1.4 outputs. It must contain exactly these two items:

@@ -1,0 +1,35 @@
+{
+  "execution_environment_id": "m1-generanno-t4-cuda12.1-fp32-deterministic-v1",
+  "kind": "approved-deterministic-execution-environment",
+  "approval_scope": "M1 release generation for m1-generanno-prokaryote-0.5b-assembly-v1",
+  "accelerator": {
+    "device_name": "Tesla T4",
+    "cuda": "12.1"
+  },
+  "runtime": {
+    "python": "3.12.13",
+    "torch": "2.4.1+cu121",
+    "transformers": "4.44.0"
+  },
+  "numeric_policy": {
+    "precision": "float32",
+    "seed": 0,
+    "deterministic_algorithms": true,
+    "cublas_workspace_config": ":4096:8",
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "tf32": false,
+    "window_batch_size": 1,
+    "inference_mode": true
+  },
+  "model": {
+    "artifact": "GenerTeam/GENERanno-prokaryote-0.5b-base",
+    "revision": "d02db0f24f2c62fa1efde760217cdf75771b0228",
+    "weight_digest": "sha256:ed1cfcc64fe890a6a72017d24c02ad6af3b15c9cfa6950e850908cca92882d51",
+    "tokenizer_revision": "d02db0f24f2c62fa1efde760217cdf75771b0228"
+  },
+  "validation_evidence": {
+    "path": "validation/colab/evidence/m1-t4-accelerator-implementation-validation-2026-07-19.md",
+    "digest": "sha256:f7b4ba4a6f45eb69120f799a520b297d497705e5380e82ebb109afb7e3f69cff"
+  }
+}

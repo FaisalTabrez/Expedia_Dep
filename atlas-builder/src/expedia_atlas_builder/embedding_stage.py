@@ -61,7 +61,12 @@ ProgressReporter = Callable[[str], None]
 
 
 def collect_cpu_runner_provenance() -> dict[str, object]:
-    """Capture the runner facts required to distinguish release evidence."""
+    """Capture local CPU facts for the retained CPU implementation path.
+
+    New M1 release generation selects an ADEE explicitly and supplies its
+    provenance to ``execute_embedding_stage``; this fallback is not selected
+    by the approved T4 release runner.
+    """
 
     try:
         import torch
@@ -297,6 +302,7 @@ def _finalize_stage(
             "shard_digest": digest,
             "finite_vectors": True,
             "duplicate_records": False,
+            "runner_provenance": dict(runner_provenance),
         },
         "recovery": {"retry_requires": "a new empty embedding workspace after finalization"},
     }

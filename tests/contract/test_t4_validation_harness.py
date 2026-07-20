@@ -72,7 +72,8 @@ class T4ValidationHarnessTests(unittest.TestCase):
         self.assertIn("**Status:** Passed", evidence)
         self.assertIn("Not eligible for an Atlas Release", evidence)
         self.assertIn("sha256:f7b4ba4a6f45eb69120f799a520b297d497705e5380e82ebb109afb7e3f69cff", evidence)
-        self.assertIn("does not replace the CPU-only M1 reference runner", evidence)
+        self.assertIn("does not itself create `EmbeddingInstance` records", evidence)
+        self.assertIn("approved M1", evidence)
 
 
 if __name__ == "__main__":
