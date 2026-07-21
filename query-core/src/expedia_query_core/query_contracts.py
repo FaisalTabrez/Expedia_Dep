@@ -203,3 +203,22 @@ def canonicalize_query_request_json(text: str) -> CanonicalQueryRequest:
     _validate_query_cost(normalized, canonical)
     digest = "sha256:" + sha256(canonical.encode("utf-8")).hexdigest()
     return CanonicalQueryRequest(payload=normalized, canonical_json=canonical, digest=digest)
+
+
+def cursor_binding_digest(request: CanonicalQueryRequest) -> str:
+    """Return the stable selection digest used by an opaque pagination cursor.
+
+    A cursor chooses a continuation point; it is not part of the selected
+    release/profile/filter/ranking semantics. Replacing only its opaque value
+    with ``null`` gives every page of one logical request one binding digest,
+    while any release, profile, filter, query-record, or ordering change still
+    produces a different binding.
+    """
+
+    payload = _normalize_value(request.payload)
+    pagination = payload.get("pagination")
+    if not isinstance(pagination, dict):  # pragma: no cover - canonicalizer supplies defaults.
+        raise QueryContractError("canonical QueryRequest has no pagination object")
+    pagination["cursor"] = None
+    canonical = _canonical_json(payload)
+    return "sha256:" + sha256(canonical.encode("utf-8")).hexdigest()

@@ -8,6 +8,12 @@ retrieval-quality claims.
 
 ### Changed
 
+- M2.4 adds Core-owned canonical-field filters, explicit state semantics,
+  opaque cursor continuation, and bounded traversal-selector validation. The
+  corrected M1 Draft has no annotation, unit-range, or relation artifacts, so
+  those forms return typed unsupported errors and are never silently ignored.
+  No SDK, REST, Explorer, ANN, benchmark, or public-release capability is
+  included.
 - The controlled M2.1 QueryResult defect correction preserves the historical
   `query-result/0.1.0` contract and makes `query-result/0.1.1` normative for
   subsequent M2 work. Exact results now bind metric direction, vector-shard

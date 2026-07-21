@@ -97,13 +97,13 @@ class ExactCosineQueryTests(unittest.TestCase):
             second = core.execute(json.dumps(json.loads(self._request(core, record_id=record_id)), indent=2, sort_keys=True))
             self.assertEqual(first, second)
 
-    def test_m2_3_rejects_unimplemented_filter_cursor_and_profile_substitution(self) -> None:
+    def test_core_rejects_unsupported_filter_invalid_cursor_and_profile_substitution(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             core = self._core(Path(directory))
             record_id = core._release.read_table("records/genome-record-versions.jsonl")[0]["record_id"]
             assert isinstance(record_id, str)
             cases = (
-                ({"filter": {"state": "eligible"}}, "unsupported_filter"),
+                ({"filter": {"state": {"field": {"kind": "annotation", "source": "test", "predicate": "flag"}, "is": "present"}}}, "unsupported_filter"),
                 ({"pagination": {"limit": 12, "cursor": "opaque", "ordering_version": "score-desc-record-id-asc-v1"}}, "invalid_cursor"),
                 ({"profile_selector": {"profile_id": PROFILE_ID, "profile_version": "9.0.0"}}, "profile_incompatible"),
                 ({"release_selector": {"release_id": "different", "release_digest": core._release.release_digest}}, "release_not_found"),

@@ -14,7 +14,9 @@ import math
 import struct
 from typing import Any
 
-from .query_contracts import CanonicalQueryRequest, QueryContractError, canonicalize_query_request_json
+from .cursors import CursorFailure, decode_cursor, encode_cursor
+from .filters import FilterFailure, selected_record_ids
+from .query_contracts import CanonicalQueryRequest, QueryContractError, canonicalize_query_request_json, cursor_binding_digest
 from .verified_release import VerifiedRelease
 
 
@@ -125,10 +127,8 @@ def _validate_similarity_request(request: CanonicalQueryRequest) -> tuple[dict[s
         or similarity["mode"] != "exact"
     ):
         return None, _error(code="validation_error", message="similarity profile or selector is invalid", stage="validate", correlation_id=correlation_id)
-    if payload.get("filter") is not None:
-        return None, _error(code="unsupported_filter", message="filter execution is deferred beyond M2.3", stage="plan", correlation_id=correlation_id, field="filter")
     if payload.get("traversal") is not None:
-        return None, _error(code="unsupported_relation", message="traversal execution is deferred beyond M2.3", stage="plan", correlation_id=correlation_id, field="traversal")
+        return None, _error(code="validation_error", message="similarity requests cannot include traversal", stage="validate", correlation_id=correlation_id, field="traversal")
     pagination = _object(
         payload.get("pagination"),
         field="pagination",
@@ -142,15 +142,48 @@ def _validate_similarity_request(request: CanonicalQueryRequest) -> tuple[dict[s
         or pagination["ordering_version"] != ORDERING_VERSION
     ):
         return None, _error(code="validation_error", message="pagination is invalid", stage="validate", correlation_id=correlation_id, field="pagination")
-    if pagination["cursor"] is not None:
-        return None, _error(code="invalid_cursor", message="cursor execution is deferred beyond M2.3", stage="validate", correlation_id=correlation_id, field="pagination.cursor")
+    if pagination["cursor"] is not None and not _string(pagination["cursor"]):
+        return None, _error(code="validation_error", message="pagination cursor is invalid", stage="validate", correlation_id=correlation_id, field="pagination.cursor")
+    return payload, None
+
+
+def _validate_traversal_request(request: CanonicalQueryRequest) -> tuple[dict[str, object] | None, dict[str, object] | None]:
+    """Validate the bounded selector before reporting absent relation support."""
+
+    payload = request.payload
+    correlation_id = _canonical_correlation(request)
+    selector = _object(
+        payload.get("release_selector"),
+        field="release_selector",
+        required={"release_id", "release_digest"},
+        allowed={"release_id", "release_digest"},
+    )
+    traversal = _object(
+        payload.get("traversal"),
+        field="traversal",
+        required={"start_record_ids", "relation_type", "direction"},
+        allowed={"start_record_ids", "relation_type", "direction", "depth"},
+    )
+    if (
+        selector is None
+        or not _string(selector["release_id"])
+        or not _string(selector["release_digest"])
+        or traversal is None
+        or not isinstance(traversal["start_record_ids"], list)
+        or not 1 <= len(traversal["start_record_ids"]) <= 100
+        or not all(_string(value) for value in traversal["start_record_ids"])
+        or not _string(traversal["relation_type"])
+        or traversal["direction"] not in {"outgoing", "incoming", "both"}
+        or ("depth" in traversal and (not _integer(traversal["depth"]) or not 1 <= int(traversal["depth"]) <= 2))
+    ):
+        return None, _error(code="validation_error", message="traversal selector is invalid", stage="validate", correlation_id=correlation_id, field="traversal")
     return payload, None
 
 
 def _profile_and_rows(
     release: VerifiedRelease,
     request: Mapping[str, object],
-) -> tuple[object, dict[str, tuple[str | None, int]]] | tuple[None, dict[str, object]]:
+) -> tuple[object, dict[str, tuple[str | None, int, Mapping[str, object]]]] | tuple[None, dict[str, object]]:
     profile_selector = request["profile_selector"]
     similarity = request["similarity"]
     assert isinstance(profile_selector, dict) and isinstance(similarity, dict)
@@ -179,13 +212,13 @@ def _profile_and_rows(
         instances = release.read_table(EMBEDDING_INSTANCE_TABLE_PATH)
     except (KeyError, ValueError):
         return None, _error(code="release_untrusted", message="verified release lacks required exact-cosine tables", stage="resolve", correlation_id="query:release-incomplete")
-    record_entities: dict[str, str | None] = {}
+    record_values: dict[str, tuple[str | None, Mapping[str, object]]] = {}
     for record in records:
         record_id = record.get("record_id")
         entity_id = record.get("entity_id")
         if not _string(record_id) or not (entity_id is None or _string(entity_id)):
             return None, _error(code="release_untrusted", message="verified record table is incompatible", stage="resolve", correlation_id="query:release-incompatible")
-        record_entities[record_id] = entity_id
+        record_values[record_id] = (entity_id, record)
     instance_rows: dict[str, tuple[str, int]] = {}
     for instance in instances:
         reference = instance.get("vector_reference")
@@ -206,17 +239,18 @@ def _profile_and_rows(
             and shard_digest == shard.digest
         ):
             instance_rows[instance_id] = (record_id, int(row))
-    rows: dict[str, tuple[str | None, int]] = {}
+    rows: dict[str, tuple[str | None, int, Mapping[str, object]]] = {}
     for key, instance_id in shard.row_mapping.items():
         try:
             declared_row = int(key)
         except ValueError:
             return None, _error(code="release_untrusted", message="vector-shard row mapping is invalid", stage="resolve", correlation_id="query:release-incompatible")
         binding = instance_rows.get(instance_id)
-        if binding is None or binding[1] != declared_row or binding[0] not in record_entities or binding[0] in rows:
+        if binding is None or binding[1] != declared_row or binding[0] not in record_values or binding[0] in rows:
             return None, _error(code="release_untrusted", message="vector-shard row mapping cannot be bound to records", stage="resolve", correlation_id="query:release-incompatible")
-        rows[binding[0]] = (record_entities[binding[0]], declared_row)
-    if not rows or len(rows) != len(record_entities):
+        entity_id, record = record_values[binding[0]]
+        rows[binding[0]] = (entity_id, declared_row, record)
+    if not rows or len(rows) != len(record_values):
         return None, _error(code="release_untrusted", message="vector-shard rows do not cover the verified records", stage="resolve", correlation_id="query:release-incompatible")
     query_record_id = similarity["query_record_id"]
     assert isinstance(query_record_id, str)
@@ -262,11 +296,22 @@ class ExactCosineQueryCore:
         except QueryContractError as error:
             code = "query_cost_exceeded" if str(error).startswith("query_cost_exceeded:") else "validation_error"
             return _error(code=code, message=str(error), stage="validate", correlation_id=_raw_correlation(request_json))
+        if canonical.payload.get("operation") == "traversal":
+            request, rejection = _validate_traversal_request(canonical)
+            if rejection is not None:
+                return rejection
+            assert request is not None
+            selector = request["release_selector"]
+            assert isinstance(selector, dict)
+            if selector["release_id"] != self._release.release_id or selector["release_digest"] != self._release.release_digest:
+                return _error(code="release_not_found", message="release selector does not identify this verified release", stage="resolve", correlation_id=_canonical_correlation(canonical), field="release_selector")
+            return _error(code="unsupported_relation", message="this verified M1 Draft declares no DerivedRelation artifact for traversal", stage="plan", correlation_id=_canonical_correlation(canonical), field="traversal")
         request, rejection = _validate_similarity_request(canonical)
         if rejection is not None:
             return rejection
         assert request is not None
         correlation_id = _canonical_correlation(canonical)
+        binding_digest = cursor_binding_digest(canonical)
         selector = request["release_selector"]
         assert isinstance(selector, dict)
         if selector["release_id"] != self._release.release_id or selector["release_digest"] != self._release.release_digest:
@@ -279,28 +324,67 @@ class ExactCosineQueryCore:
         shard = self._release.vector_shard(profile.profile_id)
         query_record_id = request["similarity"]["query_record_id"]  # type: ignore[index]
         assert isinstance(query_record_id, str)
+        try:
+            selected_ids = selected_record_ids(request["filter"], {record_id: row[2] for record_id, row in rows.items()})
+        except FilterFailure as error:
+            return _error(code=error.code, message=error.message, stage="plan", correlation_id=correlation_id, field="filter")
         query_vector = _vector(shard.payload, row=rows[query_record_id][1], dimension=profile.dimension)
         if query_vector is None:
             return _error(code="profile_incompatible", message="selected profile has non-finite or non-normalized vectors", stage="plan", correlation_id=correlation_id)
         ranked: list[tuple[str, str | None, float]] = []
-        for record_id, (entity_id, row) in rows.items():
+        for record_id, (entity_id, row, _) in rows.items():
+            if record_id not in selected_ids:
+                continue
             candidate = _vector(shard.payload, row=row, dimension=profile.dimension)
             if candidate is None:
                 return _error(code="profile_incompatible", message="selected profile has non-finite or non-normalized vectors", stage="plan", correlation_id=correlation_id)
             ranked.append((record_id, entity_id, _float32_inner_product(query_vector, candidate)))
         ranked.sort(key=lambda row: (-row[2], row[0]))
-        limit = int(request["pagination"]["limit"])  # type: ignore[index]
+        pagination = request["pagination"]  # type: ignore[index]
+        assert isinstance(pagination, dict)
+        cursor_value = pagination["cursor"]
+        start = 0
+        if cursor_value is not None:
+            try:
+                cursor = decode_cursor(cursor_value)
+            except CursorFailure as error:
+                return _error(code="invalid_cursor", message=str(error), stage="validate", correlation_id=correlation_id, field="pagination.cursor")
+            if (
+                cursor["release_digest"] != self._release.release_digest
+                or cursor["canonical_request_digest"] != binding_digest
+                or cursor["ordering_version"] != ORDERING_VERSION
+            ):
+                return _error(code="invalid_cursor", message="cursor does not bind this release and canonical request", stage="validate", correlation_id=correlation_id, field="pagination.cursor")
+            key = cursor["last_key"]
+            assert isinstance(key, dict)
+            for index, (record_id, _, score) in enumerate(ranked):
+                if record_id == key["record_id"] and score == key["score"]:
+                    start = index + 1
+                    break
+            else:
+                return _error(code="invalid_cursor", message="cursor last key is not present in this result ordering", stage="validate", correlation_id=correlation_id, field="pagination.cursor")
+        limit = int(pagination["limit"])
+        page = ranked[start : start + limit]
         result_rows = [
             {"record_id": record_id, "score": score, "entity_id": entity_id}
-            for record_id, entity_id, score in ranked[:limit]
+            for record_id, entity_id, score in page
         ]
+        next_cursor = None
+        if page and start + len(page) < len(ranked):
+            record_id, _, score = page[-1]
+            next_cursor = encode_cursor(
+                release_digest=self._release.release_digest,
+                canonical_request_digest=binding_digest,
+                score=score,
+                record_id=record_id,
+            )
         return {
             "schema_version": RESULT_VERSION,
             "outcome": "success",
             "context": {
                 "release_id": self._release.release_id,
                 "release_digest": self._release.release_digest,
-                "canonical_request_digest": canonical.digest,
+                "canonical_request_digest": binding_digest,
                 "ordering_version": ORDERING_VERSION,
                 "profile_id": profile.profile_id,
                 "metric": profile.metric_name,
@@ -308,7 +392,7 @@ class ExactCosineQueryCore:
                 "mode": "exact",
             },
             "rows": result_rows,
-            "next_cursor": None,
+            "next_cursor": next_cursor,
             "provenance": {
                 "release_digest": self._release.release_digest,
                 "vector_shard_digest": shard.digest,
@@ -316,6 +400,6 @@ class ExactCosineQueryCore:
                 "profile_digest": profile.digest,
             },
             "evidence_status": {"release_integrity": "verified", "method": "not-evaluated"},
-            "warnings": [],
+            "warnings": [{"code": "method_not_evaluated", "message": "Method evidence has not been evaluated."}],
             "error": None,
         }

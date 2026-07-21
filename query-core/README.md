@@ -16,6 +16,11 @@ scores are ordered by stable record ID after descending score. This is a local
 reference path, not a performance, scalability, recall, biological, or public
 release claim.
 
-Filtering, traversal, cursor execution, caching, SDK, REST, and Explorer
-adapters are still not implemented. They receive typed, non-fallback errors at
-the M2.3 Core boundary.
+M2.4 adds deterministic canonical-field filtering and opaque stable cursors in
+Core. Cursor bindings preserve the selected release, profile, filter, ranking,
+and request identity across pages. This M1 Draft has no declared annotation,
+numeric-with-unit, or DerivedRelation artifacts, so requests requiring them
+receive typed unsupported errors rather than being ignored. Traversal selectors
+are validated and likewise return `unsupported_relation` for this package.
+
+Caching, SDK, REST, and Explorer adapters remain deferred.

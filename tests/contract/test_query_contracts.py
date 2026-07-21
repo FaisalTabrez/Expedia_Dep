@@ -11,7 +11,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "query-core" / "src"))
 
-from expedia_query_core.query_contracts import QueryContractError, canonicalize_query_request_json
+from expedia_query_core.query_contracts import QueryContractError, canonicalize_query_request_json, cursor_binding_digest
 
 
 def _request(filter_expression: object | None = None) -> dict[str, object]:
@@ -93,6 +93,13 @@ class QueryContractTests(unittest.TestCase):
         state = {"state": {"field": {"kind": "canonical", "name": "lifecycle_state"}, "is": "false"}}
         canonical = canonicalize_query_request_json(json.dumps(_request(state)))
         self.assertIn('"is":"false"', canonical.canonical_json)
+
+    def test_cursor_binding_ignores_only_the_opaque_continuation_value(self) -> None:
+        base = _request({"eq": {"field": {"kind": "canonical", "name": "lifecycle_state"}, "value": "eligible"}})
+        first = canonicalize_query_request_json(json.dumps({**base, "pagination": {"limit": 2, "cursor": None, "ordering_version": "score-desc-record-id-asc-v1"}}))
+        second = canonicalize_query_request_json(json.dumps({**base, "pagination": {"limit": 2, "cursor": "m2c1.example", "ordering_version": "score-desc-record-id-asc-v1"}}))
+        self.assertNotEqual(first.digest, second.digest)
+        self.assertEqual(cursor_binding_digest(first), cursor_binding_digest(second))
 
 
 if __name__ == "__main__":
