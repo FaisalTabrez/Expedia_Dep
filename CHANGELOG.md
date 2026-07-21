@@ -27,8 +27,10 @@ retrieval-quality claims.
   reproducibility over the internal M1 v3 fixture. It binds the M2 tag's peeled
   commit, canonical JSON bytes, dependency/executable digests, clean working
   tree, three independent-process replicates, strict ordered comparison, and
-  explicit pass/fail/inconclusive handling. It makes no hardware-portability or
-  cross-platform claim and awaits
+  explicit pass/fail/inconclusive/aborted handling. Version 1.0 adds the sole
+  `EE-M3-001-v1` environment identifier, a canonical-JSON hash-first comparison
+  algorithm, and an explicit no-inferential-statistics rule. It makes no
+  hardware-portability or cross-platform claim and awaits
   maintainer acceptance and an immutable evaluation-manifest binding.
 
 ### Changed

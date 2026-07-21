@@ -1,11 +1,13 @@
 # Study M3-001: Deterministic Exact Query Reproducibility
 
 **Status:** Draft — not accepted; execution is prohibited.
-**Version:** `0.1.0-draft`.
+**Version:** `1.0` (Draft).
 **Owner:** Faisal Tabrez, Project Maintainer.
 **Prepared:** 2026-07-21.
 **Governing sources:** EDS v2.1.1 section 13; accepted OQ-05; M2 completion
 checkpoint `m2.0.0-complete`.
+
+**Execution Environment:** `EE-M3-001-v1`.
 
 ## 0. Frozen implementation and serialization binding
 
@@ -17,6 +19,17 @@ checkpoint `m2.0.0-complete`.
 | Dependency manifest | `pyproject.toml` — `sha256:e0dcfffdf2d2ca71abcffcb69503f66d03a0ca2ff5f32280bf7ed2d080b0a813` |
 | Dependency lock | `uv.lock` — `sha256:332b9b0ae251547a0db50deb717d2c778a3e2e5be40644255598aef783b18765` |
 | Reference Python executable | Bundled Python executable — `sha256:3c6a206b7d93cca823934a83732220dcffd413fd1036d9fb82eebb64599cf7f3` |
+| Atlas Release digest | `sha256:fb18e65424f9b1f8978b6460917f799f39137659ae83d3074d2b01a491eca37b` |
+| EmbeddingProfile digest | `sha256:5679461d5a4482b48b90e97615d9661e84c2ac7c3b01253e7be4d7909a294294` |
+| Vector-shard digest | `sha256:69204de55e57d8f3b088bba7dd63a8207c6bf55337d28b4bedc4769f1d8cf0c3` |
+
+`EE-M3-001-v1` is the sole execution-environment identifier for this study. It
+declares the following required environment property in addition to the bound
+inputs above:
+
+| Environment property | Required value |
+|---|---|
+| Operating system | `Microsoft Windows 10.0.26200`, `X64` (runtime-reported identity) |
 
 Each replicate MUST also record its actual executable path and SHA-256. A
 different environment may be recorded for diagnostic purposes, but its output
@@ -92,11 +105,12 @@ not silently repaired.
 The following values are proposed for maintainer approval and MUST NOT be
 changed after acceptance without an approved amendment:
 
-- Replicates: three independent Python process invocations against the same
-  verified package and committed M2 implementation checkpoint.
+- Replicates: three independent Python process invocations in
+  `EE-M3-001-v1` against the same verified package and committed M2
+  implementation checkpoint.
 - Environment capture: Python version, operating system, architecture, package
   dependency lock/revision, repository commit, and release/profile/shard
-  digests for every invocation.
+  digests for every invocation, all verified against `EE-M3-001-v1`.
 - Input representation: each request is written as canonical UTF-8 JSON after
   Query Core normalization; its `canonical_request_digest` is recorded.
 - Output representation: each QueryResult is retained as canonical UTF-8 JSON
@@ -117,30 +131,41 @@ For every request family and every replicate, record:
   applicable; and
 - runtime provenance listed in section 4.
 
-For each request, logical comparison is performed in this order:
+For each identically addressed request in each replicate pair, the runner SHALL
+apply this exact comparison algorithm:
 
-1. outcome type;
-2. typed error code and stage, if the outcome is an error;
-3. ordered record IDs, if the outcome is a success;
-4. decoded scores, with equality tolerance `0.0`;
-5. release/profile/vector-shard and other result provenance;
-6. warnings in returned order; and
-7. opaque cursor payloads and their continuation reconstruction.
+1. Construct the complete logical outcome object: the `QueryResult` for a
+   success, or the typed Query Core error outcome for a failure.
+2. Canonicalize that object using the canonical JSON rules in section 0.
+3. Compute SHA-256 over the canonical bytes and compare the resulting digests.
+4. If the digests are equal, record the outcomes as identical.
+5. If the digests differ, retain both canonical objects and diagnose the first
+   difference in this fixed order: outcome type; typed error code and stage;
+   ordered record IDs; decoded scores (equality tolerance `0.0`); provenance;
+   warnings in returned order; opaque cursor payloads and their continuation
+   reconstruction. The differing canonical-object digests remain the
+   authoritative comparison result.
 
 **PASS:** every request in every replicate matches in every recorded field.
 
-**FAIL:** any mismatch in any recorded field, including a missing result,
-changed digest, row/order/score/provenance/warning, cursor behavior, or typed
-error.
+**FAIL:** all required execution and environment checks complete, but any
+comparison digest differs or any required result is missing.
 
-**INCONCLUSIVE:** execution is externally interrupted or environment
-verification fails before completion. An interrupted replicate SHALL NOT be
-silently replaced. It may be rerun only after a recorded incident demonstrates
-an external interruption (for example, power loss or disk failure); the rerun
-MUST reference that incident and does not erase the interrupted attempt.
+**INCONCLUSIVE:** all planned executions complete, but the retained evidence
+cannot support the hypothesis because of an evidence-integrity condition such
+as package mismatch, corrupted output, or provenance mismatch.
+
+**ABORTED:** the study is terminated before completion, whether by maintainer
+decision or an unavoidable external interruption such as power loss, storage
+failure, or repository corruption. An aborted replicate SHALL NOT be silently
+replaced. It may be rerun only after a recorded incident; the rerun MUST
+reference that incident and MUST NOT erase the aborted attempt.
 
 No aggregate performance metric, latency statistic, biological benchmark, or
 comparative score is collected.
+
+No inferential statistics, confidence intervals, p-values, or hypothesis tests
+other than deterministic equality under the algorithm above are performed.
 
 No nonzero numerical-tolerance, hardware portability, or cross-platform
 reproducibility claim is made. The `0.0` equality rule is an intra-study
@@ -164,12 +189,12 @@ authorize a Candidate, Published, public, or citable Atlas Release.
 
 ## 7. Pre-execution acceptance checklist
 
-- [ ] The maintainer accepts this exact `0.1.0-draft` preregistration or an
+- [ ] The maintainer accepts this exact Version `1.0` preregistration or an
       approved successor.
 - [ ] The local M1 v3 package digest and all referenced profile/shard digests
       verify through the Release Reader.
 - [ ] The evaluation manifest and output/retention locations are fixed.
-- [ ] The three-process execution environment is recorded.
+- [ ] `EE-M3-001-v1` is verified and recorded for all three processes.
 - [ ] No biological, comparative, performance, scalability, or generalization
       claim has been added.
 
