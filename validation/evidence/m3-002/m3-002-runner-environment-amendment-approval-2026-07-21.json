@@ -1,0 +1,18 @@
+{
+  "action": "m3-002-runner-git-resolution-amendment-approved",
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "amendment_scope": "execution infrastructure only",
+  "approved_runner_digest": "sha256:00fed4389ba02c39d76cfa7952550f867642475f17f8896ae78e4b90919ade54",
+  "approved_runner_path": "benchmarks/execution/m3_002_runner.py",
+  "conditions": [
+    "The runner may resolve Git from the explicit EXPEDIA_GIT_EXECUTABLE environment variable and record its path and SHA-256 in environment evidence.",
+    "The original failed pre-execution incident remains retained as permanent evidence.",
+    "Pre-execution verification restarts from the beginning before Release Reader verification, Query Core execution, oracle execution, or comparison.",
+    "No change to the preregistered study design, hypotheses, evaluation manifest, frozen implementation, oracle, comparison procedure, evidence policy, or claim boundary is authorized."
+  ],
+  "original_incident_digest": "sha256:e6599e5f19839c0ad5454b5a141753526c19dd3f6c9adc7daeb9cee03afad4d9",
+  "original_incident_path": "validation/evidence/m3-002/execution-v1/incident-log.json",
+  "recorded_at": "2026-07-21",
+  "subject_id": "M3-002",
+  "subject_version": "1.0"
+}

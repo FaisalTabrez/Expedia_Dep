@@ -66,7 +66,7 @@ resolved by evaluation work.
 | M3-002.3 | Immutable evaluation manifest | **Complete:** the approved Version 1 manifest binds the frozen M2 checkpoint, M1 v3 Draft identities, environment, oracle source, and oracle verification evidence. |
 | M3-002.4 | Implement independent reference | **Complete:** `validation/reference/` owns a separate reader-bound float32 oracle and imports no Query Core module. |
 | M3-002.5 | Verify the oracle | **Complete:** isolated source, package-binding, float32, normalization, tie-order, output-boundary, and import-boundary tests pass; this is software verification, not study execution. |
-| M3-002.6 | Execute comparison | **Authorized, not started:** only the preregistered Query Core versus independent-oracle comparison may execute. |
+| M3-002.6 | Execute comparison | **Authorized, pre-execution restart pending:** a retained Git-resolution incident is addressed only by the approved runner-environment amendment; the full pre-execution sequence restarts before any release, Query Core, oracle, or comparison work. |
 | M3-002.7 | Observational analysis | **Pending:** may begin only after retained M3-002 raw evidence exists. |
 | M3-002.8 | Maintainer claim decision | **Pending:** may decide only the exact-query-correctness claim category. |
 

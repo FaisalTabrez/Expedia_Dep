@@ -4,13 +4,21 @@ from __future__ import annotations
 
 from pathlib import Path
 import sys
+from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "benchmarks" / "execution"))
 
-from m3_002_runner import _diagnostic_fields, canonical_json, query_core_projection  # noqa: E402
+from m3_002_runner import (  # noqa: E402
+    _diagnostic_fields,
+    _initialize_incident_log,
+    canonical_json,
+    query_core_projection,
+    resolve_git_executable,
+)
 
 
 class M3002ExecutionHarnessTests(unittest.TestCase):
@@ -67,6 +75,20 @@ class M3002ExecutionHarnessTests(unittest.TestCase):
         self.assertNotIn('"PASS"', source)
         self.assertNotIn('"FAIL"', source)
         self.assertNotIn("claim decision", source.lower())
+
+    def test_runner_resolves_an_explicit_git_executable_without_path_lookup(self) -> None:
+        with patch.dict("os.environ", {"EXPEDIA_GIT_EXECUTABLE": sys.executable}, clear=True):
+            with patch("m3_002_runner.shutil.which", side_effect=AssertionError("PATH lookup must not occur")):
+                self.assertEqual(Path(sys.executable).resolve(), resolve_git_executable())
+
+    def test_preexisting_incident_log_is_retained_when_verification_restarts(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            log = root / "incident-log.json"
+            original = '{"incidents":[{"type":"prior"}],"study_id":"M3-002"}'
+            log.write_text(original, encoding="utf-8")
+            _initialize_incident_log(root)
+            self.assertEqual(original, log.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":  # pragma: no cover

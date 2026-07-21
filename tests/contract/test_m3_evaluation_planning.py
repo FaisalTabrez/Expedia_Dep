@@ -104,6 +104,8 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         manifest_approval = json.loads(manifest_approval_path.read_text(encoding="utf-8"))
         oracle_verification_path = ROOT / "validation" / "evidence" / "m3-002" / "m3-002-oracle-verification-2026-07-21.json"
         oracle_verification = json.loads(oracle_verification_path.read_text(encoding="utf-8"))
+        runner_amendment_path = ROOT / "validation" / "evidence" / "m3-002" / "m3-002-runner-environment-amendment-approval-2026-07-21.json"
+        runner_amendment = json.loads(runner_amendment_path.read_text(encoding="utf-8"))
         review = (ROOT / "validation" / "evidence" / "m3-002" / "m3-002-preregistration-review-2026-07-21.md").read_text(encoding="utf-8")
         self.assertIn("**Status:** Approved — execution remains prohibited pending later M3-002 gates.", study)
         self.assertIn("**Version:** `1.0`.", study)
@@ -160,6 +162,14 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         self.assertIn(
             "Any subsequent change requires a controlled amendment and a new maintainer approval record.",
             manifest_approval["conditions"],
+        )
+        self.assertEqual(
+            "sha256:" + hashlib.sha256((ROOT / runner_amendment["approved_runner_path"]).read_bytes()).hexdigest(),
+            runner_amendment["approved_runner_digest"],
+        )
+        self.assertEqual(
+            "sha256:" + hashlib.sha256((ROOT / runner_amendment["original_incident_path"]).read_bytes()).hexdigest(),
+            runner_amendment["original_incident_digest"],
         )
 
 

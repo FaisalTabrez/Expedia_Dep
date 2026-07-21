@@ -80,6 +80,11 @@ retrieval-quality claims.
   Reader/package bindings, and hash-addressed oracle source before retaining
   raw Query Core/oracle observations and comparison hashes. It has no outcome
   classifier, retry behavior, interpretation, or claim decision.
+- A controlled M3-002 runner-environment amendment authorizes only explicit
+  Git executable resolution and records the Git executable identity in runtime
+  evidence. The original failed pre-execution incident is retained; the full
+  pre-execution sequence must restart before any release, Query Core, oracle,
+  or comparison work.
 
 ### Changed
 

@@ -13,8 +13,10 @@ from decimal import Decimal
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import platform
+import shutil
 import subprocess
 import sys
 from typing import Any, Mapping
@@ -115,9 +117,20 @@ def _manifest(study_root: Path) -> dict[str, Any]:
     return manifest
 
 
+def resolve_git_executable() -> Path:
+    """Resolve Git explicitly for the approved runner environment amendment."""
+
+    configured = os.environ.get("EXPEDIA_GIT_EXECUTABLE")
+    candidate = Path(configured) if configured else (Path(found) if (found := shutil.which("git")) else None)
+    if candidate is None or not candidate.is_file():
+        raise EvidenceError("Git executable is unavailable; set EXPEDIA_GIT_EXECUTABLE to the approved executable")
+    return candidate.resolve()
+
+
 def _git(root: Path, *arguments: str) -> str:
+    executable = resolve_git_executable()
     completed = subprocess.run(
-        ["git", "-C", str(root), *arguments], check=False, capture_output=True, text=True
+        [str(executable), "-C", str(root), *arguments], check=False, capture_output=True, text=True
     )
     if completed.returncode != 0:
         raise EvidenceError(f"git verification failed: {' '.join(arguments)}")
@@ -190,6 +203,18 @@ def _record_incident(evidence_root: Path, *, command: str, error: Exception) -> 
     path.write_bytes(canonical_json(log).encode("utf-8"))
 
 
+def _initialize_incident_log(evidence_root: Path) -> None:
+    """Create the log once while preserving any earlier retained incident."""
+
+    path = evidence_root / "incident-log.json"
+    if path.is_file():
+        log = _read_json(path)
+        if log.get("study_id") != "M3-002" or not isinstance(log.get("incidents"), list):
+            raise EvidenceError("existing M3-002 incident log is invalid")
+        return
+    _write_json(path, {"incidents": [], "study_id": "M3-002"})
+
+
 def verify_environment(*, study_root: Path, implementation_root: Path, evidence_root: Path) -> None:
     manifest = _manifest(study_root)
     implementation = manifest["implementation"]
@@ -201,10 +226,13 @@ def verify_environment(*, study_root: Path, implementation_root: Path, evidence_
         raise EvidenceError("implementation workspace is not at the frozen M2 commit")
     if _git(implementation_root, "status", "--porcelain"):
         raise EvidenceError("implementation workspace is not clean")
+    git_executable = resolve_git_executable()
     checks = {
         "dependency_lock_digest": _sha256_file(implementation_root / "uv.lock"),
         "dependency_manifest_digest": _sha256_file(implementation_root / "pyproject.toml"),
         "environment_id": environment.get("id"),
+        "git_executable": str(git_executable),
+        "git_executable_digest": _sha256_file(git_executable),
         "operating_system": _environment_identity(),
         "python_executable": str(Path(sys.executable).resolve()),
         "python_executable_digest": _sha256_file(Path(sys.executable)),
@@ -232,7 +260,7 @@ def verify_environment(*, study_root: Path, implementation_root: Path, evidence_
     }
     _write_json(evidence_root / "environment.json", checks)
     _write_json(evidence_root / "evaluation-lock.json", lock)
-    _write_json(evidence_root / "incident-log.json", {"incidents": [], "study_id": "M3-002"})
+    _initialize_incident_log(evidence_root)
 
 
 def _binding(manifest: Mapping[str, Any], reference_binding: Any) -> Any:

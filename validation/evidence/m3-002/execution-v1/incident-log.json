@@ -1,0 +1,1 @@
+{"incidents":[{"command":"verify-environment","error":"git verification failed: rev-parse HEAD","observed_at":"2026-07-21T18:26:22.393006Z","rerun_permitted":false,"type":"harness-observed-failure"}],"study_id":"M3-002"}
