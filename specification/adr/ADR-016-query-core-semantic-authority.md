@@ -1,6 +1,6 @@
 # ADR-016: Query Core as the single semantic authority
 
-**Status:** Proposed — pending maintainer acceptance for M2.
+**Status:** Accepted — Faisal Tabrez, Project Maintainer, 2026-07-21.
 **EDS register decision:** Query Core owns query semantics.
 
 ## Decision
@@ -56,6 +56,6 @@ release.
 
 ## Non-goals
 
-This draft does not prescribe a UI framework, REST server deployment, remote
+This decision does not prescribe a UI framework, REST server deployment, remote
 authorization, language SDK beyond the planned Python wrapper, or an alternate
 query execution engine.

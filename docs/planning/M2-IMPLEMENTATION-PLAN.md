@@ -1,6 +1,7 @@
 # M2 implementation plan: one semantic read path
 
-**Status:** Planning only. No M2 production code is authorized by this plan.
+**Status:** ADR-010, ADR-011, ADR-016, and OQ-11 are accepted for M2.1
+contract work. No M2 production implementation is present yet.
 **Governing specification:** EDS v2.1.1 sections 5.1, 8, 11, 12, 14, 15.3, and
 16; ERS REQ-006, REQ-011, REQ-015, REQ-021–024.
 **Prerequisite release evidence:** M1 internal Draft evidence gate approved at
@@ -35,24 +36,28 @@ Excluded:
   method benchmarks, biological claims, public release work, remote deployment,
   or access-control design.
 
-## 2. Mandatory entry gates
+## 2. Accepted governance gates and remaining contract gate
 
-M2 implementation must not begin until all of these are explicitly recorded:
+The following governance dispositions are accepted. M2.1 may now finalize the
+Query contracts and fixtures; M2.2 or later implementation remains dependent
+on that accepted contract review.
 
 The proposed dispositions are available for review in
 [`ADR-010`](../../specification/adr/ADR-010-trusted-local-release-boundary.md),
 [`ADR-011`](../../specification/adr/ADR-011-exact-cosine-m2-reference-search.md),
 [`ADR-016`](../../specification/adr/ADR-016-query-core-semantic-authority.md),
 and [OQ-11](../../specification/open-questions/OQ-11-M2-filter-grammar-and-cost-limits.md).
-They are proposals only and do not satisfy these gates until accepted.
+All four dispositions are accepted. They remain narrow M2 constraints and do
+not authorize ANN, a public release, remote deployment, or changed Atlas
+semantics.
 
 | Gate | Required disposition | Why it blocks M2 |
 |---|---|---|
-| ADR-010 | Accepted local-storage/read-path decision | Defines the supported local release access boundary. |
-| ADR-011 | Accepted index/reference-search decision | Defines the initial exact reference adapter and any admissible optimization boundary. |
-| ADR-016 | Accepted Query Core semantics decision | Establishes the single semantic authority for Core, SDK, REST, and Explorer. |
-| OQ-11 | Resolved v1 filter grammar and query-cost limits | Prevents silent filter weakening and undefined request cost behavior. |
-| M2 contract review | Query schemas replace their M1 placeholders with accepted semantics | Prevents implementation from redefining contracts. |
+| ADR-010 | Accepted trusted local read boundary | Defines the supported local release access boundary. |
+| ADR-011 | Accepted exact-cosine reference search | Defines the initial exact reference adapter and prohibits ANN selection in M2. |
+| ADR-016 | Accepted Query Core semantic authority | Establishes the single semantic authority for Core, SDK, REST, and Explorer. |
+| OQ-11 | Accepted v1 filter grammar and local-fixture cost limits | Prevents silent filter weakening and undefined request cost behavior. |
+| M2 contract review | Query schemas replace their M1 placeholders with accepted semantics | Required before M2.2 or later implementation. |
 
 OQ-04 remains deferred. Therefore the initial M2 search path must be exact
 cosine over normalized vectors; it must report exact mode and the verified

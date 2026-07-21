@@ -1,6 +1,7 @@
 # OQ-11: M2 v1 filter grammar and query-cost limits
 
-**Status:** Proposed disposition — pending maintainer acceptance for M2.
+**Status:** Accepted M2 disposition — Faisal Tabrez, Project Maintainer,
+2026-07-21.
 **Question:** What filter grammar and cost limits are supported in v1 Query
 Core?
 
@@ -29,6 +30,36 @@ FieldRef ::= {"kind": "canonical",
            | {"kind": "annotation", "source": String, "predicate": String}
 Scalar ::= String | Number | Boolean
 ```
+
+### Canonical request interpretation and digest
+
+A QueryRequest has exactly one canonical interpretation. Whitespace, JSON
+formatting, and object-member ordering SHALL NOT affect request semantics,
+filter evaluation, cursor validity, or the request digest.
+
+Before Query Core validates or executes a request, it SHALL perform this
+semantic normalization:
+
+1. Parse one UTF-8 JSON object and reject duplicate object-member names,
+   undeclared fields, and non-finite numeric values.
+2. Preserve strings exactly as supplied; no case folding, Unicode rewriting, or
+   implicit scalar coercion is permitted.
+3. Normalize JSON objects by lexicographically sorting member names. Normalize
+   numeric values to one finite base-10 representation without insignificant
+   trailing zeroes or a leading plus sign.
+4. Normalize `all` and `any` operands by their normalized child representation,
+   sort them lexicographically, and reject duplicate operands. Normalize `in`
+   values the same way: sort them by normalized scalar representation and reject
+   duplicates. Other arrays preserve their declared order where order is part
+   of the contract.
+5. Serialize the normalized request as UTF-8 JSON with lexicographically sorted
+   object members and no insignificant whitespace. The SHA-256 digest of these
+   canonical bytes is the `canonical_request_digest`.
+
+Consequently, semantically equivalent requests have identical canonical bytes
+and identical request digests. A cursor SHALL bind that digest as required by
+EDS 12.4. Semantically distinct values, including case-distinct identifiers,
+remain distinct.
 
 `range` SHALL include one lower bound and one upper bound, both numeric, and a
 unit. It is valid only for a field whose contract declares numeric values in
@@ -80,6 +111,8 @@ M1 fixture and intentionally do not imply a production capacity target.
 
 - QueryRequest and QueryResult contracts can be completed without guessing
   filter semantics.
+- Request hashes and cursor bindings are stable across whitespace, JSON
+  formatting, and object-member ordering differences.
 - Unsupported annotation or relation predicates are visible, typed outcomes;
   they are not treated as false or silently discarded.
 - M2 exact search remains bounded to the one M1 profile/shard fixture. Larger
@@ -98,6 +131,9 @@ M1 fixture and intentionally do not imply a production capacity target.
 4. Every cost limit has a deterministic `query_cost_exceeded` failure test.
 5. Cursor tests prove that release, canonical request digest, ordering, and
    last-emitted key remain bound as required by EDS 12.4.
+6. Equivalent request formatting and object-member ordering produce the same
+   `canonical_request_digest`; duplicate keys or semantically redundant Boolean
+   and membership operands are rejected.
 
 ## EDS clauses affected
 

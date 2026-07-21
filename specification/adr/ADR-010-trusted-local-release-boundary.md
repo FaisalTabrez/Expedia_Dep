@@ -1,6 +1,6 @@
 # ADR-010: trusted local release read boundary
 
-**Status:** Proposed — pending maintainer acceptance for M2.
+**Status:** Accepted — Faisal Tabrez, Project Maintainer, 2026-07-21.
 **EDS register decision:** SDK and REST are thin adapters over Query Core.
 
 ## Decision
