@@ -15,14 +15,27 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         self.assertIn("**Status:** Proposed planning baseline. M3 implementation and experiments have\nnot started.", plan)
         self.assertIn("`m2.0.0-complete`", plan)
         self.assertIn("OQ-05", plan)
-        self.assertIn("**Blocking; unresolved.**", plan)
+        self.assertIn("Accepted claim-evidence requirements", plan)
+        self.assertIn("**Blocking; not yet authored.**", plan)
         self.assertIn("exact float32 cosine remains the reference retrieval method", plan)
         self.assertIn("OQ-04", plan)
         self.assertIn("Deferred; no ANN study is planned", plan)
         self.assertIn("OQ-08", plan)
         self.assertIn("no cross-profile study is planned", plan)
-        self.assertIn("no local ADR-009 or ADR-014 record", plan)
+        self.assertIn("ADR register reconciliation note", plan)
         self.assertIn("no universal numerical threshold", plan)
+
+    def test_oq05_and_adr_reconciliation_preserve_claim_boundaries(self) -> None:
+        oq05 = (ROOT / "specification" / "open-questions" / "OQ-05-M3-claim-evidence-requirements.md").read_text(encoding="utf-8")
+        reconciliation = (ROOT / "specification" / "adr" / "ADR-REGISTER-RECONCILIATION-009-014.md").read_text(encoding="utf-8")
+        self.assertIn("**Status:** Accepted M3 disposition", oq05)
+        self.assertIn("M3 defines evidence requirements and claim boundaries", oq05)
+        self.assertIn("No numerical threshold is implied", oq05)
+        self.assertIn("ANN quality preservation", oq05)
+        self.assertIn("this note is not an ADR", reconciliation)
+        self.assertIn("EDS-proposed register entries", reconciliation)
+        self.assertIn("not recoverable repository artifacts", reconciliation)
+        self.assertIn("reconstruct an absent historical decision", reconciliation)
 
 
 if __name__ == "__main__":

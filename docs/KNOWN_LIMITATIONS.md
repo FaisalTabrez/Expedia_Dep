@@ -53,8 +53,9 @@ record.
 
 - OQ-04 remains deferred, so M2 retains an exact reference path unless a later
   evaluation and controlled decision authorize an ANN adapter.
-- OQ-05 remains unresolved; M3 must define the evidence necessary for any
-  retrieval-usefulness or biological claim.
+- OQ-05 is resolved for M3 with an evidence-threshold policy. No M3 study may
+  execute until its own preregistration is accepted, and no claim is supported
+  until its required evidence exists.
 - OQ-08 remains deferred unless a future proposal introduces a justified
   cross-profile comparison.
 - OQ-09 and OQ-10 remain unresolved for archival policy and trusted public

@@ -34,9 +34,8 @@ this plan does not satisfy the gate.
 | Gate | Required disposition | Status |
 |---|---|---|
 | M2 closure | M2 completion decision and immutable repository checkpoint | Satisfied: `m2.0.0-complete`. |
-| OQ-05 | Define the minimum evidence required for a proposed usefulness claim, including task-specific success criteria and permitted claim wording | **Blocking; unresolved.** |
+| OQ-05 | Accepted claim-evidence requirements and permitted claim boundaries | Satisfied by the accepted OQ-05 disposition; every study must apply it. |
 | Study preregistration | Freeze question, cohort, inclusion/exclusion, ground truth, baselines, metrics, uncertainty treatment, failure analysis, raw-artifact plan, and claim limits before execution | **Blocking; not yet authored.** |
-| ADR-009 and ADR-014 | Confirm the accepted decision records referenced by the M0-M5 roadmap and bind their requirements to the proposed study | **Blocking documentation-control check:** the current repository has no local ADR-009 or ADR-014 record. No replacement decision is inferred. |
 | OQ-04 | Resolve only if an ANN method is proposed for evaluation | Deferred; no ANN study is planned by this baseline. |
 | OQ-08 | Resolve only if a cross-profile comparison or BridgeProfile is proposed | Deferred; no cross-profile study is planned by this baseline. |
 
@@ -48,7 +47,7 @@ resolved by evaluation work.
 
 | ID | Phase | Dependencies | Deliverables | Acceptance criteria | Complexity |
 |---|---|---|---|---|---|
-| M3.1 | Evaluation governance | M2 closure | Accepted OQ-05 disposition; ADR-009/014 documentation check; claim-boundary register | Every contemplated claim has an owner, evidence category, prohibited wording, and a decision rule. No metric threshold is invented before rationale and review. | M |
+| M3.1 | Evaluation governance | M2 closure; accepted OQ-05 | Claim-boundary register and preregistration template | Every contemplated claim has an owner, evidence category, prohibited wording, and a decision rule. No metric threshold is invented before rationale and review. | M |
 | M3.2 | Preregister reference study | M3.1 | Versioned preregistration; cohort/source/license record; frozen baseline definition; evaluation manifest | The preregistration names the question, cohort/splits, inclusion/exclusion, exact ground truth where applicable, exact cosine baseline, metrics, uncertainty method, failure analysis, raw outputs, and allowed claim language. | L |
 | M3.3 | Execute reference experiments | M3.2 | Immutable run manifests, raw outputs, environment/provenance records, integrity digests | Every run is reproducible from its manifest and bounded by the preregistration. Deviations are recorded as deviations, not silently folded into results. | XL |
 | M3.4 | Analyze evidence | M3.3 | Analysis notebook/script, uncertainty and failure analysis, evidence-status assessment | Analysis uses only preregistered methods or labels an approved amendment. It distinguishes method evidence from exploratory observations. | L |
@@ -96,8 +95,8 @@ by this plan.
 
 ## 6. Critical path
 
-`OQ-05 disposition + ADR-009/014 documentation check -> accepted
-preregistration -> exact-reference execution -> raw evidence and analysis ->
+`accepted OQ-05 disposition -> accepted preregistration -> exact-reference
+execution -> raw evidence and analysis ->
 claim review -> controlled decision`
 
 This order minimizes rework: experimental data cannot be interpreted or used to
@@ -112,7 +111,7 @@ promote a method before the question, baseline, and claim boundary are fixed.
 | The small M1 fixture is represented as a representative population | Describe its twelve-record internal scope exactly; select any evaluation cohort under an explicit source/license and inclusion policy. |
 | ANN or another optimization is selected by convenience | Leave OQ-04 deferred unless an ANN study is proposed; retain exact cosine as the reference path. |
 | Cross-profile comparison is implied by equal vector dimensions | Keep OQ-08 deferred and reject cross-profile interpretation without an approved BridgeProfile evaluation. |
-| Missing ADR records lead to an invented interpretation | Treat the absent ADR-009/014 documents as a documentation-control blocker; locate or formally disposition them before M3 execution. |
+| EDS-proposed ADRs are mistaken for accepted history | Preserve their Proposed status through the ADR register reconciliation note; require a future ADR only for public/default-method promotion. |
 
 ## 8. M3 exit criteria
 

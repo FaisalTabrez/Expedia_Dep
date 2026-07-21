@@ -13,3 +13,7 @@ The following M2 decisions were accepted by the Project Maintainer on
 - [`ADR-010-trusted-local-release-boundary.md`](ADR-010-trusted-local-release-boundary.md)
 - [`ADR-011-exact-cosine-m2-reference-search.md`](ADR-011-exact-cosine-m2-reference-search.md)
 - [`ADR-016-query-core-semantic-authority.md`](ADR-016-query-core-semantic-authority.md)
+
+ADR-009 and ADR-014 are EDS-proposed register entries, not accepted repository
+ADRs. Their audited status is recorded in
+[`ADR-REGISTER-RECONCILIATION-009-014.md`](ADR-REGISTER-RECONCILIATION-009-014.md).

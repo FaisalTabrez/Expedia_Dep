@@ -9,12 +9,17 @@ retrieval-quality claims.
 ### Governance
 
 - M2 is accepted as an internal completion checkpoint. The M2.1-M2.6 evidence,
-  fresh 85-test contract suite, and 7-test cross-adapter/Explorer conformance
+  fresh 86-test contract suite, and 7-test cross-adapter/Explorer conformance
   suite are recorded in `validation/evidence/m2-evidence-report-2026-07-21.md`.
   Query contracts, exact cosine reference behavior, cursors, provenance, and
   Core/SDK/REST/Explorer semantic boundaries are frozen except through
   controlled governance revision. This is not a public release or a scientific
   performance, usefulness, or biological claim.
+- OQ-05 is accepted as an M3 evidence-threshold policy. It defines the
+  preregistered evidence required before a claim category may be supported; it
+  makes no scientific or method-quality claim and selects no method. ADR-009
+  and ADR-014 are reconciled as EDS-proposed, absent historical entries rather
+  than retroactively created decisions.
 
 ### Changed
 
