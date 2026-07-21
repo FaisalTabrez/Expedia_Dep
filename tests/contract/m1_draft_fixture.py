@@ -10,4 +10,5 @@ from test_release_reader import ReleaseReaderTests as _ReleaseReaderTests
 def build_m1_draft_package(root: Path) -> Path:
     """Build the same complete, integrity-valid M1 Draft fixture as reader tests."""
 
+    root.mkdir(parents=True, exist_ok=True)
     return _ReleaseReaderTests()._package(root)

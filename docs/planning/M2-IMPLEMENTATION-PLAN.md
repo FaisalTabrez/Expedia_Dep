@@ -6,7 +6,8 @@ cosine search is not implemented.
 **Governing specification:** EDS v2.1.1 sections 5.1, 8, 11, 12, 14, 15.3, and
 16; ERS REQ-006, REQ-011, REQ-015, REQ-021–024.
 **Prerequisite release evidence:** M1 internal Draft evidence gate approved at
-repository tag `m1.0.0-draft`.
+repository tag `m1.0.0-draft`; the controlled v3 Draft successor is the
+authoritative M2 package input, recorded in the M1 evidence index.
 
 ## 1. Objective and boundary
 

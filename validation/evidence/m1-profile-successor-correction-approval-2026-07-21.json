@@ -1,0 +1,8 @@
+{
+  "approval_id": "approval:m1-profile-successor-correction-20260721-v1",
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "action": "m1-draft-successor-profile-declaration-approved",
+  "subject_id": "expedia-m1-draft-20260721-v3",
+  "recorded_at": "2026-07-21T07:09:50Z",
+  "rationale": "Authorized controlled M1 Draft successor correction. The successor preserves all scientific artifacts from expedia-m1-draft-20260721-v2 while adding one manifest-addressed, schema-valid EmbeddingProfile declaration for m1-generanno-prokaryote-0.5b-assembly-v1 with explicit version 1.0.0 and manifest-addressed digest. ReleaseManifest and package-stage digests were regenerated and isolated package-reader evidence passed. No embeddings, vectors, canonicalization, contracts, model, tokenizer, pooling, normalization, ADEE, governance model, or release architecture changed. The v2 Draft remains immutable historical evidence; v3 is the authoritative M1 Draft input for subsequent M2 milestones."
+}

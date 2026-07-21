@@ -17,6 +17,8 @@ from jsonschema import Draft202012Validator
 
 ROOT_MANIFEST_NAME = "release-manifest.json"
 PROFILE_ID = "m1-generanno-prokaryote-0.5b-assembly-v1"
+PROFILE_VERSION = "1.0.0"
+PROFILE_RECORD_PATH = "profiles/m1-generanno-prokaryote-0.5b-assembly-v1.json"
 ADEE_ID = "m1-generanno-t4-cuda12.1-fp32-deterministic-v1"
 CANONICALIZATION_ID = "m1-assembly-canonical-v1"
 VECTOR_DIMENSION = 1280
@@ -238,6 +240,33 @@ def _logical_release_digest(
     return _sha256_bytes(json.dumps(logical, sort_keys=True, separators=(",", ":")).encode("utf-8"))
 
 
+def _check_optional_profile_declaration(package: Path) -> None:
+    """Validate the controlled successor's canonical profile record when present.
+
+    The v2 Draft remains readable as immutable historical evidence. The v3
+    successor adds this declaration so later Query Core work can bind a request
+    to an explicit profile version and its manifest-addressed digest.
+    """
+
+    path = package / PROFILE_RECORD_PATH
+    if not path.exists():
+        return
+    profile = _require_object(_load_json(path), "EmbeddingProfile declaration is invalid")
+    _validate(_schema(package, "embedding-profile.schema.json"), profile, "EmbeddingProfile")
+    output = _require_object(profile.get("output"), "EmbeddingProfile output is invalid")
+    metric = _require_object(profile.get("metric"), "EmbeddingProfile metric is invalid")
+    if (
+        profile.get("profile_id") != PROFILE_ID
+        or profile.get("version") != PROFILE_VERSION
+        or output.get("dimension") != VECTOR_DIMENSION
+        or output.get("dtype") != "float32"
+        or output.get("normalization") != "l2"
+        or metric.get("name") != "cosine"
+        or metric.get("direction") != "higher-is-more-similar"
+    ):
+        raise ReleaseReaderError("EmbeddingProfile declaration does not match the frozen M1 vector representation")
+
+
 def _check_provenance_and_policy(package: Path) -> None:
     source = _require_object(_load_json(package / "provenance" / "source" / "source-provenance.json"), "source provenance is invalid")
     _validate(_schema(package, "source-provenance.schema.json"), source, "SourceProvenance")
@@ -266,6 +295,7 @@ def _check_provenance_and_policy(package: Path) -> None:
         raise ReleaseReaderError("packaged embedding profile is missing") from error
     if f"profile_id: {PROFILE_ID}" not in profile or "dimension: 1280" not in profile:
         raise ReleaseReaderError("packaged embedding profile does not match the M1 vector representation")
+    _check_optional_profile_declaration(package)
     for name in ("acquisition-stage-envelope.json", "canonicalization-stage-envelope.json", "package-stage-envelope.json"):
         envelope = _require_object(_load_json(package / "provenance" / "stages" / name), f"stage envelope is invalid: {name}")
         _validate(_schema(package, "stage-envelope.schema.json"), envelope, name)

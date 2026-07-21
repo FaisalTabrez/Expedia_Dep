@@ -17,6 +17,11 @@ retrieval-quality claims.
   the established M1 reader and exposes only immutable, manifest-addressed
   snapshots with typed trust failures. It includes no query execution or
   cosine-search behavior.
+- A controlled M1 Draft successor package correction adds a schema-valid,
+  manifest-addressed declaration for the existing frozen GENERanno profile.
+  It preserves v2 as historical evidence and designates v3 as the authoritative
+  Draft input for M2; embeddings, vectors, canonicalization, and execution
+  provenance are unchanged.
 
 ## m1.0.0-draft - 2026-07-21
 
