@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 class M3EvaluationPlanningTests(unittest.TestCase):
     def test_plan_preserves_m2_reference_and_deferred_decisions(self) -> None:
         plan = (ROOT / "docs" / "planning" / "M3-EVALUATION-PLAN.md").read_text(encoding="utf-8")
-        self.assertIn("**Status:** Proposed planning baseline. M3 implementation and experiments have\nnot started.", plan)
+        self.assertIn("**Status:** M3.1 evaluation governance is complete.", plan)
         self.assertIn("`m2.0.0-complete`", plan)
         self.assertIn("OQ-05", plan)
         self.assertIn("Accepted claim-evidence requirements", plan)
@@ -36,6 +36,17 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         self.assertIn("EDS-proposed register entries", reconciliation)
         self.assertIn("not recoverable repository artifacts", reconciliation)
         self.assertIn("reconstruct an absent historical decision", reconciliation)
+
+    def test_m31_governance_templates_block_unapproved_experiments(self) -> None:
+        register = (ROOT / "benchmarks" / "preregistrations" / "M3-CLAIM-BOUNDARY-REGISTER.md").read_text(encoding="utf-8")
+        template = (ROOT / "benchmarks" / "preregistrations" / "M3-PREREGISTRATION-TEMPLATE.md").read_text(encoding="utf-8")
+        plan = (ROOT / "docs" / "planning" / "M3-EVALUATION-PLAN.md").read_text(encoding="utf-8")
+        self.assertIn("evidence\nrequirements, not results", register)
+        self.assertIn("ANN evaluation is not in the M3 reference-study scope", register)
+        self.assertIn("An incomplete or unapproved copy MUST NOT be run.", template)
+        self.assertIn("M2 Query Core exact float32 cosine", template)
+        self.assertIn("No result, outcome, or unsupported claim has been inserted.", template)
+        self.assertIn("**Complete:** reusable templates require", plan)
 
 
 if __name__ == "__main__":

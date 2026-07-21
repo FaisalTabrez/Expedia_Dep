@@ -20,6 +20,9 @@ retrieval-quality claims.
   makes no scientific or method-quality claim and selects no method. ADR-009
   and ADR-014 are reconciled as EDS-proposed, absent historical entries rather
   than retroactively created decisions.
+- M3.1 adds only governance templates: a claim-boundary register and a
+  preregistration template that refuses unapproved study execution. No cohort,
+  experiment, benchmark result, or scientific claim is added.
 
 ### Changed
 

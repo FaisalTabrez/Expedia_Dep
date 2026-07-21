@@ -1,7 +1,7 @@
 # M3 evaluation plan: evidence before method claims
 
-**Status:** Proposed planning baseline. M3 implementation and experiments have
-not started.
+**Status:** M3.1 evaluation governance is complete. No study preregistration,
+experiment, benchmark result, or scientific claim has been accepted.
 **Governing specification:** EDS v2.1.1 sections 8, 12.4-12.7, 13, 14, and
 15.4; ERS v1.0; the accepted M2 checkpoint `m2.0.0-complete`.
 **Purpose:** Define the smallest controlled path from deterministic retrieval to
@@ -47,7 +47,7 @@ resolved by evaluation work.
 
 | ID | Phase | Dependencies | Deliverables | Acceptance criteria | Complexity |
 |---|---|---|---|---|---|
-| M3.1 | Evaluation governance | M2 closure; accepted OQ-05 | Claim-boundary register and preregistration template | Every contemplated claim has an owner, evidence category, prohibited wording, and a decision rule. No metric threshold is invented before rationale and review. | M |
+| M3.1 | Evaluation governance | M2 closure; accepted OQ-05 | Claim-boundary register and preregistration template | **Complete:** reusable templates require claim categories, prohibited wording, task-specific decision rules, cohort/source provenance, baselines, metrics, uncertainty, failure analysis, raw evidence, and maintainer approval before execution. | M |
 | M3.2 | Preregister reference study | M3.1 | Versioned preregistration; cohort/source/license record; frozen baseline definition; evaluation manifest | The preregistration names the question, cohort/splits, inclusion/exclusion, exact ground truth where applicable, exact cosine baseline, metrics, uncertainty method, failure analysis, raw outputs, and allowed claim language. | L |
 | M3.3 | Execute reference experiments | M3.2 | Immutable run manifests, raw outputs, environment/provenance records, integrity digests | Every run is reproducible from its manifest and bounded by the preregistration. Deviations are recorded as deviations, not silently folded into results. | XL |
 | M3.4 | Analyze evidence | M3.3 | Analysis notebook/script, uncertainty and failure analysis, evidence-status assessment | Analysis uses only preregistered methods or labels an approved amendment. It distinguishes method evidence from exploratory observations. | L |
