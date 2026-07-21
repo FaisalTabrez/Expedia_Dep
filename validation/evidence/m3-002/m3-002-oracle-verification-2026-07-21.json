@@ -1,0 +1,27 @@
+{
+  "artifact_type": "m3-002-oracle-software-verification",
+  "evidence_scope": "software verification only; no M3-002 Query Core/reference comparison was executed",
+  "oracle": {
+    "specification_path": "benchmarks/reference/M3-002-INDEPENDENT-REFERENCE-SPECIFICATION.md",
+    "source_digest": "sha256:7848646c63a4a8199d74bc42b7a6a3d3b970558bc14ebb37e8ee3fc913ebf595",
+    "source_path": "validation/reference/m3_002_float32_cosine.py"
+  },
+  "outcome": "passed",
+  "recorded_at": "2026-07-21",
+  "study_id": "M3-002",
+  "tests": {
+    "command": "python -m unittest tests.contract.test_m3_002_reference_oracle -v",
+    "count": 5,
+    "source_digest": "sha256:1658bb50088ed9dfba612c4c33ce8fe2b53596479c208d4aea38dfc5462c213b",
+    "source_path": "tests/contract/test_m3_002_reference_oracle.py",
+    "verified_properties": [
+      "independent M1 Release Reader input binding",
+      "profile and vector-shard identity rejection",
+      "little-endian float32 decoding and finite L2 validation",
+      "local binary32 product and accumulation rounding",
+      "score-desc-record-id-asc-v1 tie ordering",
+      "comparison-projection-only output",
+      "absence of Query Core imports"
+    ]
+  }
+}

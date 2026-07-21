@@ -1,0 +1,70 @@
+{
+  "approval_status": "prepared-awaiting-maintainer-approval",
+  "claim_category": "exact query correctness",
+  "comparison": {
+    "canonicalization": "UTF-8; LF line endings; lexicographically sorted object keys; no insignificant whitespace; normalized finite numeric representation; SHA-256 over canonical bytes",
+    "diagnostic_order": [
+      "ordered_record_ids",
+      "decoded_float32_scores",
+      "score-desc-record-id-asc-v1 ordering and tie handling",
+      "release/profile/vector-shard provenance"
+    ],
+    "equality_algorithm": "canonical-json-sha256-first-v1",
+    "score_equality_tolerance": 0.0
+  },
+  "execution_environment": {
+    "dependency_lock_digest": "sha256:332b9b0ae251547a0db50deb717d2c778a3e2e5be40644255598aef783b18765",
+    "dependency_manifest_digest": "sha256:e0dcfffdf2d2ca71abcffcb69503f66d03a0ca2ff5f32280bf7ed2d080b0a813",
+    "id": "EE-M3-001-v1.1",
+    "python_executable_digest": "sha256:5912d0884b23c0343983a864c6064242391e2265536f50b88624857e353882c9"
+  },
+  "implementation": {
+    "repository_tag": "m2.0.0-complete",
+    "required_commit": "6183145f8fd6018431c55fd2e4ee7e1001e5fc87"
+  },
+  "manifest_id": "m3-002-evaluation-manifest-v1",
+  "outcomes": [
+    "PASS",
+    "FAIL",
+    "INCONCLUSIVE",
+    "ABORTED"
+  ],
+  "output_retention": {
+    "incident_log": "validation/evidence/m3-002/execution-v1/incident-log.json",
+    "raw_output_directory": "validation/evidence/m3-002/execution-v1/",
+    "required_artifacts": [
+      "environment.json",
+      "release-verification.json",
+      "canonical-requests.jsonl",
+      "query-core-projections.jsonl",
+      "reference-projections.jsonl",
+      "comparison.json",
+      "digests.json",
+      "incident-log.json",
+      "analysis-location.json"
+    ]
+  },
+  "preregistration": {
+    "digest": "sha256:23d537e522200b635d3c68e81913a187283a3ecd257a9d9e08bc16496b7be25c",
+    "path": "benchmarks/preregistrations/m3-002-exact-float32-cosine-correctness.md",
+    "version": "1.0"
+  },
+  "reference_implementation": {
+    "oracle_verification_digest": "sha256:caca7fc9686a2034bc9b16b145fb297e2f3bed05e5b8bf1e286bf34549acf7c1",
+    "oracle_verification_path": "validation/evidence/m3-002/m3-002-oracle-verification-2026-07-21.json",
+    "source_digest": "sha256:7848646c63a4a8199d74bc42b7a6a3d3b970558bc14ebb37e8ee3fc913ebf595",
+    "source_path": "validation/reference/m3_002_float32_cosine.py",
+    "specification_digest": "sha256:514885b26bb485dcf0114aeece320b45e56c08a486474dd208b79bde77becb85",
+    "specification_path": "benchmarks/reference/M3-002-INDEPENDENT-REFERENCE-SPECIFICATION.md"
+  },
+  "release": {
+    "expected_record_count": 12,
+    "profile_digest": "sha256:5679461d5a4482b48b90e97615d9661e84c2ac7c3b01253e7be4d7909a294294",
+    "profile_id": "m1-generanno-prokaryote-0.5b-assembly-v1",
+    "profile_version": "1.0.0",
+    "release_digest": "sha256:fb18e65424f9b1f8978b6460917f799f39137659ae83d3074d2b01a491eca37b",
+    "release_id": "expedia-m1-draft-20260721-v3",
+    "vector_shard_digest": "sha256:69204de55e57d8f3b088bba7dd63a8207c6bf55337d28b4bedc4769f1d8cf0c3"
+  },
+  "study_id": "M3-002"
+}

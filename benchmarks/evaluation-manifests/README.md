@@ -12,5 +12,10 @@ manifest is preserved as historical evidence of the controlled executable
 identity correction.
 
 [`M3-002-EVALUATION-MANIFEST-TEMPLATE.json`](M3-002-EVALUATION-MANIFEST-TEMPLATE.json)
-is an unapproved template only. It is not an immutable evaluation manifest and
-does not authorize M3-002 execution.
+is retained as the historical planning template.
+
+[`m3-002-v1-evaluation-manifest.json`](m3-002-v1-evaluation-manifest.json)
+binds the approved M3-002 preregistration, frozen M2 checkpoint, declared
+M1 v3 Draft identities, execution environment, reference-oracle source, and
+oracle software-verification record. It is prepared for maintainer approval,
+not yet immutable, and does not authorize M3-002 execution.

@@ -63,6 +63,12 @@ retrieval-quality claims.
   digest, review record, and maintainer approval are retained; no oracle,
   evaluation manifest, execution, result, analysis, or claim decision is
   authorized by this approval.
+- M3-002 now has an isolated, validation-only float32 cosine oracle and
+  retained oracle software-verification evidence. The oracle uses the M1
+  Release Reader and independently decodes, validates, scores, and orders the
+  verified vector shard without importing Query Core. A fully bound evaluation
+  manifest is prepared for separate maintainer approval. No Query Core/oracle
+  comparison, result, analysis, or claim decision has been produced.
 
 ### Changed
 

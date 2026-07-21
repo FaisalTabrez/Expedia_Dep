@@ -1,16 +1,18 @@
 # M3-002 independent float32 cosine reference specification
 
-**Status:** Draft specification only. No reference implementation is created or
-authorized by this document.  
+**Status:** Implemented validation-only oracle. Oracle software verification is
+recorded in
+[`m3-002-oracle-verification-2026-07-21.json`](../../validation/evidence/m3-002/m3-002-oracle-verification-2026-07-21.json).
+No M3-002 Query Core/reference comparison has been executed.
 **Study:** M3-002 Exact Float32 Cosine Correctness.
 
 ## 1. Isolation boundary
 
-The future implementation SHALL reside under `validation/reference/` and SHALL
-NOT import, call, copy, or reuse any Query Core cosine calculation, ranking,
-ordering, search execution, cursor handling, or result construction. It SHALL
-not import any `expedia_query_core` module. Source review and an import-boundary
-test are required before execution.
+The implementation resides under `validation/reference/` and SHALL NOT import,
+call, copy, or reuse any Query Core cosine calculation, ranking, ordering,
+search execution, cursor handling, or result construction. It SHALL not import
+any `expedia_query_core` module. Source review and an import-boundary test are
+required before execution.
 
 Permitted reusable components are immutable schemas, the M1 Release Reader,
 verified package artifacts, verified vector bytes, and profile declarations.

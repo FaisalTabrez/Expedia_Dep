@@ -3,8 +3,9 @@
 **Status:** M3.1–M3.5 are complete for M3-001. Its narrowly scoped
 deterministic-retrieval engineering-conformance claim is supported; no
 biological, performance, usefulness, or comparative claim is accepted.
-M3-002 Exact Float32 Cosine Correctness is in Draft planning only; execution is
-prohibited.
+M3-002 Exact Float32 Cosine Correctness has an approved preregistration and a
+verified validation-only oracle. Its evaluation manifest awaits maintainer
+approval; execution remains prohibited.
 **Governing specification:** EDS v2.1.1 sections 8, 12.4-12.7, 13, 14, and
 15.4; ERS v1.0; the accepted M2 checkpoint `m2.0.0-complete`.
 **Purpose:** Define the smallest controlled path from deterministic retrieval to
@@ -62,10 +63,10 @@ resolved by evaluation work.
 |---|---|---|
 | M3-002.1 | Review Draft preregistration | **Complete:** maintainer review verifies the frozen question, hypotheses, comparison algorithm, outcomes, exclusions, retention, environment, commit, and artifact digests. |
 | M3-002.2 | Approve and freeze Version 1.0 | **Complete:** approval binds the Version 1.0 preregistration digest. Execution remains prohibited. |
-| M3-002.3 | Immutable evaluation manifest | **Pending:** the unapproved template must be replaced only after the oracle source and verification evidence can be bound. |
-| M3-002.4 | Implement independent reference | **Pending:** implementation belongs only in `validation/reference/` and must not reuse Query Core computation, ranking, ordering, or execution. |
-| M3-002.5 | Verify the oracle | **Pending:** software verification and import-boundary evidence are required before any comparison. |
-| M3-002.6 | Execute comparison | **Blocked:** requires M3-002.3 through M3-002.5 acceptance; no result may be generated before then. |
+| M3-002.3 | Immutable evaluation manifest | **Prepared, not approved:** the bound manifest is complete but must receive a separate maintainer approval before becoming immutable. |
+| M3-002.4 | Implement independent reference | **Complete:** `validation/reference/` owns a separate reader-bound float32 oracle and imports no Query Core module. |
+| M3-002.5 | Verify the oracle | **Complete:** isolated source, package-binding, float32, normalization, tie-order, output-boundary, and import-boundary tests pass; this is software verification, not study execution. |
+| M3-002.6 | Execute comparison | **Blocked:** requires maintainer approval of M3-002.3; no result may be generated before then. |
 | M3-002.7 | Observational analysis | **Pending:** may begin only after retained M3-002 raw evidence exists. |
 | M3-002.8 | Maintainer claim decision | **Pending:** may decide only the exact-query-correctness claim category. |
 

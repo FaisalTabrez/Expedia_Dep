@@ -91,13 +91,17 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         self.assertIn("Expected record count | 12 canonical GenomeRecordVersions", corpus)
         self.assertIn("No annotations, derived relations, alternate embedding profiles", corpus)
 
-    def test_m3002_is_approved_exact_query_correctness_planning_only(self) -> None:
+    def test_m3002_has_an_approved_preregistration_and_prepared_oracle_bound_manifest(self) -> None:
         study = (ROOT / "benchmarks" / "preregistrations" / "m3-002-exact-float32-cosine-correctness.md").read_text(encoding="utf-8")
         corpus = (ROOT / "benchmarks" / "data-manifests" / "M3-002-M1-V3-EXACT-COSINE-CORPUS.md").read_text(encoding="utf-8")
         reference = (ROOT / "benchmarks" / "reference" / "M3-002-INDEPENDENT-REFERENCE-SPECIFICATION.md").read_text(encoding="utf-8")
         claim_check = (ROOT / "benchmarks" / "preregistrations" / "M3-002-CLAIM-BOUNDARY-VERIFICATION.md").read_text(encoding="utf-8")
         template = json.loads((ROOT / "benchmarks" / "evaluation-manifests" / "M3-002-EVALUATION-MANIFEST-TEMPLATE.json").read_text(encoding="utf-8"))
+        manifest_path = ROOT / "benchmarks" / "evaluation-manifests" / "m3-002-v1-evaluation-manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         approval = json.loads((ROOT / "validation" / "evidence" / "m3-002" / "m3-002-preregistration-approval-2026-07-21.json").read_text(encoding="utf-8"))
+        oracle_verification_path = ROOT / "validation" / "evidence" / "m3-002" / "m3-002-oracle-verification-2026-07-21.json"
+        oracle_verification = json.loads(oracle_verification_path.read_text(encoding="utf-8"))
         review = (ROOT / "validation" / "evidence" / "m3-002" / "m3-002-preregistration-review-2026-07-21.md").read_text(encoding="utf-8")
         self.assertIn("**Status:** Approved — execution remains prohibited pending later M3-002 gates.", study)
         self.assertIn("**Version:** `1.0`.", study)
@@ -106,7 +110,7 @@ class M3EvaluationPlanningTests(unittest.TestCase):
             "Until every remaining unchecked item is complete, M3-002 MUST NOT execute.",
             study,
         )
-        self.assertIn("SHALL\nNOT import, call, copy, or reuse any Query Core", reference)
+        self.assertIn("SHALL NOT import,\ncall, copy, or reuse any Query Core", reference)
         self.assertIn("score-desc-record-id-asc-v1", reference)
         self.assertIn("Expected record count | 12 canonical GenomeRecordVersions", corpus)
         self.assertIn("`EE-M3-001-v1.1`", corpus)
@@ -116,6 +120,35 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         self.assertEqual("1.0", approval["subject_version"])
         self.assertEqual("sha256:" + hashlib.sha256((ROOT / "benchmarks" / "preregistrations" / "m3-002-exact-float32-cosine-correctness.md").read_bytes()).hexdigest(), approval["preregistration_digest"])
         self.assertIn("**Status:** Passed maintainer review.", review)
+        self.assertIn("**Status:** Implemented validation-only oracle.", reference)
+        self.assertEqual("prepared-awaiting-maintainer-approval", manifest["approval_status"])
+        self.assertEqual("M3-002", manifest["study_id"])
+        self.assertEqual("exact query correctness", manifest["claim_category"])
+        self.assertEqual("6183145f8fd6018431c55fd2e4ee7e1001e5fc87", manifest["implementation"]["required_commit"])
+        self.assertEqual("EE-M3-001-v1.1", manifest["execution_environment"]["id"])
+        self.assertEqual(0.0, manifest["comparison"]["score_equality_tolerance"])
+        self.assertEqual(["PASS", "FAIL", "INCONCLUSIVE", "ABORTED"], manifest["outcomes"])
+        self.assertEqual(
+            "sha256:" + hashlib.sha256((ROOT / manifest["preregistration"]["path"]).read_bytes()).hexdigest(),
+            manifest["preregistration"]["digest"],
+        )
+        self.assertEqual(
+            "sha256:" + hashlib.sha256((ROOT / manifest["reference_implementation"]["source_path"]).read_bytes()).hexdigest(),
+            manifest["reference_implementation"]["source_digest"],
+        )
+        self.assertEqual(
+            "sha256:" + hashlib.sha256((ROOT / manifest["reference_implementation"]["specification_path"]).read_bytes()).hexdigest(),
+            manifest["reference_implementation"]["specification_digest"],
+        )
+        self.assertEqual(
+            "sha256:" + hashlib.sha256(oracle_verification_path.read_bytes()).hexdigest(),
+            manifest["reference_implementation"]["oracle_verification_digest"],
+        )
+        self.assertEqual("passed", oracle_verification["outcome"])
+        self.assertEqual(
+            "software verification only; no M3-002 Query Core/reference comparison was executed",
+            oracle_verification["evidence_scope"],
+        )
 
 
 if __name__ == "__main__":
