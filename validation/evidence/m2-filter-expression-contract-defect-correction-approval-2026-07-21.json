@@ -1,0 +1,8 @@
+{
+  "approval_id": "approval:m2-filter-expression-contract-defect-correction-20260721-v1",
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "action": "m2-filter-expression-contract-defect-correction-approved",
+  "subject_id": "filter-expression/0.1.1",
+  "recorded_at": "2026-07-21T09:00:00Z",
+  "rationale": "The Project Maintainer authorizes the verified, controlled correction of the M2.1 FilterExpression contract to align it with EDS section 12.3 and already accepted OQ-11. The successor contract requires object-based FieldRef, paired gte/gt and lte/lt range bounds, and a false state distinct from present, missing, and unavailable. QueryRequest semantics and schema version, QueryResult, exact cosine execution, cursor semantics, ranking, provenance architecture, SDK, REST, Explorer, and milestone sequencing remain unchanged. QueryRequest changes only its schema reference to bind the corrected FilterExpression contract. filter-expression/0.1.0 remains immutable historical evidence; filter-expression/0.1.1 is normative for subsequent M2 implementation. M2.4 may begin after corrected conformance validation."
+}

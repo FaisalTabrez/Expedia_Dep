@@ -29,7 +29,7 @@ release. Consumers reject undeclared fields in canonical objects.
 |---|---|---:|---|
 | `query-request` | Query Core | M2.1 | Valid similarity request; missing profile rejection |
 | `query-result` | Query Core | M2.1.1 controlled correction | Valid success/error envelopes; incomplete success and missing exact-provenance rejection |
-| `filter-expression` | Query Core | M2.1 | Boolean, state, relation, range; malformed grammar rejection |
+| `filter-expression` | Query Core | M2.1.1 controlled correction | Boolean, object FieldRef, four-state semantics, paired range bounds, relation; malformed grammar rejection |
 | `cursor` | Query Core | M2.1 | Release/request/order/last-key binding; missing binding rejection |
 | `query-error` | Query Core | M2.1 | Typed error fixture; unknown code rejection |
 | `query-warning` | Query Core | M2.1 | Typed warning fixture; unknown code rejection |
@@ -45,6 +45,13 @@ requires `context.metric_direction` plus the manifest-addressed vector-shard
 and profile declaration provenance required by ADR-011. The former
 `query-result/0.1.0` schema is retained as an immutable historical contract
 record; it is not the result version for subsequent M2 implementation.
+
+`filter-expression/0.1.1` is the current normative M2 FilterExpression
+contract. It restores EDS 12.3 and accepted OQ-11 semantics: object-based
+canonical FieldRef, `gte`/`gt` plus `lte`/`lt` range boundaries, and `false` as
+a state distinct from `present`, `missing`, and `unavailable`. Historical
+`filter-expression/0.1.0` remains an immutable contract record and is not the
+filter version for subsequent M2 implementation.
 
 The executable M1 fixture packs are
 `fixtures/valid/m1-contract-pack.json` and

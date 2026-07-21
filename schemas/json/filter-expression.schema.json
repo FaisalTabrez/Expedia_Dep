@@ -1,14 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://expedia.dev/schemas/json/filter-expression/0.1.0",
+  "$id": "https://expedia.dev/schemas/json/filter-expression/0.1.1",
   "title": "FilterExpression",
   "description": "The deterministic M2 v1 filter grammar. Each expression contains exactly one operator.",
   "$ref": "#/$defs/filter",
   "$defs": {
-    "scalar": {"type": ["string", "number", "boolean", "null"]},
+    "scalar": {"type": ["string", "number", "boolean"]},
     "field": {
       "oneOf": [
-        {"enum": ["record_id", "entity_id", "canonicalization_id", "source_provenance_id", "lifecycle_state"]},
+        {"type": "object", "required": ["kind", "name"], "properties": {"kind": {"const": "canonical"}, "name": {"enum": ["record_id", "entity_id", "canonicalization_id", "source_provenance_id", "lifecycle_state"]}}, "additionalProperties": false},
         {"type": "object", "required": ["kind", "source", "predicate"], "properties": {"kind": {"const": "annotation"}, "source": {"type": "string", "minLength": 1}, "predicate": {"type": "string", "minLength": 1}}, "additionalProperties": false}
       ]
     },
@@ -19,9 +19,9 @@
         {"type": "object", "required": ["not"], "properties": {"not": {"$ref": "#/$defs/filter"}}, "additionalProperties": false},
         {"type": "object", "required": ["eq"], "properties": {"eq": {"type": "object", "required": ["field", "value"], "properties": {"field": {"$ref": "#/$defs/field"}, "value": {"$ref": "#/$defs/scalar"}}, "additionalProperties": false}}, "additionalProperties": false},
         {"type": "object", "required": ["in"], "properties": {"in": {"type": "object", "required": ["field", "values"], "properties": {"field": {"$ref": "#/$defs/field"}, "values": {"type": "array", "minItems": 1, "maxItems": 100, "items": {"$ref": "#/$defs/scalar"}}}, "additionalProperties": false}}, "additionalProperties": false},
-        {"type": "object", "required": ["range"], "properties": {"range": {"type": "object", "required": ["field", "unit"], "properties": {"field": {"$ref": "#/$defs/field"}, "lower": {"type": ["number", "null"]}, "upper": {"type": ["number", "null"]}, "unit": {"type": "string", "minLength": 1}}, "additionalProperties": false, "anyOf": [{"required": ["lower"]}, {"required": ["upper"]}]}}, "additionalProperties": false},
-        {"type": "object", "required": ["state"], "properties": {"state": {"type": "object", "required": ["field", "value"], "properties": {"field": {"$ref": "#/$defs/field"}, "value": {"enum": ["present", "missing", "unavailable"]}}, "additionalProperties": false}}, "additionalProperties": false},
-        {"type": "object", "required": ["relation"], "properties": {"relation": {"type": "object", "required": ["relation_type"], "properties": {"relation_type": {"type": "string", "minLength": 1}, "direction": {"enum": ["outgoing", "incoming", "both"]}, "artifact_id": {"type": "string", "minLength": 1}}, "additionalProperties": false}}, "additionalProperties": false}
+        {"type": "object", "required": ["range"], "properties": {"range": {"type": "object", "required": ["field", "unit"], "properties": {"field": {"$ref": "#/$defs/field"}, "gte": {"type": "number"}, "gt": {"type": "number"}, "lte": {"type": "number"}, "lt": {"type": "number"}, "unit": {"type": "string", "minLength": 1}}, "additionalProperties": false, "allOf": [{"anyOf": [{"required": ["gte"]}, {"required": ["gt"]}]}, {"anyOf": [{"required": ["lte"]}, {"required": ["lt"]}]}, {"not": {"required": ["gte", "gt"]}}, {"not": {"required": ["lte", "lt"]}}]}}, "additionalProperties": false},
+        {"type": "object", "required": ["state"], "properties": {"state": {"type": "object", "required": ["field", "is"], "properties": {"field": {"$ref": "#/$defs/field"}, "is": {"enum": ["present", "missing", "unavailable", "false"]}}, "additionalProperties": false}}, "additionalProperties": false},
+        {"type": "object", "required": ["relation"], "properties": {"relation": {"type": "object", "required": ["relation_type", "direction"], "properties": {"relation_type": {"type": "string", "minLength": 1}, "direction": {"enum": ["outbound", "inbound"]}, "artifact_id": {"type": "string", "minLength": 1}}, "additionalProperties": false}}, "additionalProperties": false}
       ]
     }
   }

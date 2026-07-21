@@ -9,14 +9,14 @@
         "operation": "similarity",
         "profile_selector": {"profile_id": "generanno-reference", "profile_version": "1.0.0"},
         "similarity": {"query_record_id": "GCF_000005845.2", "metric": "cosine", "mode": "exact"},
-        "filter": {"all": [{"eq": {"field": "lifecycle_state", "value": "active"}}, {"in": {"field": "record_id", "values": ["GCF_000005845.2", "GCF_000146045.2"]}}]},
+        "filter": {"all": [{"eq": {"field": {"kind": "canonical", "name": "lifecycle_state"}, "value": "active"}}, {"in": {"field": {"kind": "canonical", "name": "record_id"}, "values": ["GCF_000005845.2", "GCF_000146045.2"]}}]},
         "pagination": {"limit": 12, "cursor": null, "ordering_version": "score-desc-record-id-asc-v1"}
       }
     },
     {
       "contract": "Filter",
       "schema": "schemas/json/filter-expression.schema.json",
-      "instance": {"any": [{"range": {"field": "record_id", "lower": 1, "upper": null, "unit": "ordinal"}}, {"state": {"field": {"kind": "annotation", "source": "public", "predicate": "evidence"}, "value": "unavailable"}}, {"relation": {"relation_type": "derived_from", "direction": "outgoing"}}]}
+      "instance": {"any": [{"range": {"field": {"kind": "canonical", "name": "record_id"}, "gte": 1, "lte": 2, "unit": "ordinal"}}, {"state": {"field": {"kind": "annotation", "source": "public", "predicate": "evidence"}, "is": "false"}}, {"relation": {"relation_type": "derived_from", "direction": "outbound"}}]}
     },
     {
       "contract": "Cursor",

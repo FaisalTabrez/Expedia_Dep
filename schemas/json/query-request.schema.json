@@ -36,7 +36,7 @@
       "required": ["query_record_id", "metric", "mode"],
       "additionalProperties": false
     },
-    "filter": {"oneOf": [{"$ref": "https://expedia.dev/schemas/json/filter-expression/0.1.0"}, {"type": "null"}]},
+    "filter": {"oneOf": [{"$ref": "https://expedia.dev/schemas/json/filter-expression/0.1.1"}, {"type": "null"}]},
     "traversal": {
       "type": ["object", "null"],
       "properties": {

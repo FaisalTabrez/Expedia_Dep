@@ -1,8 +1,10 @@
 {
   "fixtures": [
     {"name": "similarity request missing profile", "schema": "schemas/json/query-request.schema.json", "instance": {"schema_version": "query-request/0.1.0", "release_selector": {"release_id": "r", "release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "operation": "similarity", "similarity": {"query_record_id": "x", "metric": "cosine", "mode": "exact"}}},
-    {"name": "filter has two operators", "schema": "schemas/json/filter-expression.schema.json", "instance": {"eq": {"field": "record_id", "value": "x"}, "in": {"field": "record_id", "values": ["x"]}}},
-    {"name": "range has no bound", "schema": "schemas/json/filter-expression.schema.json", "instance": {"range": {"field": "record_id", "unit": "ordinal"}}},
+    {"name": "filter has two operators", "schema": "schemas/json/filter-expression.schema.json", "instance": {"eq": {"field": {"kind": "canonical", "name": "record_id"}, "value": "x"}, "in": {"field": {"kind": "canonical", "name": "record_id"}, "values": ["x"]}}},
+    {"name": "range has no upper bound", "schema": "schemas/json/filter-expression.schema.json", "instance": {"range": {"field": {"kind": "canonical", "name": "record_id"}, "gte": 1, "unit": "ordinal"}}},
+    {"name": "canonical field cannot use historical string reference", "schema": "schemas/json/filter-expression.schema.json", "instance": {"eq": {"field": "record_id", "value": "x"}}},
+    {"name": "state omits normative is member", "schema": "schemas/json/filter-expression.schema.json", "instance": {"state": {"field": {"kind": "canonical", "name": "record_id"}, "value": "present"}}},
     {"name": "cursor omits request digest", "schema": "schemas/json/cursor.schema.json", "instance": {"schema_version": "cursor/0.1.0", "release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "ordering_version": "score-desc-record-id-asc-v1", "last_key": {"score": 1, "record_id": "x"}}},
     {"name": "unknown error code", "schema": "schemas/json/query-error.schema.json", "instance": {"code": "unknown", "message": "x", "stage": "validate", "correlation_id": "c"}},
     {"name": "unknown warning code", "schema": "schemas/json/query-warning.schema.json", "instance": {"code": "unknown", "message": "x"}},
