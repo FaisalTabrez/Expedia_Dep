@@ -1,10 +1,10 @@
 # M3-002 Analysis Report
 
-**Status:** Draft observational analysis — no maintainer claim decision.  
-**Study:** M3-002 Exact Float32 Cosine Correctness.  
-**Preregistration:** Version 1.0, approved.  
-**Evaluation manifest:** `m3-002-evaluation-manifest-v1` / `sha256:1ca19ce393c2c475c59922e708401833a49334bea46e508cec574d034353c060`.  
-**Execution environment:** `EE-M3-001-v1.1`.  
+**Status:** Draft observational analysis — no maintainer claim decision.
+**Study:** M3-002 Exact Float32 Cosine Correctness.
+**Preregistration:** Version 1.0, approved.
+**Evaluation manifest:** `m3-002-evaluation-manifest-v1` / `sha256:1ca19ce393c2c475c59922e708401833a49334bea46e508cec574d034353c060`.
+**Execution environment:** `EE-M3-001-v1.1`.
 **Frozen M2 implementation commit:** `6183145f8fd6018431c55fd2e4ee7e1001e5fc87`.
 
 ## 1. Scope
