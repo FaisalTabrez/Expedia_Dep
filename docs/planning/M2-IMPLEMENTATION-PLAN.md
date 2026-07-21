@@ -39,6 +39,13 @@ Excluded:
 
 M2 implementation must not begin until all of these are explicitly recorded:
 
+The proposed dispositions are available for review in
+[`ADR-010`](../../specification/adr/ADR-010-trusted-local-release-boundary.md),
+[`ADR-011`](../../specification/adr/ADR-011-exact-cosine-m2-reference-search.md),
+[`ADR-016`](../../specification/adr/ADR-016-query-core-semantic-authority.md),
+and [OQ-11](../../specification/open-questions/OQ-11-M2-filter-grammar-and-cost-limits.md).
+They are proposals only and do not satisfy these gates until accepted.
+
 | Gate | Required disposition | Why it blocks M2 |
 |---|---|---|
 | ADR-010 | Accepted local-storage/read-path decision | Defines the supported local release access boundary. |
