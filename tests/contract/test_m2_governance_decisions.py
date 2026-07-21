@@ -37,6 +37,13 @@ class M2GovernanceDecisionTests(unittest.TestCase):
         self.assertIn("No M2 production implementation is present yet.", content)
         self.assertIn("M2.2 or later implementation remains dependent", content)
 
+    def test_m2_contract_conformance_matrix_blocks_m2_2_until_evidence_exists(self) -> None:
+        content = (ROOT / "docs" / "planning" / "M2-QUERY-CONTRACT-CONFORMANCE-MATRIX.md").read_text(encoding="utf-8")
+        self.assertIn("M2.2 verified-release-adapter work MUST NOT begin", content)
+        for contract in ("QueryRequest", "QueryResult", "Filter", "Cursor", "Errors and warnings"):
+            self.assertIn(f"| {contract} |", content)
+        self.assertIn("five `Pass` rows", content)
+
 
 if __name__ == "__main__":
     unittest.main()
