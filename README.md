@@ -12,9 +12,10 @@ repository govern implementation.
 
 The top-level subsystem layout follows EDS v2.1 section 16. `schemas/` is the
 normative contract source; generated types and client bindings must never
-redefine its semantics. Each executable module currently contains interfaces
-only. No Builder, reader, query, storage, service, or UI behavior is implemented
-in this skeleton.
+redefine its semantics. M1 implements the Builder reference path, Draft-package
+reader, and evidence gate. Query Core, SDK, REST, Explorer, storage services,
+and UI behavior remain planned M2-or-later work.
 
 See [the M1 implementation plan](docs/planning/M1-IMPLEMENTATION-PLAN.md) for
-the contract-first implementation order.
+the completed M1 evidence path and [the M2 implementation plan](docs/planning/M2-IMPLEMENTATION-PLAN.md)
+for the next gated work.

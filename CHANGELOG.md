@@ -1,0 +1,32 @@
+# Changelog
+
+All notable repository changes are recorded here. This changelog describes
+software and governed evidence; it does not make biological, scalability, or
+retrieval-quality claims.
+
+## m1.0.0-draft - 2026-07-21
+
+### Added
+
+- A reproducible M1 Builder reference path for the fixed 12-record NCBI RefSeq
+  prokaryotic internal-validation scope.
+- Canonicalization, embedding-stage, packaging, and package-reader contract
+  tests, including integrity and failure-path checks.
+- A pinned GENERanno profile and the approved deterministic T4 execution
+  environment for release generation.
+- Draft-package integrity evidence, a clean-room reader validation bundle, ERS
+  traceability, and a single-maintainer M1 evidence-gate approval record.
+
+### Changed
+
+- EDS v2.1.1 applies the accepted, narrow M1 execution-environment amendment:
+  release eligibility depends on deterministic reproduction and complete
+  provenance rather than CPU processor type.
+
+### Release boundary
+
+- `m1.0.0-draft` identifies the repository state supporting the approved M1
+  evidence gate. The associated Atlas package remains an internal `Draft`, is
+  not citable, and has not entered Candidate or Published state.
+- The source-derived Draft package is intentionally retained outside Git; its
+  identity is recorded in the M1 evidence index.
