@@ -23,6 +23,10 @@ retrieval-quality claims.
 - M3.1 adds only governance templates: a claim-boundary register and a
   preregistration template that refuses unapproved study execution. No cohort,
   experiment, benchmark result, or scientific claim is added.
+- M3-001 is a non-executable Draft preregistration for deterministic exact-query
+  reproducibility over the internal M1 v3 fixture. Its proposed request corpus,
+  three independent-process replicates, and zero decoded-score tolerance await
+  maintainer acceptance and an immutable evaluation-manifest binding.
 
 ### Changed
 

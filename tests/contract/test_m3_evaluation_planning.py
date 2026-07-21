@@ -48,6 +48,18 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         self.assertIn("No result, outcome, or unsupported claim has been inserted.", template)
         self.assertIn("**Complete:** reusable templates require", plan)
 
+    def test_m3001_is_a_non_executable_deterministic_retrieval_preregistration(self) -> None:
+        study = (ROOT / "benchmarks" / "preregistrations" / "m3-001-deterministic-exact-query-reproducibility.md").read_text(encoding="utf-8")
+        corpus = (ROOT / "benchmarks" / "data-manifests" / "M3-001-M1-V3-DRAFT-QUERY-CORPUS.md").read_text(encoding="utf-8")
+        self.assertIn("**Status:** Draft — not accepted; execution is prohibited.", study)
+        self.assertIn("Deterministic retrieval", study)
+        self.assertIn("three independent Python process invocations", study)
+        self.assertIn("Score tolerance: `0.0`", study)
+        self.assertIn("M3-001 MUST NOT execute", study)
+        self.assertIn("SHALL NOT evaluate or claim biological", study)
+        self.assertIn("Expected record count | 12 canonical GenomeRecordVersions", corpus)
+        self.assertIn("No annotations, derived relations, alternate embedding profiles", corpus)
+
 
 if __name__ == "__main__":
     unittest.main()
