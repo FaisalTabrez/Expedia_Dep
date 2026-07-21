@@ -85,6 +85,11 @@ retrieval-quality claims.
   evidence. The original failed pre-execution incident is retained; the full
   pre-execution sequence must restart before any release, Query Core, oracle,
   or comparison work.
+- A second controlled M3-002 environment amendment authorizes only a
+  command-scoped Git `safe.directory` override for the single detached frozen
+  workspace. It records the workspace, Git executable/version, scope, commands,
+  runner digest, and both retained incidents. No global or broad repository
+  trust setting is authorized.
 
 ### Changed
 

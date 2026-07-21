@@ -106,6 +106,8 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         oracle_verification = json.loads(oracle_verification_path.read_text(encoding="utf-8"))
         runner_amendment_path = ROOT / "validation" / "evidence" / "m3-002" / "m3-002-runner-environment-amendment-approval-2026-07-21.json"
         runner_amendment = json.loads(runner_amendment_path.read_text(encoding="utf-8"))
+        trust_amendment_path = ROOT / "validation" / "evidence" / "m3-002" / "m3-002-runner-git-trust-amendment-approval-2026-07-22.json"
+        trust_amendment = json.loads(trust_amendment_path.read_text(encoding="utf-8"))
         review = (ROOT / "validation" / "evidence" / "m3-002" / "m3-002-preregistration-review-2026-07-21.md").read_text(encoding="utf-8")
         self.assertIn("**Status:** Approved — execution remains prohibited pending later M3-002 gates.", study)
         self.assertIn("**Version:** `1.0`.", study)
@@ -163,14 +165,18 @@ class M3EvaluationPlanningTests(unittest.TestCase):
             "Any subsequent change requires a controlled amendment and a new maintainer approval record.",
             manifest_approval["conditions"],
         )
+        self.assertEqual("m3-002-runner-git-resolution-amendment-approved", runner_amendment["action"])
+        self.assertEqual("sha256:e6599e5f19839c0ad5454b5a141753526c19dd3f6c9adc7daeb9cee03afad4d9", runner_amendment["original_incident_digest"])
         self.assertEqual(
-            "sha256:" + hashlib.sha256((ROOT / runner_amendment["approved_runner_path"]).read_bytes()).hexdigest(),
-            runner_amendment["approved_runner_digest"],
+            "sha256:" + hashlib.sha256((ROOT / trust_amendment["approved_runner_path"]).read_bytes()).hexdigest(),
+            trust_amendment["approved_runner_digest"],
         )
         self.assertEqual(
-            "sha256:" + hashlib.sha256((ROOT / runner_amendment["original_incident_path"]).read_bytes()).hexdigest(),
-            runner_amendment["original_incident_digest"],
+            "sha256:" + hashlib.sha256((ROOT / trust_amendment["incident_log_path"]).read_bytes()).hexdigest(),
+            trust_amendment["incident_log_digest"],
         )
+        self.assertEqual("command-scoped", trust_amendment["git_configuration"]["scope"])
+        self.assertEqual("C:\\tmp\\expedia-m3-002-m2-frozen", trust_amendment["git_configuration"]["workspace"])
 
 
 if __name__ == "__main__":

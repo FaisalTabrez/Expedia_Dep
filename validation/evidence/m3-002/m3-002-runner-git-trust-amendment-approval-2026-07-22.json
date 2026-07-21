@@ -1,0 +1,42 @@
+{
+  "action": "m3-002-runner-command-scoped-git-trust-amendment-approved",
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "amendment_scope": "Git repository trust configuration for the specific detached M3-002 frozen workspace only",
+  "approved_runner_digest": "sha256:8533f9007fb8c6db7b42f16f6b9a28cb69f2194e2bb96ac5059616e52af0cb24",
+  "approved_runner_path": "benchmarks/execution/m3_002_runner.py",
+  "conditions": [
+    "Git trust is command-scoped only through git -c safe.directory=<workspace>; no repository-local or user-global safe.directory entry is authorized.",
+    "The configured safe.directory must exactly equal C:\\tmp\\expedia-m3-002-m2-frozen and the runner must reject every other path.",
+    "The runner must record the exact workspace path, Git executable version, executable digest, command-scoped trust scope, and exact Git commands in environment evidence.",
+    "Both prior pre-execution incident records remain retained as permanent evidence.",
+    "The entire pre-execution sequence restarts before Release Reader verification, Query Core execution, oracle execution, or comparison."
+  ],
+  "frozen_items_unchanged": [
+    "preregistration",
+    "immutable evaluation manifest",
+    "frozen M2 implementation",
+    "Release Reader",
+    "independent oracle",
+    "comparison algorithm",
+    "hypotheses",
+    "PASS/FAIL criteria",
+    "claim boundaries",
+    "OQ-05 evidence policy"
+  ],
+  "git_configuration": {
+    "exact_commands": [
+      "C:\\Users\\FAISAL TABREZ\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe --version",
+      "C:\\Users\\FAISAL TABREZ\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe -c safe.directory=C:/tmp/expedia-m3-002-m2-frozen -C C:\\tmp\\expedia-m3-002-m2-frozen rev-parse HEAD",
+      "C:\\Users\\FAISAL TABREZ\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe -c safe.directory=C:/tmp/expedia-m3-002-m2-frozen -C C:\\tmp\\expedia-m3-002-m2-frozen status --porcelain"
+    ],
+    "executable": "C:\\Users\\FAISAL TABREZ\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe",
+    "scope": "command-scoped",
+    "version": "git version 2.53.0.windows.3",
+    "workspace": "C:\\tmp\\expedia-m3-002-m2-frozen"
+  },
+  "incident_log_digest": "sha256:bf3d41c22c13b97c7278ce398807a642a20ee247fc76bc77efc25fd8185d1e05",
+  "incident_log_path": "validation/evidence/m3-002/execution-v1/incident-log.json",
+  "recorded_at": "2026-07-22",
+  "subject_id": "M3-002",
+  "subject_version": "1.0"
+}

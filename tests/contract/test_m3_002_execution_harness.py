@@ -14,10 +14,12 @@ sys.path.insert(0, str(ROOT / "benchmarks" / "execution"))
 
 from m3_002_runner import (  # noqa: E402
     _diagnostic_fields,
+    _git_command,
     _initialize_incident_log,
     canonical_json,
     query_core_projection,
     resolve_git_executable,
+    resolve_git_safe_directory,
 )
 
 
@@ -89,6 +91,21 @@ class M3002ExecutionHarnessTests(unittest.TestCase):
             log.write_text(original, encoding="utf-8")
             _initialize_incident_log(root)
             self.assertEqual(original, log.read_text(encoding="utf-8"))
+
+    def test_command_scoped_safe_directory_must_equal_the_frozen_workspace(self) -> None:
+        with TemporaryDirectory() as directory:
+            workspace = Path(directory)
+            with patch.dict("os.environ", {"EXPEDIA_GIT_SAFE_DIRECTORY": str(workspace)}, clear=True):
+                safe_directory = resolve_git_safe_directory(workspace)
+            command = _git_command(Path(sys.executable), safe_directory, workspace, "rev-parse", "HEAD")
+            self.assertEqual(f"safe.directory={workspace.resolve().as_posix()}", command[2])
+            self.assertEqual("-C", command[3])
+
+    def test_safe_directory_rejects_any_other_path(self) -> None:
+        with TemporaryDirectory() as first, TemporaryDirectory() as second:
+            with patch.dict("os.environ", {"EXPEDIA_GIT_SAFE_DIRECTORY": first}, clear=True):
+                with self.assertRaisesRegex(RuntimeError, "must equal"):
+                    resolve_git_safe_directory(Path(second))
 
 
 if __name__ == "__main__":  # pragma: no cover

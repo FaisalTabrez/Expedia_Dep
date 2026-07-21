@@ -127,13 +127,46 @@ def resolve_git_executable() -> Path:
     return candidate.resolve()
 
 
+def resolve_git_safe_directory(implementation_root: Path) -> Path:
+    """Resolve only the command-scoped safe.directory approved for M3-002."""
+
+    configured = os.environ.get("EXPEDIA_GIT_SAFE_DIRECTORY")
+    if not configured:
+        raise EvidenceError("EXPEDIA_GIT_SAFE_DIRECTORY is required for the approved command-scoped trust override")
+    try:
+        safe_directory = Path(configured).resolve(strict=True)
+        workspace = implementation_root.resolve(strict=True)
+    except OSError as error:
+        raise EvidenceError("configured Git safe.directory or implementation workspace is unavailable") from error
+    if safe_directory != workspace:
+        raise EvidenceError("Git safe.directory must equal the specific detached frozen implementation workspace")
+    return safe_directory
+
+
+def _git_command(executable: Path, safe_directory: Path, root: Path, *arguments: str) -> list[str]:
+    return [
+        str(executable),
+        "-c",
+        f"safe.directory={safe_directory.as_posix()}",
+        "-C",
+        str(root),
+        *arguments,
+    ]
+
+
 def _git(root: Path, *arguments: str) -> str:
     executable = resolve_git_executable()
-    completed = subprocess.run(
-        [str(executable), "-C", str(root), *arguments], check=False, capture_output=True, text=True
-    )
+    safe_directory = resolve_git_safe_directory(root)
+    completed = subprocess.run(_git_command(executable, safe_directory, root, *arguments), check=False, capture_output=True, text=True)
     if completed.returncode != 0:
         raise EvidenceError(f"git verification failed: {' '.join(arguments)}")
+    return completed.stdout.strip()
+
+
+def _git_version(executable: Path) -> str:
+    completed = subprocess.run([str(executable), "--version"], check=False, capture_output=True, text=True)
+    if completed.returncode != 0:
+        raise EvidenceError("Git executable cannot report its version")
     return completed.stdout.strip()
 
 
@@ -222,17 +255,29 @@ def verify_environment(*, study_root: Path, implementation_root: Path, evidence_
     if not isinstance(implementation, dict) or not isinstance(environment, dict):
         raise EvidenceError("evaluation manifest implementation/environment is invalid")
     required_commit = implementation.get("required_commit")
+    git_executable = resolve_git_executable()
+    safe_directory = resolve_git_safe_directory(implementation_root)
+    commands = [
+        [str(git_executable), "--version"],
+        _git_command(git_executable, safe_directory, implementation_root, "rev-parse", "HEAD"),
+        _git_command(git_executable, safe_directory, implementation_root, "status", "--porcelain"),
+    ]
     if not isinstance(required_commit, str) or _git(implementation_root, "rev-parse", "HEAD") != required_commit:
         raise EvidenceError("implementation workspace is not at the frozen M2 commit")
     if _git(implementation_root, "status", "--porcelain"):
         raise EvidenceError("implementation workspace is not clean")
-    git_executable = resolve_git_executable()
     checks = {
         "dependency_lock_digest": _sha256_file(implementation_root / "uv.lock"),
         "dependency_manifest_digest": _sha256_file(implementation_root / "pyproject.toml"),
         "environment_id": environment.get("id"),
         "git_executable": str(git_executable),
         "git_executable_digest": _sha256_file(git_executable),
+        "git_version": _git_version(git_executable),
+        "git_trust": {
+            "commands": commands,
+            "safe_directory": str(safe_directory),
+            "scope": "command-scoped",
+        },
         "operating_system": _environment_identity(),
         "python_executable": str(Path(sys.executable).resolve()),
         "python_executable_digest": _sha256_file(Path(sys.executable)),
