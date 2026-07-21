@@ -33,12 +33,14 @@ class M2GovernanceDecisionTests(unittest.TestCase):
         self.assertIn("canonical_request_digest", content)
         self.assertIn("duplicate object-member names", content)
 
-    def test_m2_plan_records_adapter_completion_without_authorizing_m2_3(self) -> None:
+    def test_m2_plan_records_exact_cosine_completion_without_authorizing_m2_4(self) -> None:
         content = (ROOT / "docs" / "planning" / "M2-IMPLEMENTATION-PLAN.md").read_text(encoding="utf-8")
         self.assertIn("M2.1 Query Contract Gate is approved", content)
-        self.assertIn("M2.2 Verified Release\nAdapter is implemented", content)
-        self.assertIn("M2.3 exact\ncosine search is not implemented", content)
+        self.assertIn("M2.2 Verified Release Adapter and", content)
+        self.assertIn("M2.3 exact cosine reference search are implemented", content)
+        self.assertIn("M2.4 filters, traversal, and cursors\nare not implemented", content)
         self.assertIn("**Complete:** adapter refuses unverified artifacts", content)
+        self.assertIn("**Complete:** normalized profile-scoped vectors", content)
 
     def test_m2_contract_conformance_matrix_authorizes_m2_2(self) -> None:
         content = (ROOT / "docs" / "planning" / "M2-QUERY-CONTRACT-CONFORMANCE-MATRIX.md").read_text(encoding="utf-8")

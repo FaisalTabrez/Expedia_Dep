@@ -24,6 +24,7 @@ from expedia_validation.release_reader import ReleaseReaderError, read_release
 ROOT_MANIFEST_NAME = "release-manifest.json"
 M1_VECTOR_PAYLOAD_PATH = "embeddings/vectors.float32le"
 M1_VECTOR_MANIFEST_PATH = "embeddings/vector-shard-manifest.json"
+M1_PROFILE_RECORD_PATH = "profiles/m1-generanno-prokaryote-0.5b-assembly-v1.json"
 VECTOR_MEDIA_TYPE = "application/vnd.expedia.embedding-vector+float32;version=1"
 JSONL_MEDIA_TYPE = "application/x-ndjson"
 
@@ -71,6 +72,20 @@ class VerifiedVectorShard:
 
 
 @dataclass(frozen=True, slots=True)
+class VerifiedEmbeddingProfile:
+    """A manifest-addressed profile declaration for a verified vector shard."""
+
+    profile_id: str
+    version: str
+    digest: str
+    dimension: int
+    dtype: str
+    normalization: str
+    metric_name: str
+    metric_direction: str
+
+
+@dataclass(frozen=True, slots=True)
 class VerifiedRelease:
     """An immutable snapshot produced only after local reader verification."""
 
@@ -82,6 +97,7 @@ class VerifiedRelease:
     artifacts: Mapping[str, VerifiedArtifact]
     _payloads: Mapping[str, bytes]
     _vector_shards: Mapping[str, VerifiedVectorShard]
+    _embedding_profiles: Mapping[str, VerifiedEmbeddingProfile]
 
     @property
     def artifact_count(self) -> int:
@@ -100,6 +116,12 @@ class VerifiedRelease:
         """Return declared vector profile identifiers in deterministic order."""
 
         return tuple(sorted(self._vector_shards))
+
+    @property
+    def embedding_profiles(self) -> tuple[str, ...]:
+        """Return manifest-declared profile identifiers in deterministic order."""
+
+        return tuple(sorted(self._embedding_profiles))
 
     def read_table(self, path: str) -> tuple[Mapping[str, FrozenJson], ...]:
         """Decode one verified JSONL table from the immutable snapshot.
@@ -129,6 +151,14 @@ class VerifiedRelease:
             return self._vector_shards[profile_id]
         except KeyError as error:
             raise KeyError(f"verified release has no vector shard for profile: {profile_id}") from error
+
+    def embedding_profile(self, profile_id: str) -> VerifiedEmbeddingProfile:
+        """Return one immutable profile declaration addressed by the manifest."""
+
+        try:
+            return self._embedding_profiles[profile_id]
+        except KeyError as error:
+            raise KeyError(f"verified release has no profile declaration for: {profile_id}") from error
 
 
 def _sha256(payload: bytes) -> str:
@@ -236,6 +266,58 @@ def _vector_shards(
     )
 
 
+def _embedding_profiles(
+    artifacts: Mapping[str, VerifiedArtifact],
+    payloads: Mapping[str, bytes],
+    vector_shards: Mapping[str, VerifiedVectorShard],
+) -> Mapping[str, VerifiedEmbeddingProfile]:
+    """Expose the optional v3 M1 declaration without changing v2 readability."""
+
+    artifact = artifacts.get(M1_PROFILE_RECORD_PATH)
+    if artifact is None:
+        return MappingProxyType({})
+    if artifact.media_type != "application/json":
+        raise ReleaseVerificationFailure("release_untrusted", "verified profile declaration media type is incompatible")
+    try:
+        raw = json.loads(payloads[M1_PROFILE_RECORD_PATH].decode("utf-8"))
+        output = raw["output"]
+        metric = raw["metric"]
+        profile_id = raw["profile_id"]
+        version = raw["version"]
+        dimension = output["dimension"]
+        dtype = output["dtype"]
+        normalization = output["normalization"]
+        metric_name = metric["name"]
+        metric_direction = metric["direction"]
+    except (KeyError, TypeError, UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ReleaseVerificationFailure("release_untrusted", "verified profile declaration cannot be decoded") from error
+    if (
+        not isinstance(profile_id, str)
+        or not isinstance(version, str)
+        or isinstance(dimension, bool)
+        or not isinstance(dimension, int)
+        or not all(isinstance(value, str) for value in (dtype, normalization, metric_name, metric_direction))
+    ):
+        raise ReleaseVerificationFailure("release_untrusted", "verified profile declaration is incompatible")
+    shard = vector_shards.get(profile_id)
+    if shard is None or shard.dimension != dimension or shard.dtype != dtype:
+        raise ReleaseVerificationFailure("release_untrusted", "verified profile declaration does not match its vector shard")
+    return MappingProxyType(
+        {
+            profile_id: VerifiedEmbeddingProfile(
+                profile_id=profile_id,
+                version=version,
+                digest=artifact.digest,
+                dimension=dimension,
+                dtype=dtype,
+                normalization=normalization,
+                metric_name=metric_name,
+                metric_direction=metric_direction,
+            )
+        }
+    )
+
+
 def open_verified_release(release_location: str | Path) -> VerifiedRelease:
     """Verify and snapshot one local M1 Draft package, or raise a typed failure."""
 
@@ -265,6 +347,7 @@ def open_verified_release(release_location: str | Path) -> VerifiedRelease:
             for descriptor in manifest.artifacts
         }
     )
+    vector_shards = _vector_shards(artifacts, payloads)
     return VerifiedRelease(
         release_id=manifest.release_id,
         release_manifest_digest=expected_digest,
@@ -273,5 +356,6 @@ def open_verified_release(release_location: str | Path) -> VerifiedRelease:
         manifest=manifest,
         artifacts=artifacts,
         _payloads=payloads,
-        _vector_shards=_vector_shards(artifacts, payloads),
+        _vector_shards=vector_shards,
+        _embedding_profiles=_embedding_profiles(artifacts, payloads, vector_shards),
     )

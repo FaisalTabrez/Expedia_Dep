@@ -1,6 +1,5 @@
 """EDS section 12 interfaces and the ADR-010 trusted-release boundary."""
 
-from collections.abc import Mapping
 from typing import Protocol
 
 from .verified_release import VerifiedRelease
@@ -15,4 +14,4 @@ class ReleaseReader(Protocol):
 class QueryCore(Protocol):
     """Executes a versioned QueryRequest and returns a QueryResult envelope."""
 
-    def execute(self, request: Mapping[str, object]) -> Mapping[str, object]: ...
+    def execute(self, request_json: str) -> Mapping[str, object]: ...

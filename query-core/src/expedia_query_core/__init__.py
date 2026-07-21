@@ -1,1 +1,6 @@
-"""M2.1 query-contract normalization; no release adapter or query execution."""
+"""M2 Query Core contracts, trusted release boundary, and exact reference path."""
+
+from .exact_cosine import ExactCosineQueryCore
+from .verified_release import VerifiedRelease, open_verified_release
+
+__all__ = ["ExactCosineQueryCore", "VerifiedRelease", "open_verified_release"]

@@ -8,6 +8,16 @@ retrieval-quality claims.
 
 ### Changed
 
+- The controlled M2.1 QueryResult defect correction preserves the historical
+  `query-result/0.1.0` contract and makes `query-result/0.1.1` normative for
+  subsequent M2 work. Exact results now bind metric direction, vector-shard
+  digest, and the corrected M1 successor profile version/digest; QueryRequest
+  semantics and query behavior are unchanged.
+- M2.3 adds only the ADR-011 exact cosine reference path over an already
+  verified, profile-scoped M1 Draft successor snapshot. It uses deterministic
+  float32 inner products and score-descending/stable-record-ID ordering, and
+  returns provenance-complete QueryResult envelopes. No ANN, filter, cursor,
+  SDK, REST, Explorer, performance, recall, or biological capability is added.
 - The M2.1 Query Contract Gate is approved. The normative QueryRequest,
   QueryResult, Filter, Cursor, and Error/Warning contracts have complete
   positive and negative conformance evidence; M2.2 verified local release
