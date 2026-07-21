@@ -1,6 +1,7 @@
 # M1 implementation plan: minimal reproducible atlas release
 
-**Status:** Implementation plan — no production code authorized by this plan  
+**Status:** M1 completed as an internal Draft reproducibility milestone; this
+plan did not authorize Candidate, Published, archival, or public-release work.
 **Governing specification:** EDS v2.1, especially sections 5.1, 6–9, 14–16,
 and Appendix A  
 **Requirements baseline:** ERS REQ-001–005, REQ-008–010, REQ-015,
@@ -146,17 +147,17 @@ consume the approved contracts and must not invent alternate release semantics.
 
 ## 8. M1 completion checklist
 
-- [ ] All M1 external inputs are pinned and recorded in the BuildManifest.
-- [ ] M1 schemas, contract fixtures, and compatibility checks are accepted.
-- [ ] All source assemblies are accounted for, including exclusions/quarantines.
-- [ ] Canonical record and entity tables pass integrity checks.
-- [ ] The single profile, instances, vector shards, and runner provenance pass
+- [x] All M1 external inputs are pinned and recorded in the BuildManifest.
+- [x] M1 schemas, contract fixtures, and compatibility checks are accepted.
+- [x] All source assemblies are accounted for, including exclusions/quarantines.
+- [x] Canonical record and entity tables pass integrity checks.
+- [x] The single profile, instances, vector shards, and runner provenance pass
       profile/shard validation.
-- [ ] The Draft ReleaseManifest verifies every packaged artifact.
-- [ ] A clean environment independently opens and verifies the package.
-- [ ] ERS traceability and M1 evidence are complete; no prohibited claims are
+- [x] The Draft ReleaseManifest verifies every packaged artifact.
+- [x] A clean environment independently opens and verifies the package.
+- [x] ERS traceability and M1 evidence are complete; no prohibited claims are
       present.
-- [ ] The M1 maintainer approval/rejection record is retained.
+- [x] The M1 maintainer approval/rejection record is retained.
 
 ## 9. Principal M1 risks and controls
 

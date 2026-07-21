@@ -1,6 +1,7 @@
 # M1.7 clean-room validation evidence
 
-**Status:** Passed M1.7; M1.8 maintainer decision pending.
+**Status:** Passed M1.7; M1.8 approved the retained Draft package on
+2026-07-21.
 **Release ID:** `expedia-m1-draft-20260721-v2`
 **State:** `Draft`
 **Scope:** Internal M1 reproducibility validation only. This record does not
@@ -77,5 +78,5 @@ The canonical Draft package was not modified.
 The Draft package opens offline after its packaged inputs are present, validates
 all required schemas and digests, reads the canonical tables and vectors,
 reconstructs a deterministic logical release digest, and rejects a material
-payload change. M1.7 is complete. M1.8 remains the next controlled decision
-point; no Candidate or Published release has been created.
+payload change. M1.7 is complete. M1.8 approved retention of the package as a
+Draft; no Candidate or Published release has been created.

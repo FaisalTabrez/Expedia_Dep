@@ -1,0 +1,141 @@
+{
+  "traceability_id": "m1-ers-traceability-v1",
+  "requirements_baseline": "ERS v1.0: REQ-001–005, REQ-008–010, REQ-015, REQ-018–022, REQ-025",
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "eds_anchor": "EDS 6, 15.2",
+      "adr_reference": "ADR-002, ADR-012 (EDS Appendix B register)",
+      "implementation": ["atlas-builder/src/expedia_atlas_builder/release_packaging.py", "validation/src/expedia_validation/release_reader.py"],
+      "verification": ["tests/contract/test_release_packaging.py", "tests/contract/test_release_reader.py"],
+      "documentation": ["validation/evidence/m1-draft-package-2026-07-21.md"],
+      "m1_disposition": "scope-bounded: Draft package integrity is verified; published-state behavior is deferred to M4/M5"
+    },
+    {
+      "requirement_id": "REQ-002",
+      "eds_anchor": "EDS 6, A.1",
+      "adr_reference": "ADR-002 (EDS Appendix B register)",
+      "implementation": ["atlas-builder/src/expedia_atlas_builder/release_packaging.py"],
+      "verification": ["tests/contract/test_release_packaging.py", "tests/contract/test_release_reader.py"],
+      "documentation": ["validation/evidence/m1-draft-package-2026-07-21.md"],
+      "m1_disposition": "scope-bounded: manifest, scope, licenses, and integrity digests are retained; citation remains explicitly unassigned for Draft"
+    },
+    {
+      "requirement_id": "REQ-003",
+      "eds_anchor": "EDS 7, A.2",
+      "adr_reference": "ADR-005 (EDS Appendix B register)",
+      "implementation": ["atlas-builder/src/expedia_atlas_builder/canonicalization.py"],
+      "verification": ["tests/contract/test_canonicalization.py", "tests/contract/test_release_reader.py"],
+      "documentation": ["specification/open-questions/M1-PROVISIONAL-RESOLUTIONS.md"],
+      "m1_disposition": "implemented for the twelve M1 canonical assembly records"
+    },
+    {
+      "requirement_id": "REQ-004",
+      "eds_anchor": "EDS 8, A.3",
+      "adr_reference": "ADR-004 (EDS Appendix B register)",
+      "implementation": ["atlas-builder/src/expedia_atlas_builder/embedding_stage.py", "validation/src/expedia_validation/release_reader.py"],
+      "verification": ["tests/contract/test_embedding_stage.py", "tests/contract/test_release_reader.py"],
+      "documentation": ["profiles/embedding/m1-generanno-prokaryote-0.5b-assembly-v1.yaml"],
+      "m1_disposition": "implemented for one profile and twelve eligible record versions"
+    },
+    {
+      "requirement_id": "REQ-005",
+      "eds_anchor": "EDS 8.2",
+      "adr_reference": "ADR-004 (EDS Appendix B register)",
+      "implementation": ["profiles/embedding/m1-generanno-prokaryote-0.5b-assembly-v1.yaml", "atlas-builder/src/expedia_atlas_builder/embedding.py"],
+      "verification": ["tests/contract/test_embedding_profile_processing.py", "tests/contract/test_m1_input_freeze.py"],
+      "documentation": ["profiles/README.md"],
+      "m1_disposition": "implemented for the sole frozen M1 profile"
+    },
+    {
+      "requirement_id": "REQ-008",
+      "eds_anchor": "EDS 7, 9, A.5",
+      "adr_reference": "ADR-007 (EDS Appendix B register)",
+      "implementation": ["atlas-builder/src/expedia_atlas_builder/release_packaging.py"],
+      "verification": ["tests/contract/test_release_packaging.py"],
+      "documentation": ["docs/planning/M1-IMPLEMENTATION-PLAN.md"],
+      "m1_disposition": "not exercised: M1 publishes no derived artifacts"
+    },
+    {
+      "requirement_id": "REQ-009",
+      "eds_anchor": "EDS 9.2, 9.3",
+      "adr_reference": "ADR-008 (EDS Appendix B register)",
+      "implementation": ["atlas-builder/manifests/m1/m1-build-manifest.t4-release.json", "atlas-builder/src/expedia_atlas_builder/t4_release.py"],
+      "verification": ["tests/contract/test_m1_input_freeze.py", "tests/contract/test_t4_release_configuration.py"],
+      "documentation": ["specification/open-questions/M1-PROVISIONAL-RESOLUTIONS.md"],
+      "m1_disposition": "implemented for the pinned M1 source, profile, and ADEE inputs"
+    },
+    {
+      "requirement_id": "REQ-010",
+      "eds_anchor": "EDS 9.4, 9.5",
+      "adr_reference": "ADR-012 (EDS Appendix B register)",
+      "implementation": ["atlas-builder/src/expedia_atlas_builder/embedding_stage.py", "validation/src/expedia_validation/release_reader.py"],
+      "verification": ["tests/contract/test_embedding_stage.py", "tests/contract/test_release_reader.py"],
+      "documentation": ["validation/evidence/m1-clean-room-validation-2026-07-21.md"],
+      "m1_disposition": "scope-bounded: failures reject the Draft evidence gate; Candidate-to-Published is out of M1 scope"
+    },
+    {
+      "requirement_id": "REQ-015",
+      "eds_anchor": "EDS 11, 12, 14",
+      "adr_reference": "ADR-010, ADR-011 (EDS Appendix B register)",
+      "implementation": ["validation/src/expedia_validation/release_reader.py"],
+      "verification": ["tests/contract/test_release_reader.py"],
+      "documentation": ["validation/README.md", "docs/planning/M1-IMPLEMENTATION-PLAN.md"],
+      "m1_disposition": "scope-bounded: offline package reading is implemented; Query Core remains M2 work"
+    },
+    {
+      "requirement_id": "REQ-018",
+      "eds_anchor": "EDS 5.1",
+      "adr_reference": "ADR-015 (EDS Appendix B register)",
+      "implementation": ["profiles/plugins/m1-generanno-huggingface-adapter-input-v1.json"],
+      "verification": ["tests/contract/test_m1_input_freeze.py"],
+      "documentation": ["profiles/README.md"],
+      "m1_disposition": "implemented for the sole pinned M1 embedding descriptor"
+    },
+    {
+      "requirement_id": "REQ-019",
+      "eds_anchor": "EDS 16",
+      "adr_reference": "ADR-013 (EDS Appendix B register)",
+      "implementation": ["schemas/json", "fixtures/valid/m1-contract-pack.json", "tests/contract"],
+      "verification": ["tests/contract/test_json_schema_conformance.py"],
+      "documentation": ["schemas/json/CONTRACT-CATALOGUE.md", ".github/workflows/README.md"],
+      "m1_disposition": "implemented for repository contracts, fixtures, and local test workflow; executable CI remains deferred"
+    },
+    {
+      "requirement_id": "REQ-020",
+      "eds_anchor": "EDS Appendix B",
+      "adr_reference": "EDS Appendix B register; no new M1 ADR is required for an accepted contract/profile detail",
+      "implementation": ["specification/changes/EDS-v2.1.1-M1-deterministic-execution-environment-patch.md"],
+      "verification": ["tests/contract/test_eds_execution_environment_patch.py"],
+      "documentation": ["specification/adr/README.md", "specification/README.md"],
+      "m1_disposition": "scope-bounded: no new architectural decision was introduced; the narrow ADEE policy successor is controlled specification evidence"
+    },
+    {
+      "requirement_id": "REQ-021",
+      "eds_anchor": "EDS 15.3",
+      "adr_reference": "ADR-012 (EDS Appendix B register)",
+      "implementation": ["validation/src/expedia_validation/release_reader.py"],
+      "verification": ["tests/contract/test_release_reader.py"],
+      "documentation": ["validation/README.md"],
+      "m1_disposition": "implemented for manifest-addressed Draft-package artifacts"
+    },
+    {
+      "requirement_id": "REQ-022",
+      "eds_anchor": "EDS 5.1, 15.3",
+      "adr_reference": "ADR-015 (EDS Appendix B register)",
+      "implementation": ["atlas-builder/src/expedia_atlas_builder/t4_release.py", "profiles/plugins/m1-generanno-huggingface-adapter-input-v1.json"],
+      "verification": ["tests/contract/test_m1_input_freeze.py", "tests/contract/test_t4_release_configuration.py"],
+      "documentation": ["profiles/README.md"],
+      "m1_disposition": "scope-bounded: the M1 runner accepts only the declared pinned descriptor and ADEE; a general plugin host is deferred"
+    },
+    {
+      "requirement_id": "REQ-025",
+      "eds_anchor": "EDS 9.5, 9.6",
+      "adr_reference": "ADR-008 (EDS Appendix B register)",
+      "implementation": ["atlas-builder/src/expedia_atlas_builder/acquisition.py", "atlas-builder/src/expedia_atlas_builder/canonicalization.py", "atlas-builder/src/expedia_atlas_builder/embedding_stage.py"],
+      "verification": ["tests/contract/test_acquisition_accounting.py", "tests/contract/test_canonicalization.py", "tests/contract/test_embedding_stage.py"],
+      "documentation": ["atlas-builder/README.md"],
+      "m1_disposition": "implemented for M1 acquisition, canonicalization, embedding, and package stage envelopes"
+    }
+  ]
+}

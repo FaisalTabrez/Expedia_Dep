@@ -1,0 +1,8 @@
+{
+  "action": "m1-draft-evidence-gate-approved",
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "approval_id": "approval:m1-evidence-gate-20260721-v1",
+  "rationale": "The maintainer approved the M1 Draft evidence gate after review of the bound clean-room validation evidence, ERS traceability, source and provenance notices, stage outcomes, and Draft-only claim boundary. This records no Candidate, Published, archival, citation, or public-distribution authorization.",
+  "recorded_at": "2026-07-21T04:57:24Z",
+  "subject_id": "expedia-m1-draft-20260721-v2"
+}
