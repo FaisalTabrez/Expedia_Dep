@@ -13,4 +13,5 @@ Current release notes and scope records:
 - [`KNOWN_LIMITATIONS.md`](KNOWN_LIMITATIONS.md)
 - [`LESSONS_LEARNED.md`](LESSONS_LEARNED.md)
 - [`planning/M2-IMPLEMENTATION-PLAN.md`](planning/M2-IMPLEMENTATION-PLAN.md)
+- [`planning/M3-EVALUATION-PLAN.md`](planning/M3-EVALUATION-PLAN.md)
 - [`../validation/evidence/m2-completion-decision-2026-07-21.md`](../validation/evidence/m2-completion-decision-2026-07-21.md)
