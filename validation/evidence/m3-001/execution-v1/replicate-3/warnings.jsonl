@@ -1,0 +1,108 @@
+{"request_id":"full:ncbi-assembly:GCF_000005845.2:m1-assembly-canonical-v1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000005845.2:m1-assembly-canonical-v1:1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000005845.2:m1-assembly-canonical-v1:2","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000005845.2:m1-assembly-canonical-v1:3","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000005845.2:m1-assembly-canonical-v1:4","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000005845.2:m1-assembly-canonical-v1:5","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000005845.2:m1-assembly-canonical-v1:6","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"invalid-cursor:ncbi-assembly:GCF_000005845.2:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"profile-mismatch:ncbi-assembly:GCF_000005845.2:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"full:ncbi-assembly:GCF_000006765.1:m1-assembly-canonical-v1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000006765.1:m1-assembly-canonical-v1:1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000006765.1:m1-assembly-canonical-v1:2","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000006765.1:m1-assembly-canonical-v1:3","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000006765.1:m1-assembly-canonical-v1:4","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000006765.1:m1-assembly-canonical-v1:5","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000006765.1:m1-assembly-canonical-v1:6","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"invalid-cursor:ncbi-assembly:GCF_000006765.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"profile-mismatch:ncbi-assembly:GCF_000006765.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"full:ncbi-assembly:GCF_000006945.2:m1-assembly-canonical-v1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000006945.2:m1-assembly-canonical-v1:1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000006945.2:m1-assembly-canonical-v1:2","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000006945.2:m1-assembly-canonical-v1:3","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000006945.2:m1-assembly-canonical-v1:4","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000006945.2:m1-assembly-canonical-v1:5","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000006945.2:m1-assembly-canonical-v1:6","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"invalid-cursor:ncbi-assembly:GCF_000006945.2:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"profile-mismatch:ncbi-assembly:GCF_000006945.2:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"full:ncbi-assembly:GCF_000009045.1:m1-assembly-canonical-v1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000009045.1:m1-assembly-canonical-v1:1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000009045.1:m1-assembly-canonical-v1:2","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000009045.1:m1-assembly-canonical-v1:3","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000009045.1:m1-assembly-canonical-v1:4","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000009045.1:m1-assembly-canonical-v1:5","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000009045.1:m1-assembly-canonical-v1:6","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"invalid-cursor:ncbi-assembly:GCF_000009045.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"profile-mismatch:ncbi-assembly:GCF_000009045.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"full:ncbi-assembly:GCF_000010465.1:m1-assembly-canonical-v1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000010465.1:m1-assembly-canonical-v1:1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000010465.1:m1-assembly-canonical-v1:2","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000010465.1:m1-assembly-canonical-v1:3","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000010465.1:m1-assembly-canonical-v1:4","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000010465.1:m1-assembly-canonical-v1:5","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000010465.1:m1-assembly-canonical-v1:6","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"invalid-cursor:ncbi-assembly:GCF_000010465.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"profile-mismatch:ncbi-assembly:GCF_000010465.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"full:ncbi-assembly:GCF_000022005.1:m1-assembly-canonical-v1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000022005.1:m1-assembly-canonical-v1:1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000022005.1:m1-assembly-canonical-v1:2","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000022005.1:m1-assembly-canonical-v1:3","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000022005.1:m1-assembly-canonical-v1:4","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000022005.1:m1-assembly-canonical-v1:5","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000022005.1:m1-assembly-canonical-v1:6","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"invalid-cursor:ncbi-assembly:GCF_000022005.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"profile-mismatch:ncbi-assembly:GCF_000022005.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"full:ncbi-assembly:GCF_000023265.1:m1-assembly-canonical-v1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000023265.1:m1-assembly-canonical-v1:1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000023265.1:m1-assembly-canonical-v1:2","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000023265.1:m1-assembly-canonical-v1:3","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000023265.1:m1-assembly-canonical-v1:4","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000023265.1:m1-assembly-canonical-v1:5","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000023265.1:m1-assembly-canonical-v1:6","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"invalid-cursor:ncbi-assembly:GCF_000023265.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"profile-mismatch:ncbi-assembly:GCF_000023265.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"full:ncbi-assembly:GCF_000195955.2:m1-assembly-canonical-v1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000195955.2:m1-assembly-canonical-v1:1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000195955.2:m1-assembly-canonical-v1:2","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000195955.2:m1-assembly-canonical-v1:3","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000195955.2:m1-assembly-canonical-v1:4","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000195955.2:m1-assembly-canonical-v1:5","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000195955.2:m1-assembly-canonical-v1:6","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"invalid-cursor:ncbi-assembly:GCF_000195955.2:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"profile-mismatch:ncbi-assembly:GCF_000195955.2:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"full:ncbi-assembly:GCF_000007065.1:m1-assembly-canonical-v1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000007065.1:m1-assembly-canonical-v1:1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000007065.1:m1-assembly-canonical-v1:2","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000007065.1:m1-assembly-canonical-v1:3","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000007065.1:m1-assembly-canonical-v1:4","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000007065.1:m1-assembly-canonical-v1:5","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000007065.1:m1-assembly-canonical-v1:6","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"invalid-cursor:ncbi-assembly:GCF_000007065.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"profile-mismatch:ncbi-assembly:GCF_000007065.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"full:ncbi-assembly:GCF_000007225.1:m1-assembly-canonical-v1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000007225.1:m1-assembly-canonical-v1:1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000007225.1:m1-assembly-canonical-v1:2","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000007225.1:m1-assembly-canonical-v1:3","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000007225.1:m1-assembly-canonical-v1:4","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000007225.1:m1-assembly-canonical-v1:5","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000007225.1:m1-assembly-canonical-v1:6","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"invalid-cursor:ncbi-assembly:GCF_000007225.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"profile-mismatch:ncbi-assembly:GCF_000007225.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"full:ncbi-assembly:GCF_000009965.1:m1-assembly-canonical-v1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000009965.1:m1-assembly-canonical-v1:1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000009965.1:m1-assembly-canonical-v1:2","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000009965.1:m1-assembly-canonical-v1:3","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000009965.1:m1-assembly-canonical-v1:4","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000009965.1:m1-assembly-canonical-v1:5","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000009965.1:m1-assembly-canonical-v1:6","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"invalid-cursor:ncbi-assembly:GCF_000009965.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"profile-mismatch:ncbi-assembly:GCF_000009965.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"full:ncbi-assembly:GCF_000025685.1:m1-assembly-canonical-v1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000025685.1:m1-assembly-canonical-v1:1","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000025685.1:m1-assembly-canonical-v1:2","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000025685.1:m1-assembly-canonical-v1:3","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000025685.1:m1-assembly-canonical-v1:4","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000025685.1:m1-assembly-canonical-v1:5","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"paginated:ncbi-assembly:GCF_000025685.1:m1-assembly-canonical-v1:6","warnings":[{"code":"method_not_evaluated","message":"Method evidence has not been evaluated."}]}
+{"request_id":"invalid-cursor:ncbi-assembly:GCF_000025685.1:m1-assembly-canonical-v1","warnings":[]}
+{"request_id":"profile-mismatch:ncbi-assembly:GCF_000025685.1:m1-assembly-canonical-v1","warnings":[]}

@@ -41,6 +41,11 @@ retrieval-quality claims.
   the preregistered comparison only after all replicates. It does not alter
   Query Core, release artifacts, or claim boundaries. No study execution result
   is recorded by this change.
+- M3.3 execution evidence is retained for the approved M3-001 corpus: an
+  amended-environment lock, frozen-release verification, three independent raw
+  replicate bundles, comparison observations, integrity digests, and the
+  retained pre-execution incident. This records no analysis, result claim, or
+  scientific conclusion.
 
 ### Changed
 
