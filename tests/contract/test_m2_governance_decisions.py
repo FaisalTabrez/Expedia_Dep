@@ -48,6 +48,8 @@ class M2GovernanceDecisionTests(unittest.TestCase):
             self.assertIn(f"| {contract} |", content)
         self.assertEqual(5, content.count("| **Pass** |"))
         self.assertIn("m2-query-contract-gate-approval-2026-07-21.json", content)
+        self.assertIn("m2-query-result-contract-defect-correction-approval-2026-07-21.json", content)
+        self.assertIn("query-result/0.1.1", content)
 
     def test_m2_query_contract_gate_approval_is_schema_valid_and_scoped(self) -> None:
         decision = json.loads((ROOT / "validation" / "evidence" / "m2-query-contract-gate-approval-2026-07-21.json").read_text(encoding="utf-8"))
@@ -57,6 +59,18 @@ class M2GovernanceDecisionTests(unittest.TestCase):
         self.assertEqual("m2-query-contracts-0.1.0", decision["subject_id"])
         self.assertIn("M2.2 Verified Release Adapter work only", decision["rationale"])
         self.assertIn("no ANN, release publication", decision["rationale"])
+
+    def test_query_result_defect_correction_is_schema_valid_and_narrowly_scoped(self) -> None:
+        decision = json.loads(
+            (ROOT / "validation" / "evidence" / "m2-query-result-contract-defect-correction-approval-2026-07-21.json").read_text(encoding="utf-8")
+        )
+        schema = json.loads((ROOT / "schemas" / "json" / "approval-record.schema.json").read_text(encoding="utf-8"))
+        Draft202012Validator(schema).validate(decision)
+        self.assertEqual("m2-query-result-contract-defect-correction-approved", decision["action"])
+        self.assertEqual("query-result/0.1.1", decision["subject_id"])
+        self.assertIn("metric direction", decision["rationale"])
+        self.assertIn("vector-shard digest", decision["rationale"])
+        self.assertIn("QueryRequest semantics", decision["rationale"])
 
 
 if __name__ == "__main__":

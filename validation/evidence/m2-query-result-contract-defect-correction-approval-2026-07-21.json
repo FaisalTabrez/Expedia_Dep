@@ -1,0 +1,8 @@
+{
+  "approval_id": "approval:m2-query-result-contract-defect-correction-20260721-v1",
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "action": "m2-query-result-contract-defect-correction-approved",
+  "subject_id": "query-result/0.1.1",
+  "recorded_at": "2026-07-21T07:15:34Z",
+  "rationale": "The Project Maintainer authorizes the verified, controlled correction of the M2.1 QueryResult contract defect against ADR-011. The successor contract requires context metric direction and manifest-addressed vector-shard digest provenance. It also records profile version and profile digest available from the authoritative corrected M1 successor Draft package. QueryRequest semantics, ranking behavior, filter grammar, cursor semantics, exact cosine behavior, SDK, REST, Explorer, and milestone sequencing remain unchanged. query-result/0.1.0 remains immutable historical evidence; query-result/0.1.1 is normative for subsequent M2 implementation. M2.3 exact cosine work is authorized after corrected conformance validation."
+}

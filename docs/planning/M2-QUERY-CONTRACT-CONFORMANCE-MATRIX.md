@@ -1,7 +1,9 @@
 # M2 Query Contract Conformance Matrix
 
-**Status:** Approved M2.1 query-contract gate.
-**Approval record:** [`m2-query-contract-gate-approval-2026-07-21.json`](../../validation/evidence/m2-query-contract-gate-approval-2026-07-21.json)
+**Status:** Approved M2.1 query-contract gate, with one controlled QueryResult
+contract-defect correction.
+**Original approval record:** [`m2-query-contract-gate-approval-2026-07-21.json`](../../validation/evidence/m2-query-contract-gate-approval-2026-07-21.json)
+**Correction approval:** [`m2-query-result-contract-defect-correction-approval-2026-07-21.json`](../../validation/evidence/m2-query-result-contract-defect-correction-approval-2026-07-21.json)
 **Gate:** Satisfied. M2.2 verified-release-adapter work is authorized; all
 subsequent implementation SHALL preserve these contracts unless a verified
 defect receives a controlled governance revision.
@@ -13,7 +15,7 @@ link. It is not satisfied by schema shape alone.
 | Contract | Positive fixtures | Negative fixtures | Required evidence | Status |
 |---|---|---|---|---|
 | QueryRequest | [`m2-query-contract-pack.json`](../../fixtures/valid/m2-query-contract-pack.json) | [`m2-query-contract-pack.json`](../../fixtures/invalid/m2-query-contract-pack.json) | `test_json_schema_conformance.py`; `test_query_contracts.py` canonical digest/default tests | **Pass** |
-| QueryResult | [`m2-query-contract-pack.json`](../../fixtures/valid/m2-query-contract-pack.json) | [`m2-query-contract-pack.json`](../../fixtures/invalid/m2-query-contract-pack.json) | `test_json_schema_conformance.py` validates success/error exclusivity and required context/provenance | **Pass** |
+| QueryResult | [`m2-query-contract-pack.json`](../../fixtures/valid/m2-query-contract-pack.json) | [`m2-query-contract-pack.json`](../../fixtures/invalid/m2-query-contract-pack.json) | `test_json_schema_conformance.py` validates success/error exclusivity; controlled `query-result/0.1.1` correction requires metric direction, vector-shard digest, profile version, and profile digest | **Pass** |
 | Filter | [`m2-query-contract-pack.json`](../../fixtures/valid/m2-query-contract-pack.json) | [`m2-query-contract-pack.json`](../../fixtures/invalid/m2-query-contract-pack.json) | `test_json_schema_conformance.py`; `test_query_contracts.py` validates canonical Boolean/set deduplication, state grammar, typed unsupported-filter capability, and OQ-11 costs | **Pass** |
 | Cursor | [`m2-query-contract-pack.json`](../../fixtures/valid/m2-query-contract-pack.json) | [`m2-query-contract-pack.json`](../../fixtures/invalid/m2-query-contract-pack.json) | `test_json_schema_conformance.py` validates release/request/order/last-key payload bindings and rejects incomplete bindings; cursor encode/decode/invalidation behavior remains M2.4 | **Pass** |
 | Errors and warnings | [`m2-query-contract-pack.json`](../../fixtures/valid/m2-query-contract-pack.json) | [`m2-query-contract-pack.json`](../../fixtures/invalid/m2-query-contract-pack.json) | `test_json_schema_conformance.py` validates the closed typed-code sets and rejects unknown codes | **Pass** |
@@ -32,6 +34,8 @@ Each row may be changed to `Pass` only when all of the following are recorded:
 ## M2.2 release condition
 
 M2.2 is authorized because this matrix has five `Pass` rows and the M2.1
-approval record above references the completed matrix. A failed or incomplete
+approval record above references the completed matrix. The controlled QueryResult
+correction retains the historical `query-result/0.1.0` schema and makes
+`query-result/0.1.1` normative for subsequent M2 work. A failed or incomplete
 row would block the verified release adapter rather than being waived
 implicitly.

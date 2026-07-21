@@ -1,31 +1,17 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://expedia.dev/schemas/json/query-result/0.1.1",
+  "$id": "https://expedia.dev/schemas/json/query-result/0.1.0",
   "title": "QueryResult",
-  "description": "M2.1.1 result envelope. The controlled ADR-011 provenance correction binds exact results to metric direction, vector shard, and profile declaration.",
+  "description": "Historical M2.1 QueryResult contract retained before the ADR-011 provenance defect correction.",
   "type": "object",
   "required": ["schema_version", "outcome", "warnings"],
   "properties": {
-    "schema_version": {"const": "query-result/0.1.1"},
+    "schema_version": {"const": "query-result/0.1.0"},
     "outcome": {"enum": ["success", "error"]},
-    "context": {
-      "type": "object",
-      "required": ["release_id", "release_digest", "canonical_request_digest", "ordering_version", "metric_direction"],
-      "properties": {
-        "release_id": {"type": "string", "minLength": 1},
-        "release_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
-        "canonical_request_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
-        "ordering_version": {"const": "score-desc-record-id-asc-v1"},
-        "profile_id": {"type": ["string", "null"]},
-        "metric": {"type": ["string", "null"]},
-        "metric_direction": {"type": "string", "minLength": 1},
-        "mode": {"type": ["string", "null"]}
-      },
-      "additionalProperties": false
-    },
+    "context": {"type": "object", "required": ["release_id", "release_digest", "canonical_request_digest", "ordering_version"], "properties": {"release_id": {"type": "string", "minLength": 1}, "release_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "canonical_request_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "ordering_version": {"const": "score-desc-record-id-asc-v1"}, "profile_id": {"type": ["string", "null"]}, "metric": {"type": ["string", "null"]}, "mode": {"type": ["string", "null"]}}, "additionalProperties": false},
     "rows": {"type": "array", "maxItems": 12, "items": {"type": "object", "required": ["record_id"], "properties": {"record_id": {"type": "string", "minLength": 1}, "score": {"type": "number"}, "entity_id": {"type": ["string", "null"]}}, "additionalProperties": false}},
     "next_cursor": {"type": ["string", "null"]},
-    "provenance": {"type": "object", "required": ["release_digest", "vector_shard_digest", "profile_version", "profile_digest"], "properties": {"release_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "vector_shard_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "profile_version": {"type": "string", "minLength": 1}, "profile_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}, "additionalProperties": false},
+    "provenance": {"type": "object", "required": ["release_digest"], "properties": {"release_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}, "additionalProperties": false},
     "evidence_status": {"type": "object", "required": ["release_integrity", "method"], "properties": {"release_integrity": {"const": "verified"}, "method": {"const": "not-evaluated"}}, "additionalProperties": false},
     "warnings": {"type": "array", "items": {"$ref": "https://expedia.dev/schemas/json/query-warning/0.1.0"}},
     "error": {"oneOf": [{"$ref": "https://expedia.dev/schemas/json/query-error/0.1.0"}, {"type": "null"}]}

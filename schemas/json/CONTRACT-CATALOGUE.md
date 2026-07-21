@@ -28,7 +28,7 @@ release. Consumers reject undeclared fields in canonical objects.
 | Contract | Owner | First enforcement | M2 fixture coverage |
 |---|---|---:|---|
 | `query-request` | Query Core | M2.1 | Valid similarity request; missing profile rejection |
-| `query-result` | Query Core | M2.1 | Valid success/error envelopes; incomplete success rejection |
+| `query-result` | Query Core | M2.1.1 controlled correction | Valid success/error envelopes; incomplete success and missing exact-provenance rejection |
 | `filter-expression` | Query Core | M2.1 | Boolean, state, relation, range; malformed grammar rejection |
 | `cursor` | Query Core | M2.1 | Release/request/order/last-key binding; missing binding rejection |
 | `query-error` | Query Core | M2.1 | Typed error fixture; unknown code rejection |
@@ -39,6 +39,12 @@ The executable M2.1 fixture packs are
 `fixtures/invalid/m2-query-contract-pack.json`. They are contract-only evidence:
 they do not implement release reading, vector search, cursor encoding, REST,
 SDK, or Explorer behavior.
+
+`query-result/0.1.1` is the current normative M2 QueryResult contract. It
+requires `context.metric_direction` plus the manifest-addressed vector-shard
+and profile declaration provenance required by ADR-011. The former
+`query-result/0.1.0` schema is retained as an immutable historical contract
+record; it is not the result version for subsequent M2 implementation.
 
 The executable M1 fixture packs are
 `fixtures/valid/m1-contract-pack.json` and
