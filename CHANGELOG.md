@@ -6,6 +6,16 @@ retrieval-quality claims.
 
 ## Unreleased
 
+### Governance
+
+- M2 is accepted as an internal completion checkpoint. The M2.1-M2.6 evidence,
+  fresh 85-test contract suite, and 7-test cross-adapter/Explorer conformance
+  suite are recorded in `validation/evidence/m2-evidence-report-2026-07-21.md`.
+  Query contracts, exact cosine reference behavior, cursors, provenance, and
+  Core/SDK/REST/Explorer semantic boundaries are frozen except through
+  controlled governance revision. This is not a public release or a scientific
+  performance, usefulness, or biological claim.
+
 ### Changed
 
 - M2.6 adds a framework-neutral provenance-first Explorer presentation client.

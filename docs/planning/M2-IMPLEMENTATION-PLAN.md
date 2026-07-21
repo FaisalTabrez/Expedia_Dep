@@ -1,6 +1,8 @@
 # M2 implementation plan: one semantic read path
 
-**Status:** The M2.1 Query Contract Gate is approved (with its controlled
+**Status:** **Complete** at the internal M2 completion gate recorded in
+[`m2-completion-decision-2026-07-21.md`](../../validation/evidence/m2-completion-decision-2026-07-21.md).
+The M2.1 Query Contract Gate is approved (with its controlled
 QueryResult/ADR-011 provenance correction). M2.2 Verified Release Adapter and
 M2.3 exact cosine reference search are implemented against the corrected v3
 M1 Draft successor conformance fixture. M2.4 Core filtering, bounded traversal
@@ -127,3 +129,8 @@ and REST produces equivalent logical results and context; cursors are stable and
 invalidated correctly; Explorer presents only Core results with evidence labels;
 and no public, biological, benchmark, recall, latency, or scalability claim has
 been added without its required later evidence.
+
+The M2 completion evidence report records that these criteria were satisfied
+without changing the authoritative M1 Draft lifecycle or adding an unsupported
+claim. M2 query semantics are frozen at this checkpoint except through a
+controlled governance revision.

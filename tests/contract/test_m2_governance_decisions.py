@@ -91,6 +91,25 @@ class M2GovernanceDecisionTests(unittest.TestCase):
         self.assertIn("false state", decision["rationale"])
         self.assertIn("QueryRequest semantics", decision["rationale"])
 
+    def test_m2_completion_approval_and_evidence_bind_the_frozen_boundary(self) -> None:
+        decision = json.loads(
+            (ROOT / "validation" / "evidence" / "m2-completion-approval-2026-07-21.json").read_text(encoding="utf-8")
+        )
+        schema = json.loads((ROOT / "schemas" / "json" / "approval-record.schema.json").read_text(encoding="utf-8"))
+        Draft202012Validator(schema).validate(decision)
+        self.assertEqual("m2-completion-approved", decision["action"])
+        self.assertEqual("m2-local-query-core-0.1.0", decision["subject_id"])
+        self.assertIn("Query semantics are frozen", decision["rationale"])
+        self.assertIn("no ANN/default-index selection", decision["rationale"])
+
+        completion = (ROOT / "validation" / "evidence" / "m2-completion-decision-2026-07-21.md").read_text(encoding="utf-8")
+        report = (ROOT / "validation" / "evidence" / "m2-evidence-report-2026-07-21.md").read_text(encoding="utf-8")
+        self.assertIn("`m2.0.0-complete`", completion)
+        self.assertIn("EDS v2.1.1; ERS v1.0", completion)
+        self.assertIn("controlled governance revision", completion)
+        self.assertIn("Ran 86 tests", report)
+        self.assertIn("Ran 7 tests", report)
+
 
 if __name__ == "__main__":
     unittest.main()

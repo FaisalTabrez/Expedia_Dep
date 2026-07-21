@@ -1,0 +1,8 @@
+{
+  "approval_id": "approval:m2-completion-20260721-v1",
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "action": "m2-completion-approved",
+  "subject_id": "m2-local-query-core-0.1.0",
+  "recorded_at": "2026-07-21T09:01:13Z",
+  "rationale": "The Project Maintainer accepts the M2 completion evidence for the local Query Core milestone. The M2.1 contracts (including the controlled QueryResult and FilterExpression corrections), M2.2 verified-release boundary, M2.3 exact cosine reference path, M2.4 filters/cursors, M2.5 thin SDK and REST adapters, and M2.6 provenance-first Explorer boundary satisfy the approved M2 exit criteria. Query semantics are frozen at this accepted M2 boundary and may change only through a controlled governance revision. This approval authorizes no ANN/default-index selection, benchmark or biological claim, public release, remote deployment, cross-profile comparison, annotation workflow, derived-relation workflow, or change to the M1 Draft lifecycle."
+}

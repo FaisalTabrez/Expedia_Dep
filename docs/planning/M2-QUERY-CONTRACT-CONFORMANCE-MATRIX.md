@@ -1,13 +1,14 @@
 # M2 Query Contract Conformance Matrix
 
 **Status:** Approved M2.1 query-contract gate, with controlled QueryResult and
-FilterExpression contract-defect corrections.
+FilterExpression contract-defect corrections; retained as M2 completion
+evidence.
 **Original approval record:** [`m2-query-contract-gate-approval-2026-07-21.json`](../../validation/evidence/m2-query-contract-gate-approval-2026-07-21.json)
 **Correction approval:** [`m2-query-result-contract-defect-correction-approval-2026-07-21.json`](../../validation/evidence/m2-query-result-contract-defect-correction-approval-2026-07-21.json)
 **Filter correction approval:** [`m2-filter-expression-contract-defect-correction-approval-2026-07-21.json`](../../validation/evidence/m2-filter-expression-contract-defect-correction-approval-2026-07-21.json)
-**Gate:** Satisfied. M2.2 verified-release-adapter work is authorized; all
-subsequent implementation SHALL preserve these contracts unless a verified
-defect receives a controlled governance revision.
+**Gate:** Satisfied and closed. M2.2 verified-release-adapter work is authorized
+in the historical M2.1 decision; the completed M2 milestone now freezes these
+contracts unless a verified defect receives a controlled governance revision.
 
 This matrix applies the M1 contract-first discipline to Query Core. A `Pass`
 requires both positive and negative fixtures, executable tests, and an evidence
@@ -32,9 +33,9 @@ Each row may be changed to `Pass` only when all of the following are recorded:
 5. The M2.1 review confirms the result does not introduce ANN, public-release,
    biological, performance, or scalability claims.
 
-## M2.2 release condition
+## M2.2 historical authorization
 
-M2.2 is authorized because this matrix has five `Pass` rows and the M2.1
+M2.2 was authorized because this matrix has five `Pass` rows and the M2.1
 approval record above references the completed matrix. The controlled QueryResult
 correction retains the historical `query-result/0.1.0` schema and makes
 `query-result/0.1.1` normative for subsequent M2 work. A failed or incomplete

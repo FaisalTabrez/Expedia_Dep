@@ -1,7 +1,8 @@
 # EXPEDIA implementation roadmap: M0 through M5
 
-**Status:** Proposed M0 planning baseline  
-**Design authority:** `EXPEDIA_Design_Specification_EDS_v2.1.docx` (EDS v2.1)  
+**Status:** Current through the accepted M2 internal completion gate; M3 is
+planning-only until its evaluation-governance gate is accepted.
+**Design authority:** `EXPEDIA_Design_Specification_EDS_v2.1.1.docx` (EDS v2.1.1)
 **Requirements authority:** `EXPEDIA_Requirements_Specification_ERS_v1.0.docx` (ERS v1.0)
 
 ## 1. Decision context and repository review
@@ -175,7 +176,7 @@ implementations follow only after their semantics are accepted.
 |---|---|---|---|---|
 | M0 — Governance and contracts | P0. Freeze semantics before code. | None; resolves governance blockers. | Accepted EDS/ERS control, ADR register, OQ register, schema catalogue, repository skeleton, CI/fixture/reproducibility policies. | M0 criteria in section 3 pass; no implementation claims. |
 | M1 — Minimal reproducible release | P0. Prove the local reference release path with a small licensed scope. | M0 and the accepted OQ-01/OQ-02/OQ-03/OQ-06 M1 decisions. | Pinned BuildManifest; registered canonical records; one declared baseline profile; minimal vectors; release manifest; validation bundle; local release reader; clean-room fixture. | A second environment independently builds or reconstructs the fixture, opens it offline, verifies all digests/schemas, and observes recorded exclusions. No biological-performance claim. |
-| M2 — Query Core and Explorer | P1. Establish one semantic read path. | M1 verified release; query contracts; ADR-010/011/016 accepted. | Local Query Core; exact fixture search and evaluated ANN adapter only if evidence exists; typed SDK wrapper; REST adapter/OpenAPI; provenance-first Explorer. | The same conformance requests through Core, SDK, and REST return equivalent logical results, provenance, filtering, ordering, errors, and cursor behavior. Explorer distinguishes canonical, asserted, and derived information. |
+| M2 — Query Core and Explorer | **Complete (internal).** Established one semantic read path. | M1 verified release; query contracts; ADR-010/011/016 accepted. | Local Query Core; exact fixture search; typed SDK wrapper; REST adapter/OpenAPI; provenance-first Explorer. | The same conformance requests through Core, SDK, and REST return equivalent logical results, provenance, filtering, ordering, errors, and cursor behavior. Explorer distinguishes canonical, asserted, and derived information. |
 | M3 — Method evaluation | P1. Produce evidence, not feature demonstrations. | M1/M2; OQ-04/05/08 as applicable; ADR-009/014 accepted. | Preregistered studies, versioned cohorts/baselines, exact ground truth where applicable, raw result artifacts, uncertainty/failure analysis, decision ADRs. | Each claim is scoped to its preregistered evidence. No default profile/index/bridge/graph method is promoted without required baselines and review. |
 | M4 — Candidate public release | P0 for publication. Prepare a reviewable frozen package. | M1, appropriate M3 evidence, OQ-01/06/09/10/11 resolved, archival policy. | Candidate release package, evidence/validation bundle, citation and license metadata, release checklist, archive rehearsal, independent review. | All mandatory gates pass, the candidate bytes are frozen, a clean-room reader verifies it, licenses and claims are approved, and archive rehearsal produces a verified receipt. |
 | M5 — Public archival release | P0 for publication. Publish the immutable scientific record. | M4 accepted candidate and actual archive capability. | Archived immutable release, persistent identifier, catalog entry, mirror/retention record, correction/withdrawal/support policy. | Deposit is complete; a second environment verifies the deposited bytes against the manifest; the release is citable and the successor/withdrawal process is published. |
@@ -187,14 +188,14 @@ implementations follow only after their semantics are accepted.
 | OQ-01: M1 population, quality thresholds, licenses | Resolved for M1: NCBI RefSeq, committed 12-assembly inventory, complete-genome technical filter, internal validation only | M1 source acquisition and release scope |
 | OQ-02: canonicalization, deduplication, merge/split policy | Resolved for M1: `m1-assembly-canonical-v1`; no automatic merge/split | Registrar, record identity, embeddings |
 | OQ-03: M1 baseline profile and record unit | Resolved for M1: `m1-generanno-prokaryote-0.5b-assembly-v1`; one canonicalized assembly per record | Any embedding generation |
-| OQ-04: ANN recall/resource configuration | Deferred; M1 uses exact cosine search only | Later ANN/default-index selection |
+| OQ-04: ANN recall/resource configuration | Deferred; M2 retains exact cosine as the sole reference search path | Later ANN/default-index selection |
 | OQ-05: benchmarks for allowable usefulness claims | Unresolved | M3 claims or default-method promotion |
 | OQ-06: release/correction/waiver/withdrawal authority | Resolved for M1: single maintainer; expires on M4 entry | Candidate transition and any archival action |
 | OQ-07: deployment/access-control model | Unresolved | Remote service or restricted-data work; not local M1/M2 |
 | OQ-08: BridgeProfile evaluation/governance | Unresolved | Any cross-profile comparison |
 | OQ-09: archive/mirror/retention policy | Unresolved | M4/M5 |
 | OQ-10: release/plugin signature and trust roots | Unresolved | Trusted public distribution and plugin policy |
-| OQ-11: v1 filter grammar and query cost limits | Unresolved | M2 Query Core contract acceptance |
+| OQ-11: v1 filter grammar and query cost limits | Resolved for M2: accepted deterministic v1 grammar, canonical request interpretation, and local-fixture limits | Any later query-scope expansion |
 
 ## 7. Principal risks and controls
 

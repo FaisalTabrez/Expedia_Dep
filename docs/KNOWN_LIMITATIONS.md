@@ -1,6 +1,6 @@
 # Known limitations
 
-**Status:** Current after the M1 internal Draft evidence-gate approval.
+**Status:** Current after the M2 internal completion gate.
 
 These are explicit scope boundaries, not defects silently omitted from the
 record.
@@ -36,6 +36,9 @@ record.
   remain deferred.
 - No ANN adapter, recall target, default index, BridgeProfile, graph traversal,
   annotation workflow, or derived-relation workflow is implemented.
+- The accepted M2 retrieval boundary is frozen: contracts, exact cosine
+  reference behavior, provenance, cursors, and adapter/Explorer delegation may
+  change only through a controlled governance revision.
 
 ## Evidence and operations
 
@@ -46,10 +49,13 @@ record.
 - The M1 single-maintainer governance delegation is expressly limited to M1 and
   expires on entry to M4.
 
-## M2 entry blockers
+## Deferred governance and publication work
 
-- ADR-010, ADR-011, and ADR-016 require explicit acceptance before M2 adapters
-  or query behavior are implemented.
-- OQ-11 must define the v1 filter grammar and query-cost limits before Query
-  Core contract acceptance. OQ-04 remains deferred, so M2 must use an exact
-  reference path unless a later decision authorizes an evaluated ANN adapter.
+- OQ-04 remains deferred, so M2 retains an exact reference path unless a later
+  evaluation and controlled decision authorize an ANN adapter.
+- OQ-05 remains unresolved; M3 must define the evidence necessary for any
+  retrieval-usefulness or biological claim.
+- OQ-08 remains deferred unless a future proposal introduces a justified
+  cross-profile comparison.
+- OQ-09 and OQ-10 remain unresolved for archival policy and trusted public
+  distribution. The M1 single-maintainer delegation expires on entry to M4.
