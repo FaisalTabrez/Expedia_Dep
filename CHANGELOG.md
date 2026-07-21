@@ -24,8 +24,11 @@ retrieval-quality claims.
   preregistration template that refuses unapproved study execution. No cohort,
   experiment, benchmark result, or scientific claim is added.
 - M3-001 is a non-executable Draft preregistration for deterministic exact-query
-  reproducibility over the internal M1 v3 fixture. Its proposed request corpus,
-  three independent-process replicates, and zero decoded-score tolerance await
+  reproducibility over the internal M1 v3 fixture. It binds the M2 tag's peeled
+  commit, canonical JSON bytes, dependency/executable digests, clean working
+  tree, three independent-process replicates, strict ordered comparison, and
+  explicit pass/fail/inconclusive handling. It makes no hardware-portability or
+  cross-platform claim and awaits
   maintainer acceptance and an immutable evaluation-manifest binding.
 
 ### Changed

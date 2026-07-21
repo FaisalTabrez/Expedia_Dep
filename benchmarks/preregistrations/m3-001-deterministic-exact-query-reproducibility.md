@@ -7,6 +7,28 @@
 **Governing sources:** EDS v2.1.1 section 13; accepted OQ-05; M2 completion
 checkpoint `m2.0.0-complete`.
 
+## 0. Frozen implementation and serialization binding
+
+| Binding | Value |
+|---|---|
+| Repository tag | `m2.0.0-complete` |
+| Peeled immutable commit | `6183145f8fd6018431c55fd2e4ee7e1001e5fc87` |
+| Required working-tree state | Clean before every replicate; the observed state is recorded. |
+| Dependency manifest | `pyproject.toml` — `sha256:e0dcfffdf2d2ca71abcffcb69503f66d03a0ca2ff5f32280bf7ed2d080b0a813` |
+| Dependency lock | `uv.lock` — `sha256:332b9b0ae251547a0db50deb717d2c778a3e2e5be40644255598aef783b18765` |
+| Reference Python executable | Bundled Python executable — `sha256:3c6a206b7d93cca823934a83732220dcffd413fd1036d9fb82eebb64599cf7f3` |
+
+Each replicate MUST also record its actual executable path and SHA-256. A
+different environment may be recorded for diagnostic purposes, but its output
+does not replace a failed required replicate.
+
+For request hashing and output comparison, canonical JSON means: UTF-8 encoded
+bytes; lexicographically sorted object keys; no insignificant whitespace; the
+normalized finite numeric representation defined by OQ-11; and SHA-256 over
+those canonical bytes. Canonical JSON has no line separators; any textual
+fixture or report line ending MUST be LF. Whitespace, source formatting, and
+object-member order SHALL NOT affect a canonical request digest.
+
 ## 1. Research question and claim boundary
 
 **Research question.** Does the frozen M1 Draft package produce deterministic,
@@ -95,14 +117,35 @@ For every request family and every replicate, record:
   applicable; and
 - runtime provenance listed in section 4.
 
-The study passes only when all three replicates have identical values for every
-recorded metric and every request family, with decoded-score tolerance `0.0`.
-A missing result, changed digest, changed row/order/score/provenance/warning,
-changed cursor behavior, or changed typed error is a failure. The failure,
-inputs, and raw outputs SHALL be retained without retry-based replacement.
+For each request, logical comparison is performed in this order:
+
+1. outcome type;
+2. typed error code and stage, if the outcome is an error;
+3. ordered record IDs, if the outcome is a success;
+4. decoded scores, with equality tolerance `0.0`;
+5. release/profile/vector-shard and other result provenance;
+6. warnings in returned order; and
+7. opaque cursor payloads and their continuation reconstruction.
+
+**PASS:** every request in every replicate matches in every recorded field.
+
+**FAIL:** any mismatch in any recorded field, including a missing result,
+changed digest, row/order/score/provenance/warning, cursor behavior, or typed
+error.
+
+**INCONCLUSIVE:** execution is externally interrupted or environment
+verification fails before completion. An interrupted replicate SHALL NOT be
+silently replaced. It may be rerun only after a recorded incident demonstrates
+an external interruption (for example, power loss or disk failure); the rerun
+MUST reference that incident and does not erase the interrupted attempt.
 
 No aggregate performance metric, latency statistic, biological benchmark, or
 comparative score is collected.
+
+No nonzero numerical-tolerance, hardware portability, or cross-platform
+reproducibility claim is made. The `0.0` equality rule is an intra-study
+comparison rule for the frozen reference implementation, not a portability
+claim.
 
 ## 6. Evidence and analysis plan
 
