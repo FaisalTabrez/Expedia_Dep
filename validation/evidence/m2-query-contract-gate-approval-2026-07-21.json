@@ -1,0 +1,8 @@
+{
+  "approval_id": "approval:m2-query-contract-gate-20260721-v1",
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "action": "m2-query-contract-gate-approved",
+  "subject_id": "m2-query-contracts-0.1.0",
+  "recorded_at": "2026-07-21T05:48:30Z",
+  "rationale": "The Project Maintainer accepts the normative M2 QueryRequest, QueryResult, Filter, Cursor, and Error/Warning contracts and their positive and negative conformance evidence. The completed M2 Query Contract Conformance Matrix authorizes M2.2 Verified Release Adapter work only. Subsequent implementation shall preserve these contracts unless a verified defect receives a controlled governance revision. This approval authorizes no ANN, release publication, biological claim, performance claim, SDK, REST, Explorer, or query-execution work."
+}

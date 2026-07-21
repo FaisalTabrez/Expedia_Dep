@@ -4,6 +4,16 @@ All notable repository changes are recorded here. This changelog describes
 software and governed evidence; it does not make biological, scalability, or
 retrieval-quality claims.
 
+## Unreleased
+
+### Changed
+
+- The M2.1 Query Contract Gate is approved. The normative QueryRequest,
+  QueryResult, Filter, Cursor, and Error/Warning contracts have complete
+  positive and negative conformance evidence; M2.2 verified local release
+  adapter work is authorized. No M2 release, search, SDK, REST, or Explorer
+  implementation is included in this change.
+
 ## m1.0.0-draft - 2026-07-21
 
 ### Added

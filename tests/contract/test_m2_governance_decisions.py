@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 import unittest
 
+from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[2]
 ADR_PATHS = (
@@ -31,18 +33,30 @@ class M2GovernanceDecisionTests(unittest.TestCase):
         self.assertIn("canonical_request_digest", content)
         self.assertIn("duplicate object-member names", content)
 
-    def test_m2_plan_authorizes_contract_work_only(self) -> None:
+    def test_m2_plan_authorizes_verified_release_adapter_only(self) -> None:
         content = (ROOT / "docs" / "planning" / "M2-IMPLEMENTATION-PLAN.md").read_text(encoding="utf-8")
-        self.assertIn("accepted for M2.1", content)
-        self.assertIn("No M2 production implementation is present yet.", content)
-        self.assertIn("M2.2 or later implementation remains dependent", content)
+        self.assertIn("M2.1 Query Contract Gate is approved", content)
+        self.assertIn("Verified Release Adapter work is authorized", content)
+        self.assertIn("M2.3 and\nlater work remain dependent", content)
+        self.assertIn("no M2 release-adapter or query", content)
 
-    def test_m2_contract_conformance_matrix_blocks_m2_2_until_evidence_exists(self) -> None:
+    def test_m2_contract_conformance_matrix_authorizes_m2_2(self) -> None:
         content = (ROOT / "docs" / "planning" / "M2-QUERY-CONTRACT-CONFORMANCE-MATRIX.md").read_text(encoding="utf-8")
-        self.assertIn("M2.2 verified-release-adapter work MUST NOT begin", content)
+        self.assertIn("Approved M2.1 query-contract gate", content)
+        self.assertIn("M2.2 verified-release-adapter work is authorized", content)
         for contract in ("QueryRequest", "QueryResult", "Filter", "Cursor", "Errors and warnings"):
             self.assertIn(f"| {contract} |", content)
-        self.assertIn("five `Pass` rows", content)
+        self.assertEqual(5, content.count("| **Pass** |"))
+        self.assertIn("m2-query-contract-gate-approval-2026-07-21.json", content)
+
+    def test_m2_query_contract_gate_approval_is_schema_valid_and_scoped(self) -> None:
+        decision = json.loads((ROOT / "validation" / "evidence" / "m2-query-contract-gate-approval-2026-07-21.json").read_text(encoding="utf-8"))
+        schema = json.loads((ROOT / "schemas" / "json" / "approval-record.schema.json").read_text(encoding="utf-8"))
+        Draft202012Validator(schema).validate(decision)
+        self.assertEqual("m2-query-contract-gate-approved", decision["action"])
+        self.assertEqual("m2-query-contracts-0.1.0", decision["subject_id"])
+        self.assertIn("M2.2 Verified Release Adapter work only", decision["rationale"])
+        self.assertIn("no ANN, release publication", decision["rationale"])
 
 
 if __name__ == "__main__":
