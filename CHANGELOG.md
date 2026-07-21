@@ -99,6 +99,10 @@ retrieval-quality claims.
   identities, evidence counts, comparison-artifact observations, incidents, and
   deviations. It makes no outcome classification, correctness conclusion, or
   exact-query-correctness claim decision.
+- M3-002.8 records the maintainer decision: the exact-query-correctness
+  engineering-conformance claim is supported only for the preregistered corpus
+  and recorded environment. No biological, quality, comparative, ANN,
+  performance, portability, or generalization claim is supported.
 
 ### Changed
 

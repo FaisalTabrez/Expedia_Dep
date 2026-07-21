@@ -3,9 +3,10 @@
 **Status:** M3.1–M3.5 are complete for M3-001. Its narrowly scoped
 deterministic-retrieval engineering-conformance claim is supported; no
 biological, performance, usefulness, or comparative claim is accepted.
-M3-002 Exact Float32 Cosine Correctness has an approved preregistration and a
-verified validation-only oracle. Its immutable evaluation manifest is approved
-for the preregistered comparison only; execution evidence has not begun.
+M3-002 Exact Float32 Cosine Correctness is complete. Its narrowly scoped
+exact-query-correctness engineering-conformance claim is supported only for the
+preregistered corpus and recorded execution environment; no biological,
+performance, usefulness, or comparative claim is accepted.
 **Governing specification:** EDS v2.1.1 sections 8, 12.4-12.7, 13, 14, and
 15.4; ERS v1.0; the accepted M2 checkpoint `m2.0.0-complete`.
 **Purpose:** Define the smallest controlled path from deterministic retrieval to
@@ -68,7 +69,7 @@ resolved by evaluation work.
 | M3-002.5 | Verify the oracle | **Complete:** isolated source, package-binding, float32, normalization, tie-order, output-boundary, and import-boundary tests pass; this is software verification, not study execution. |
 | M3-002.6 | Execute comparison | **Complete:** the restarted sequence retained environment and release verification, 12 canonical requests, raw Query Core and oracle projections, canonical JSON, SHA-256 inventories, comparison observations, and both pre-execution incidents. No outcome classification or interpretation is included. |
 | M3-002.7 | Observational analysis | **Complete:** the draft analysis indexes only verified identities, retained execution counts, comparison-artifact observations, incidents, and the unchanged claim boundary. It assigns no outcome or claim decision. |
-| M3-002.8 | Maintainer claim decision | **Pending:** may decide only the exact-query-correctness claim category. |
+| M3-002.8 | Maintainer claim decision | **Complete:** the maintainer supports only the preregistered exact-query-correctness engineering-conformance claim for the retained corpus and recorded environment. |
 
 ## 4. Reference-study policy
 

@@ -1,0 +1,33 @@
+{
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "claim_category": "exact query correctness",
+  "decision": "supported",
+  "decision_id": "decision:m3-002-exact-query-correctness-20260722",
+  "evidence": {
+    "analysis_path": "validation/evidence/m3-002/M3-002-analysis.md",
+    "comparison_path": "validation/evidence/m3-002/execution-v1/comparison.json",
+    "evaluation_manifest_digest": "sha256:1ca19ce393c2c475c59922e708401833a49334bea46e508cec574d034353c060",
+    "preregistration_digest": "sha256:23d537e522200b635d3c68e81913a187283a3ecd257a9d9e08bc16496b7be25c"
+  },
+  "non_supported_claim_categories": [
+    "biological meaning",
+    "biological usefulness",
+    "embedding quality",
+    "annotation quality",
+    "comparative superiority",
+    "ANN quality",
+    "recall",
+    "latency",
+    "throughput",
+    "scalability",
+    "portability",
+    "cross-platform reproducibility",
+    "downstream ML utility",
+    "default-method selection",
+    "generalization"
+  ],
+  "recorded_at": "2026-07-22",
+  "scope": "The preregistered M3-002 corpus and recorded execution environment only.",
+  "study_id": "M3-002",
+  "supported_claim": "Under the preregistered M3-002 corpus and recorded execution conditions, the frozen M2 exact cosine implementation produced outputs identical to an independently implemented float32 cosine reference."
+}

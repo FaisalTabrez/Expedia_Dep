@@ -73,6 +73,19 @@ class M3002ExecutionEvidenceTests(unittest.TestCase):
             sum(bool(observation["diagnostic_fields"]) for observation in comparison["observations"]),
         )
 
+    def test_maintainer_decision_supports_only_the_preregistered_exactness_claim(self) -> None:
+        decision_path = ROOT / "validation" / "evidence" / "m3-002" / "m3-002-maintainer-claim-decision-2026-07-22.json"
+        decision = json.loads(decision_path.read_text(encoding="utf-8"))
+        decision_report = (ROOT / "validation" / "evidence" / "m3-002" / "m3-002-maintainer-claim-decision-2026-07-22.md").read_text(encoding="utf-8")
+        self.assertEqual("supported", decision["decision"])
+        self.assertEqual("exact query correctness", decision["claim_category"])
+        self.assertEqual("M3-002", decision["study_id"])
+        self.assertEqual("sha256:1ca19ce393c2c475c59922e708401833a49334bea46e508cec574d034353c060", decision["evidence"]["evaluation_manifest_digest"])
+        self.assertIn("Under the preregistered M3-002 corpus", decision["supported_claim"])
+        self.assertIn("biological usefulness", decision["non_supported_claim_categories"])
+        self.assertIn("cross-platform reproducibility", decision["non_supported_claim_categories"])
+        self.assertIn("This decision does not support or establish biological meaning", decision_report)
+
 
 if __name__ == "__main__":  # pragma: no cover
     unittest.main()
