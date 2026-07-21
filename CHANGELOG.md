@@ -31,6 +31,12 @@ retrieval-quality claims.
   pass/fail/inconclusive/aborted handling. It makes no hardware-portability or
   cross-platform claim. Execution has not begun and remains subject to its
   pre-execution checks.
+- M3.3 adds an evidence-only M3-001 execution harness. It verifies the
+  detached M2 implementation, environment, and verified release before running
+  isolated replicates; it retains canonical request/result evidence and performs
+  the preregistered comparison only after all replicates. It does not alter
+  Query Core, release artifacts, or claim boundaries. No study execution result
+  is recorded by this change.
 
 ### Changed
 
