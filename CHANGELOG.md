@@ -75,6 +75,11 @@ retrieval-quality claims.
   no changes to Query Core, Release Reader, oracle, methodology, claim
   boundary, or governed artifacts. No execution result, interpretation, or
   claim decision is recorded by this approval.
+- M3-002 adds a mechanical, evidence-only execution runner. It verifies the
+  detached frozen M2 workspace, environment and dependency identities, Release
+  Reader/package bindings, and hash-addressed oracle source before retaining
+  raw Query Core/oracle observations and comparison hashes. It has no outcome
+  classifier, retry behavior, interpretation, or claim decision.
 
 ### Changed
 
