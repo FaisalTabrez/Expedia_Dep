@@ -10,3 +10,7 @@ changes an Atlas Release nor defines a new Atlas contract.
 is the active immutable manifest for approved M3-001 Version 1.0. The v1
 manifest is preserved as historical evidence of the controlled executable
 identity correction.
+
+[`M3-002-EVALUATION-MANIFEST-TEMPLATE.json`](M3-002-EVALUATION-MANIFEST-TEMPLATE.json)
+is an unapproved template only. It is not an immutable evaluation manifest and
+does not authorize M3-002 execution.

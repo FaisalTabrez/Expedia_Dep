@@ -11,6 +11,11 @@ an accepted study. A completed, maintainer-approved study record is required
 before M3.2 execution.
 
 [`m3-001-deterministic-exact-query-reproducibility.md`](m3-001-deterministic-exact-query-reproducibility.md)
-is the approved Version 1.0 preregistration. Its approval record and immutable
-evaluation-manifest binding are retained; execution has not yet started and
-remains contingent on the listed pre-execution checks.
+is the approved Version 1.0 preregistration. Its approval record, immutable
+evaluation-manifest binding, retained evidence, and bounded claim decision are
+retained as closed M3-001 evidence.
+
+[`m3-002-exact-float32-cosine-correctness.md`](m3-002-exact-float32-cosine-correctness.md)
+is a Draft exact-query-correctness preregistration. It has no approval,
+evaluation manifest, reference implementation, execution evidence, or claim
+decision.

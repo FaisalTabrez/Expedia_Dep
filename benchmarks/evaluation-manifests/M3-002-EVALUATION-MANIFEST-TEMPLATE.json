@@ -1,0 +1,32 @@
+{
+  "approval_status": "unapproved-template",
+  "claim_category": "exact query correctness",
+  "comparison": {
+    "canonicalization": "[REQUIRED: approved canonical JSON rule]",
+    "score_equality_tolerance": "[REQUIRED: must remain 0.0 unless an approved amendment justifies otherwise]"
+  },
+  "execution_environment": {
+    "dependency_lock_digest": "sha256:332b9b0ae251547a0db50deb717d2c778a3e2e5be40644255598aef783b18765",
+    "id": "EE-M3-001-v1.1",
+    "python_executable_digest": "sha256:5912d0884b23c0343983a864c6064242391e2265536f50b88624857e353882c9"
+  },
+  "implementation": {
+    "repository_tag": "m2.0.0-complete",
+    "required_commit": "6183145f8fd6018431c55fd2e4ee7e1001e5fc87"
+  },
+  "manifest_id": "[REQUIRED before approval]",
+  "preregistration": {
+    "path": "benchmarks/preregistrations/m3-002-exact-float32-cosine-correctness.md",
+    "version": "0.1.0-draft"
+  },
+  "reference_implementation": {
+    "source_digest": "[REQUIRED before approval]",
+    "source_path": "validation/reference/[REQUIRED before approval]"
+  },
+  "release": {
+    "profile_digest": "sha256:5679461d5a4482b48b90e97615d9661e84c2ac7c3b01253e7be4d7909a294294",
+    "release_digest": "sha256:fb18e65424f9b1f8978b6460917f799f39137659ae83d3074d2b01a491eca37b",
+    "vector_shard_digest": "sha256:69204de55e57d8f3b088bba7dd63a8207c6bf55337d28b4bedc4769f1d8cf0c3"
+  },
+  "study_id": "M3-002"
+}

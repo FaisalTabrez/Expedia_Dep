@@ -54,6 +54,11 @@ retrieval-quality claims.
   engineering-conformance claim is supported only under the preregistered
   corpus and recorded environment. No biological, comparative, performance,
   portability, scalability, or default-method claim is supported.
+- M3-002 planning adds only Draft governance artifacts for the OQ-05 exact
+  query correctness category: a preregistration, verified-vector corpus
+  manifest, independent-reference specification, unapproved evaluation-manifest
+  template, and claim-boundary verification. No cosine implementation,
+  execution, result, or claim decision is added.
 
 ### Changed
 
