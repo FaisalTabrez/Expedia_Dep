@@ -90,6 +90,11 @@ retrieval-quality claims.
   workspace. It records the workspace, Git executable/version, scope, commands,
   runner digest, and both retained incidents. No global or broad repository
   trust setting is authorized.
+- M3-002.6 retains the complete preregistered evidence bundle for the frozen
+  Query Core and independent-oracle comparison: environment/release records,
+  canonical requests, raw outputs, canonical projections, hashes, comparison
+  observations, incident log, and pending-analysis pointer. It records no
+  PASS/FAIL classification, interpretation, or exact-query-correctness claim.
 
 ### Changed
 
