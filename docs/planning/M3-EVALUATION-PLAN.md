@@ -67,7 +67,7 @@ resolved by evaluation work.
 | M3-002.4 | Implement independent reference | **Complete:** `validation/reference/` owns a separate reader-bound float32 oracle and imports no Query Core module. |
 | M3-002.5 | Verify the oracle | **Complete:** isolated source, package-binding, float32, normalization, tie-order, output-boundary, and import-boundary tests pass; this is software verification, not study execution. |
 | M3-002.6 | Execute comparison | **Complete:** the restarted sequence retained environment and release verification, 12 canonical requests, raw Query Core and oracle projections, canonical JSON, SHA-256 inventories, comparison observations, and both pre-execution incidents. No outcome classification or interpretation is included. |
-| M3-002.7 | Observational analysis | **Pending:** may begin only after retained M3-002 raw evidence exists. |
+| M3-002.7 | Observational analysis | **Complete:** the draft analysis indexes only verified identities, retained execution counts, comparison-artifact observations, incidents, and the unchanged claim boundary. It assigns no outcome or claim decision. |
 | M3-002.8 | Maintainer claim decision | **Pending:** may decide only the exact-query-correctness claim category. |
 
 ## 4. Reference-study policy

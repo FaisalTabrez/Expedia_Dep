@@ -56,6 +56,23 @@ class M3002ExecutionEvidenceTests(unittest.TestCase):
         location = json.loads((EVIDENCE / "analysis-location.json").read_text(encoding="utf-8"))
         self.assertEqual("pending M3-002.7", location["status"])
 
+    def test_observational_analysis_reports_evidence_without_a_claim_decision(self) -> None:
+        analysis = (ROOT / "validation" / "evidence" / "m3-002" / "M3-002-analysis.md").read_text(encoding="utf-8")
+        comparison = json.loads((EVIDENCE / "comparison.json").read_text(encoding="utf-8"))
+        self.assertIn("Draft observational analysis — no maintainer claim decision.", analysis)
+        self.assertIn("`sha256:1ca19ce393c2c475c59922e708401833a49334bea46e508cec574d034353c060`", analysis)
+        self.assertIn("It does not classify the study as PASS or FAIL", analysis)
+        self.assertIn("does not support or reject\nthe exact-query-correctness claim", analysis)
+        self.assertEqual(12, len(comparison["observations"]))
+        self.assertEqual(
+            0,
+            sum(observation["query_core_digest"] != observation["oracle_digest"] for observation in comparison["observations"]),
+        )
+        self.assertEqual(
+            0,
+            sum(bool(observation["diagnostic_fields"]) for observation in comparison["observations"]),
+        )
+
 
 if __name__ == "__main__":  # pragma: no cover
     unittest.main()

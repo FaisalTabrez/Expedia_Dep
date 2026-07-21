@@ -95,6 +95,10 @@ retrieval-quality claims.
   canonical requests, raw outputs, canonical projections, hashes, comparison
   observations, incident log, and pending-analysis pointer. It records no
   PASS/FAIL classification, interpretation, or exact-query-correctness claim.
+- M3-002.7 adds a constrained observational analysis that indexes retained
+  identities, evidence counts, comparison-artifact observations, incidents, and
+  deviations. It makes no outcome classification, correctness conclusion, or
+  exact-query-correctness claim decision.
 
 ### Changed
 
