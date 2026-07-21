@@ -10,6 +10,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
 EVIDENCE = ROOT / "validation" / "evidence" / "m3-001" / "execution-v1"
+ANALYSIS = ROOT / "validation" / "evidence" / "m3-001" / "M3-001-analysis.md"
 
 
 class M3ExecutionEvidenceTests(unittest.TestCase):
@@ -48,6 +49,15 @@ class M3ExecutionEvidenceTests(unittest.TestCase):
                 continue
             relative = path.relative_to(EVIDENCE).as_posix()
             self.assertEqual("sha256:" + hashlib.sha256(path.read_bytes()).hexdigest(), inventory[relative])
+
+    def test_analysis_reports_only_the_preregistered_observations_and_outcome(self) -> None:
+        report = ANALYSIS.read_text(encoding="utf-8")
+        self.assertIn("**Status:** Draft analysis — no maintainer claim decision.", report)
+        self.assertIn("**Observed study outcome: PASS.**", report)
+        self.assertIn("No additional metrics, inferential statistics, confidence intervals, p-values", report)
+        self.assertIn("does not constitute maintainer acceptance of the study claim", report)
+        self.assertIn("sha256:35513e730cd1d3fadefd5a5dc64dd113b6eae52a978620a2193b5919dc1099a8", report)
+        self.assertIn("does not establish biological meaning, retrieval", report)
 
 
 if __name__ == "__main__":

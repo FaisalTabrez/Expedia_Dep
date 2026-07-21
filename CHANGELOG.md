@@ -46,6 +46,10 @@ retrieval-quality claims.
   replicate bundles, comparison observations, integrity digests, and the
   retained pre-execution incident. This records no analysis, result claim, or
   scientific conclusion.
+- M3.4 adds the M3-001 Draft analysis report. It indexes verified identities
+  and retained evidence, records the preregistered `PASS` outcome, and keeps
+  the separate M3.5 maintainer claim decision open. No scientific, performance,
+  or usefulness claim is made.
 
 ### Changed
 
