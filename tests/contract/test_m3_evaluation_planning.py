@@ -91,21 +91,31 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         self.assertIn("Expected record count | 12 canonical GenomeRecordVersions", corpus)
         self.assertIn("No annotations, derived relations, alternate embedding profiles", corpus)
 
-    def test_m3002_is_draft_exact_query_correctness_planning_only(self) -> None:
+    def test_m3002_is_approved_exact_query_correctness_planning_only(self) -> None:
         study = (ROOT / "benchmarks" / "preregistrations" / "m3-002-exact-float32-cosine-correctness.md").read_text(encoding="utf-8")
         corpus = (ROOT / "benchmarks" / "data-manifests" / "M3-002-M1-V3-EXACT-COSINE-CORPUS.md").read_text(encoding="utf-8")
         reference = (ROOT / "benchmarks" / "reference" / "M3-002-INDEPENDENT-REFERENCE-SPECIFICATION.md").read_text(encoding="utf-8")
         claim_check = (ROOT / "benchmarks" / "preregistrations" / "M3-002-CLAIM-BOUNDARY-VERIFICATION.md").read_text(encoding="utf-8")
         template = json.loads((ROOT / "benchmarks" / "evaluation-manifests" / "M3-002-EVALUATION-MANIFEST-TEMPLATE.json").read_text(encoding="utf-8"))
-        self.assertIn("**Status:** Draft — not accepted; execution is prohibited.", study)
+        approval = json.loads((ROOT / "validation" / "evidence" / "m3-002" / "m3-002-preregistration-approval-2026-07-21.json").read_text(encoding="utf-8"))
+        review = (ROOT / "validation" / "evidence" / "m3-002" / "m3-002-preregistration-review-2026-07-21.md").read_text(encoding="utf-8")
+        self.assertIn("**Status:** Approved — execution remains prohibited pending later M3-002 gates.", study)
+        self.assertIn("**Version:** `1.0`.", study)
         self.assertIn("**Claim category.** Exact query correctness.", study)
-        self.assertIn("Until every item is complete, M3-002 MUST NOT execute.", study)
+        self.assertIn(
+            "Until every remaining unchecked item is complete, M3-002 MUST NOT execute.",
+            study,
+        )
         self.assertIn("SHALL\nNOT import, call, copy, or reuse any Query Core", reference)
         self.assertIn("score-desc-record-id-asc-v1", reference)
         self.assertIn("Expected record count | 12 canonical GenomeRecordVersions", corpus)
         self.assertIn("`EE-M3-001-v1.1`", corpus)
         self.assertIn("Therefore it satisfies only that evidence requirement.", claim_check)
         self.assertEqual("unapproved-template", template["approval_status"])
+        self.assertEqual("M3-002", approval["subject_id"])
+        self.assertEqual("1.0", approval["subject_version"])
+        self.assertEqual("sha256:" + hashlib.sha256((ROOT / "benchmarks" / "preregistrations" / "m3-002-exact-float32-cosine-correctness.md").read_bytes()).hexdigest(), approval["preregistration_digest"])
+        self.assertIn("**Status:** Passed maintainer review.", review)
 
 
 if __name__ == "__main__":

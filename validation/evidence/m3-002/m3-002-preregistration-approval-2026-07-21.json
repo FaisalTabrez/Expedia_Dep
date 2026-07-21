@@ -1,0 +1,11 @@
+{
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "action": "m3-002-preregistration-v1-approved",
+  "approval_id": "approval:m3-002-preregistration-v1-20260721",
+  "preregistration_digest": "sha256:23d537e522200b635d3c68e81913a187283a3ecd257a9d9e08bc16496b7be25c",
+  "preregistration_path": "benchmarks/preregistrations/m3-002-exact-float32-cosine-correctness.md",
+  "rationale": "The maintainer review confirms that Version 1.0 freezes the exact-query-correctness question, hypotheses, comparison rule, exact outcomes, exclusions, evidence retention, execution environment, implementation checkpoint, and release/profile/vector bindings. Approval freezes the preregistration only. It authorizes no reference implementation, oracle verification, immutable evaluation manifest, execution, analysis, result, or claim decision.",
+  "recorded_at": "2026-07-21",
+  "subject_id": "M3-002",
+  "subject_version": "1.0"
+}

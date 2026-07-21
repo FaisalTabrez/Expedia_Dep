@@ -16,6 +16,6 @@ evaluation-manifest binding, retained evidence, and bounded claim decision are
 retained as closed M3-001 evidence.
 
 [`m3-002-exact-float32-cosine-correctness.md`](m3-002-exact-float32-cosine-correctness.md)
-is a Draft exact-query-correctness preregistration. It has no approval,
-evaluation manifest, reference implementation, execution evidence, or claim
-decision.
+is the approved, frozen Version 1.0 exact-query-correctness preregistration.
+It has no immutable evaluation manifest, reference implementation, execution
+evidence, or claim decision; execution remains prohibited.

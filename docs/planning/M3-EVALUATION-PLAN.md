@@ -60,11 +60,14 @@ resolved by evaluation work.
 
 | ID | Phase | Status and boundary |
 |---|---|---|
-| M3-002.1 | Claim boundary and preregistration | **Draft planning:** exact query correctness only; no approval, execution, result, or claim decision. |
-| M3-002.2 | Evaluation manifest and approval | **Pending:** an unapproved template exists; immutable manifest and maintainer approval are required before execution. |
-| M3-002.3 | Independent-reference comparison | **Blocked:** no implementation or comparison is authorized until M3-002.1 and M3-002.2 are accepted. |
-| M3-002.4 | Observational analysis | **Pending:** may begin only after retained M3-002 raw evidence exists. |
-| M3-002.5 | Maintainer claim decision | **Pending:** may decide only the exact-query-correctness claim category. |
+| M3-002.1 | Review Draft preregistration | **Complete:** maintainer review verifies the frozen question, hypotheses, comparison algorithm, outcomes, exclusions, retention, environment, commit, and artifact digests. |
+| M3-002.2 | Approve and freeze Version 1.0 | **Complete:** approval binds the Version 1.0 preregistration digest. Execution remains prohibited. |
+| M3-002.3 | Immutable evaluation manifest | **Pending:** the unapproved template must be replaced only after the oracle source and verification evidence can be bound. |
+| M3-002.4 | Implement independent reference | **Pending:** implementation belongs only in `validation/reference/` and must not reuse Query Core computation, ranking, ordering, or execution. |
+| M3-002.5 | Verify the oracle | **Pending:** software verification and import-boundary evidence are required before any comparison. |
+| M3-002.6 | Execute comparison | **Blocked:** requires M3-002.3 through M3-002.5 acceptance; no result may be generated before then. |
+| M3-002.7 | Observational analysis | **Pending:** may begin only after retained M3-002 raw evidence exists. |
+| M3-002.8 | Maintainer claim decision | **Pending:** may decide only the exact-query-correctness claim category. |
 
 ## 4. Reference-study policy
 

@@ -59,6 +59,10 @@ retrieval-quality claims.
   manifest, independent-reference specification, unapproved evaluation-manifest
   template, and claim-boundary verification. No cosine implementation,
   execution, result, or claim decision is added.
+- M3-002 Version 1.0 preregistration is reviewed and approved. Its frozen
+  digest, review record, and maintainer approval are retained; no oracle,
+  evaluation manifest, execution, result, analysis, or claim decision is
+  authorized by this approval.
 
 ### Changed
 

@@ -1,12 +1,14 @@
 # Study M3-002: Exact Float32 Cosine Correctness
 
-**Status:** Draft — not accepted; execution is prohibited.  
-**Version:** `0.1.0-draft`.  
+**Status:** Approved — execution remains prohibited pending later M3-002 gates.
+**Version:** `1.0`.
 **Owner:** Faisal Tabrez, Project Maintainer.  
 **Prepared:** 2026-07-21.  
 **Governing sources:** EDS v2.1.1 section 13; accepted OQ-05; M2 completion
 checkpoint `m2.0.0-complete` at
 `6183145f8fd6018431c55fd2e4ee7e1001e5fc87`; completed M3-001 evidence.
+**Review record:** [`m3-002-preregistration-review-2026-07-21.md`](../../validation/evidence/m3-002/m3-002-preregistration-review-2026-07-21.md).
+**Approval record:** [`m3-002-preregistration-approval-2026-07-21.json`](../../validation/evidence/m3-002/m3-002-preregistration-approval-2026-07-21.json).
 
 ## 1. Research question and claim boundary
 
@@ -109,12 +111,14 @@ and analysis location. Negative outcomes and all deviations are retained.
 
 ## 7. Pre-execution checklist
 
-- [ ] The Draft preregistration is approved without scope expansion.
-- [ ] The controlled corpus and independent-reference specification are
-      accepted as complete and independent.
+- [x] The preregistration review and maintainer approval are retained without
+      scope expansion.
+- [x] The controlled corpus and independent-reference specification are
+      accepted as complete planning artifacts; implementation independence is
+      still subject to later verification.
 - [ ] An immutable evaluation manifest and approval record are bound.
 - [ ] The verified M1 v3 Draft package and all declared digests are checked.
 - [ ] No result, outcome, claim decision, production cosine code, or Query Core
       change has been inserted.
 
-Until every item is complete, M3-002 MUST NOT execute.
+Until every remaining unchecked item is complete, M3-002 MUST NOT execute.
