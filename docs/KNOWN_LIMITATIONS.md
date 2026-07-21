@@ -30,8 +30,10 @@ record.
 ## Query and presentation
 
 - M2 now has a local Query Core API, canonical filtering, exact ranking,
-  pagination, and thin local SDK/REST adapters. Caching, remote deployment,
-  HTTP-client configuration, and Explorer behavior remain deferred.
+  pagination, thin local SDK/REST adapters, and a framework-neutral
+  provenance-first Explorer presentation boundary. Caching, remote deployment,
+  HTTP-client configuration, desktop/web UI, projections, and graph display
+  remain deferred.
 - No ANN adapter, recall target, default index, BridgeProfile, graph traversal,
   annotation workflow, or derived-relation workflow is implemented.
 

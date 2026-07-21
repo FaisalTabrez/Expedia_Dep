@@ -8,6 +8,11 @@ retrieval-quality claims.
 
 ### Changed
 
+- M2.6 adds a framework-neutral provenance-first Explorer presentation client.
+  It consumes injected Core/SDK QueryResult data, labels canonical rows, and
+  preserves typed errors, provenance, evidence labels, ordering, and cursors.
+  It explicitly marks unavailable annotations, relations, and projections;
+  no desktop/web UI, graph, projection, or independent query behavior is added.
 - M2.5 adds a typed local Python SDK and a dependency-free local `/v1/query`
   WSGI transport adapter. Both are thin delegates over an injected Query Core;
   a shared corpus verifies identical success, typed-error, provenance, warning,

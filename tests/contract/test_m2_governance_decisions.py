@@ -33,16 +33,17 @@ class M2GovernanceDecisionTests(unittest.TestCase):
         self.assertIn("canonical_request_digest", content)
         self.assertIn("duplicate object-member names", content)
 
-    def test_m2_plan_records_m2_5_completion_without_authorizing_explorer(self) -> None:
+    def test_m2_plan_records_m2_6_completion(self) -> None:
         content = (ROOT / "docs" / "planning" / "M2-IMPLEMENTATION-PLAN.md").read_text(encoding="utf-8")
         self.assertIn("M2.1 Query Contract Gate is approved", content)
         self.assertIn("M2.2 Verified Release Adapter and", content)
         self.assertIn("M2.3 exact cosine reference search are implemented", content)
-        self.assertIn("M2.5 local\nSDK and REST adapters are conformant; Explorer remains deferred", content)
+        self.assertIn("M2.6 provenance-first Explorer\npresentation is implemented", content)
         self.assertIn("**Complete:** adapter refuses unverified artifacts", content)
         self.assertIn("**Complete:** normalized profile-scoped vectors", content)
         self.assertIn("**Complete:** Core evaluates supported canonical filters", content)
         self.assertIn("**Complete:** identical success, typed-error, and cursor-continuation", content)
+        self.assertIn("**Complete:** Explorer consumes Core-owned results", content)
 
     def test_m2_contract_conformance_matrix_authorizes_m2_2(self) -> None:
         content = (ROOT / "docs" / "planning" / "M2-QUERY-CONTRACT-CONFORMANCE-MATRIX.md").read_text(encoding="utf-8")
