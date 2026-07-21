@@ -1,6 +1,9 @@
 # M1.6 Draft package evidence
 
-**Status:** Passed M1.6 assembly; M1.7 independent validation pending.
+**Status:** Passed M1.6 assembly and M1.7 independent validation; M1.8
+maintainer decision pending. See
+[`m1-clean-room-validation-2026-07-21.md`](m1-clean-room-validation-2026-07-21.md)
+for the clean-room validation record.
 **Release ID:** `expedia-m1-draft-20260721-v2`
 **State:** `Draft`
 **Scope:** Internal M1 reproducibility validation only; not a public or
