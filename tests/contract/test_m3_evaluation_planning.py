@@ -91,7 +91,7 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         self.assertIn("Expected record count | 12 canonical GenomeRecordVersions", corpus)
         self.assertIn("No annotations, derived relations, alternate embedding profiles", corpus)
 
-    def test_m3002_has_an_approved_preregistration_and_prepared_oracle_bound_manifest(self) -> None:
+    def test_m3002_has_an_approved_preregistration_and_immutable_oracle_bound_manifest(self) -> None:
         study = (ROOT / "benchmarks" / "preregistrations" / "m3-002-exact-float32-cosine-correctness.md").read_text(encoding="utf-8")
         corpus = (ROOT / "benchmarks" / "data-manifests" / "M3-002-M1-V3-EXACT-COSINE-CORPUS.md").read_text(encoding="utf-8")
         reference = (ROOT / "benchmarks" / "reference" / "M3-002-INDEPENDENT-REFERENCE-SPECIFICATION.md").read_text(encoding="utf-8")
@@ -100,6 +100,8 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         manifest_path = ROOT / "benchmarks" / "evaluation-manifests" / "m3-002-v1-evaluation-manifest.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         approval = json.loads((ROOT / "validation" / "evidence" / "m3-002" / "m3-002-preregistration-approval-2026-07-21.json").read_text(encoding="utf-8"))
+        manifest_approval_path = ROOT / "validation" / "evidence" / "m3-002" / "m3-002-evaluation-manifest-approval-2026-07-21.json"
+        manifest_approval = json.loads(manifest_approval_path.read_text(encoding="utf-8"))
         oracle_verification_path = ROOT / "validation" / "evidence" / "m3-002" / "m3-002-oracle-verification-2026-07-21.json"
         oracle_verification = json.loads(oracle_verification_path.read_text(encoding="utf-8"))
         review = (ROOT / "validation" / "evidence" / "m3-002" / "m3-002-preregistration-review-2026-07-21.md").read_text(encoding="utf-8")
@@ -121,7 +123,7 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         self.assertEqual("sha256:" + hashlib.sha256((ROOT / "benchmarks" / "preregistrations" / "m3-002-exact-float32-cosine-correctness.md").read_bytes()).hexdigest(), approval["preregistration_digest"])
         self.assertIn("**Status:** Passed maintainer review.", review)
         self.assertIn("**Status:** Implemented validation-only oracle.", reference)
-        self.assertEqual("prepared-awaiting-maintainer-approval", manifest["approval_status"])
+        self.assertEqual("accepted-immutable", manifest["approval_status"])
         self.assertEqual("M3-002", manifest["study_id"])
         self.assertEqual("exact query correctness", manifest["claim_category"])
         self.assertEqual("6183145f8fd6018431c55fd2e4ee7e1001e5fc87", manifest["implementation"]["required_commit"])
@@ -148,6 +150,16 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         self.assertEqual(
             "software verification only; no M3-002 Query Core/reference comparison was executed",
             oracle_verification["evidence_scope"],
+        )
+        self.assertEqual(
+            "sha256:" + hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+            manifest_approval["evaluation_manifest_digest"],
+        )
+        self.assertEqual("M3-002", manifest_approval["subject_id"])
+        self.assertEqual("1.0", manifest_approval["subject_version"])
+        self.assertIn(
+            "Any subsequent change requires a controlled amendment and a new maintainer approval record.",
+            manifest_approval["conditions"],
         )
 
 

@@ -1,5 +1,5 @@
 {
-  "approval_status": "prepared-awaiting-maintainer-approval",
+  "approval_status": "accepted-immutable",
   "claim_category": "exact query correctness",
   "comparison": {
     "canonicalization": "UTF-8; LF line endings; lexicographically sorted object keys; no insignificant whitespace; normalized finite numeric representation; SHA-256 over canonical bytes",

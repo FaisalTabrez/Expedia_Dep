@@ -1,0 +1,17 @@
+{
+  "action": "m3-002-evaluation-manifest-v1-approved",
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "approval_id": "approval:m3-002-evaluation-manifest-v1-20260721",
+  "conditions": [
+    "Execution is limited to the preregistered Query Core versus independent float32 oracle comparison.",
+    "No modification to the frozen Query Core, Release Reader, oracle implementation, evaluation methodology, claim boundaries, or governed artifacts is authorized.",
+    "The accepted M2 implementation checkpoint, M1 v3 Draft release/profile/vector identities, execution environment, oracle source digest, and oracle verification evidence remain bound.",
+    "Any subsequent change requires a controlled amendment and a new maintainer approval record.",
+    "This approval authorizes no result interpretation, analysis, or claim decision beyond the approved execution scope."
+  ],
+  "evaluation_manifest_digest": "sha256:1ca19ce393c2c475c59922e708401833a49334bea46e508cec574d034353c060",
+  "evaluation_manifest_path": "benchmarks/evaluation-manifests/m3-002-v1-evaluation-manifest.json",
+  "recorded_at": "2026-07-21",
+  "subject_id": "M3-002",
+  "subject_version": "1.0"
+}

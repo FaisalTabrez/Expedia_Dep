@@ -69,6 +69,12 @@ retrieval-quality claims.
   verified vector shard without importing Query Core. A fully bound evaluation
   manifest is prepared for separate maintainer approval. No Query Core/oracle
   comparison, result, analysis, or claim decision has been produced.
+- The M3-002 Version 1 evaluation manifest is accepted as the immutable
+  execution definition for the preregistered Query Core versus independent
+  float32-oracle comparison. The approval binds the manifest digest and permits
+  no changes to Query Core, Release Reader, oracle, methodology, claim
+  boundary, or governed artifacts. No execution result, interpretation, or
+  claim decision is recorded by this approval.
 
 ### Changed
 
