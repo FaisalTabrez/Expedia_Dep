@@ -13,6 +13,10 @@ retrieval-quality claims.
   positive and negative conformance evidence; M2.2 verified local release
   adapter work is authorized. No M2 release, search, SDK, REST, or Explorer
   implementation is included in this change.
+- M2.2 adds the local verified-release adapter. It delegates verification to
+  the established M1 reader and exposes only immutable, manifest-addressed
+  snapshots with typed trust failures. It includes no query execution or
+  cosine-search behavior.
 
 ## m1.0.0-draft - 2026-07-21
 

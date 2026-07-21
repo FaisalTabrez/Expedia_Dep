@@ -1,15 +1,15 @@
-"""EDS section 12 interface placeholders."""
+"""EDS section 12 interfaces and the ADR-010 trusted-release boundary."""
 
-from collections.abc import Mapping, Sequence
+from collections.abc import Mapping
 from typing import Protocol
+
+from .verified_release import VerifiedRelease
 
 
 class ReleaseReader(Protocol):
-    """Opens only verified release packages for trusted operation."""
+    """Opens only immutable, verified local packages for trusted operation."""
 
-    def open(self, release_location: str) -> Mapping[str, object]: ...
-
-    def read_table(self, table_name: str) -> Sequence[Mapping[str, object]]: ...
+    def open(self, release_location: str) -> VerifiedRelease: ...
 
 
 class QueryCore(Protocol):

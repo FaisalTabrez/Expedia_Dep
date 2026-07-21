@@ -1,8 +1,8 @@
 # M2 implementation plan: one semantic read path
 
-**Status:** The M2.1 Query Contract Gate is approved. M2.2
-Verified Release Adapter work is authorized; no M2 release-adapter or query
-execution implementation is present yet.
+**Status:** The M2.1 Query Contract Gate is approved and M2.2 Verified Release
+Adapter is implemented for the local M1 Draft conformance fixture. M2.3 exact
+cosine search is not implemented.
 **Governing specification:** EDS v2.1.1 sections 5.1, 8, 11, 12, 14, 15.3, and
 16; ERS REQ-006, REQ-011, REQ-015, REQ-021–024.
 **Prerequisite release evidence:** M1 internal Draft evidence gate approved at
@@ -69,7 +69,7 @@ vector-shard digest. It must not present an ANN result as exact.
 | ID | Work | Dependencies | Deliverables | Acceptance criteria | Complexity |
 |---|---|---|---|---|---|
 | M2.1 | Accept the entry-gate decisions and replace M1 query-schema placeholders with reviewed contracts. | ADR-010/011/016; OQ-11 | Contract revisions, fixtures, compatibility rules, errors/warnings/cursor definitions, and the Query Contract Conformance Matrix | Positive and negative fixtures validate; every matrix row is `Pass` with linked test evidence before M2.2 starts. | L |
-| M2.2 | Build a verified local release adapter. | M2.1; M1 reader | Immutable-release handle, table/vector readers, trust boundary | Adapter refuses unverified artifacts and exposes only manifest-addressed data. | M |
+| M2.2 | Build a verified local release adapter. | M2.1; M1 reader | Immutable-release handle, table/vector readers, trust boundary | **Complete:** adapter refuses unverified artifacts and exposes only manifest-addressed immutable snapshots. | M |
 | M2.3 | Implement exact profile-scoped cosine search. | M2.1–M2.2 | Query Core reference executor, exact result fixtures | Normalized vectors, declared profile, metric direction, deterministic score-plus-record ordering, and provenance are returned. | L |
 | M2.4 | Implement filters, traversal selectors, warnings, errors, and stable cursors. | M2.1–M2.3 | Canonical request normalization, cursor binding, conformance matrix | Core rejects unsupported cross-profile, filter, traversal, or exactness combinations; cursors bind release/request/order/last key. | XL |
 | M2.5 | Add SDK and REST transport adapters. | M2.4 | Typed SDK wrapper, OpenAPI/REST adapter, shared conformance fixtures | Equivalent logical requests through Core, SDK, and REST yield equivalent results, provenance, warnings, errors, and cursor behavior. | L |
