@@ -23,4 +23,6 @@ numeric-with-unit, or DerivedRelation artifacts, so requests requiring them
 receive typed unsupported errors rather than being ignored. Traversal selectors
 are validated and likewise return `unsupported_relation` for this package.
 
-Caching, SDK, REST, and Explorer adapters remain deferred.
+M2.5 adds the local typed SDK and local WSGI REST transport adapters, both of
+which delegate to this Core without independent semantics. Caching and Explorer
+remain deferred.

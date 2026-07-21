@@ -8,6 +8,11 @@ retrieval-quality claims.
 
 ### Changed
 
+- M2.5 adds a typed local Python SDK and a dependency-free local `/v1/query`
+  WSGI transport adapter. Both are thin delegates over an injected Query Core;
+  a shared corpus verifies identical success, typed-error, provenance, warning,
+  ordering, and cursor behavior. Authentication, remote deployment, and an
+  HTTP SDK client are not included.
 - M2.4 adds Core-owned canonical-field filters, explicit state semantics,
   opaque cursor continuation, and bounded traversal-selector validation. The
   corrected M1 Draft has no annotation, unit-range, or relation artifacts, so

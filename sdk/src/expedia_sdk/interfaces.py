@@ -5,6 +5,6 @@ from typing import Protocol
 
 
 class ExpediaClient(Protocol):
-    """Delegates all query semantics to Query Core or the versioned REST adapter."""
+    """Delegates all query semantics to an injected Query Core instance."""
 
     def query(self, request: Mapping[str, object]) -> Mapping[str, object]: ...

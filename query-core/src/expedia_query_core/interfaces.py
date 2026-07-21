@@ -1,5 +1,6 @@
 """EDS section 12 interfaces and the ADR-010 trusted-release boundary."""
 
+from collections.abc import Mapping
 from typing import Protocol
 
 from .verified_release import VerifiedRelease

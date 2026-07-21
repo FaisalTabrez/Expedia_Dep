@@ -29,9 +29,9 @@ record.
 
 ## Query and presentation
 
-- M1 has an offline package reader and fixture-level exact-vector checks, not a
-  Query Core API. Filtering, ranking semantics, pagination, caching, SDK,
-  REST, and Explorer behavior remain M2 work.
+- M2 now has a local Query Core API, canonical filtering, exact ranking,
+  pagination, and thin local SDK/REST adapters. Caching, remote deployment,
+  HTTP-client configuration, and Explorer behavior remain deferred.
 - No ANN adapter, recall target, default index, BridgeProfile, graph traversal,
   annotation workflow, or derived-relation workflow is implemented.
 

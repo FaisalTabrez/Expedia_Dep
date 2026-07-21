@@ -1,11 +1,33 @@
 openapi: 3.1.0
 info:
   title: EXPEDIA REST API
-  version: 0.1.0-placeholder
+  version: 0.1.0
   description: >-
-    Transport placeholder only. Query semantics are owned by Query Core and no
-    endpoints are implemented in the repository skeleton.
+    Versioned transport adapter only. Query Core owns all query semantics.
 servers: []
-paths: {}
+paths:
+  /v1/query:
+    post:
+      operationId: executeQuery
+      summary: Execute a QueryRequest through the injected Query Core.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ../../../schemas/json/query-request.schema.json
+      responses:
+        '200':
+          description: A successful or typed-error QueryResult envelope from Query Core.
+          content:
+            application/json:
+              schema:
+                $ref: ../../../schemas/json/query-result.schema.json
+        '400':
+          description: Malformed HTTP transport input before a QueryRequest is available.
+        '404':
+          description: Unknown transport route.
+        '405':
+          description: Unsupported HTTP method.
 components:
   schemas: {}
