@@ -25,12 +25,16 @@ retrieval-quality claims.
   experiment, benchmark result, or scientific claim is added.
 - M3-001 Version 1.0 is the approved, immutable-manifest-bound preregistration
   for deterministic exact-query reproducibility over the internal M1 v3
-  fixture. It binds the M2 tag's peeled commit, `EE-M3-001-v1`, canonical JSON
+  fixture. It binds the M2 tag's peeled commit, `EE-M3-001-v1.1`, canonical JSON
   bytes, dependency/executable digests, clean working tree, three
   independent-process replicates, strict ordered comparison, and explicit
   pass/fail/inconclusive/aborted handling. It makes no hardware-portability or
   cross-platform claim. Execution has not begun and remains subject to its
   pre-execution checks.
+- A controlled M3-001 execution-environment amendment preserves the original
+  Version 1.0 manifest as historical evidence and replaces only its unusable
+  bundled-Python identity with the lock-resolved virtual-environment executable.
+  It introduces no methodological, analytical, or claim-boundary change.
 - M3.3 adds an evidence-only M3-001 execution harness. It verifies the
   detached M2 implementation, environment, and verified release before running
   isolated replicates; it retains canonical request/result evidence and performs

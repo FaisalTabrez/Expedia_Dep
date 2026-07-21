@@ -7,8 +7,10 @@
 **Governing sources:** EDS v2.1.1 section 13; accepted OQ-05; M2 completion
 checkpoint `m2.0.0-complete`.
 
-**Execution Environment:** `EE-M3-001-v1`.
-**Approval record:** [`m3-001-v1-approval-2026-07-21.json`](../../validation/evidence/m3-001-v1-approval-2026-07-21.json).
+**Execution Environment:** `EE-M3-001-v1.1` (controlled execution-environment
+successor).
+**Approval records:** [`original approval`](../../validation/evidence/m3-001-v1-approval-2026-07-21.json)
+and [`execution-environment amendment approval`](../../validation/evidence/m3-001-v1.0-environment-amendment-approval-2026-07-21.json).
 
 ## 0. Frozen implementation and serialization binding
 
@@ -19,13 +21,14 @@ checkpoint `m2.0.0-complete`.
 | Required working-tree state | Clean before every replicate; the observed state is recorded. |
 | Dependency manifest | `pyproject.toml` — `sha256:e0dcfffdf2d2ca71abcffcb69503f66d03a0ca2ff5f32280bf7ed2d080b0a813` |
 | Dependency lock | `uv.lock` — `sha256:332b9b0ae251547a0db50deb717d2c778a3e2e5be40644255598aef783b18765` |
-| Reference Python executable | Bundled Python executable — `sha256:3c6a206b7d93cca823934a83732220dcffd413fd1036d9fb82eebb64599cf7f3` |
+| Effective Python executable | Lock-resolved `.venv/Scripts/python.exe` — `sha256:5912d0884b23c0343983a864c6064242391e2265536f50b88624857e353882c9` |
 | Atlas Release digest | `sha256:fb18e65424f9b1f8978b6460917f799f39137659ae83d3074d2b01a491eca37b` |
 | EmbeddingProfile digest | `sha256:5679461d5a4482b48b90e97615d9661e84c2ac7c3b01253e7be4d7909a294294` |
 | Vector-shard digest | `sha256:69204de55e57d8f3b088bba7dd63a8207c6bf55337d28b4bedc4769f1d8cf0c3` |
-| Evaluation manifest | [`m3-001-v1-evaluation-manifest.json`](../evaluation-manifests/m3-001-v1-evaluation-manifest.json) — `sha256:9750d6fdd0dbb7716110b24ec2e0f25ee206db6c27cee530e7b36ec6be0b93ec` |
+| Effective evaluation manifest | [`m3-001-v1.1-evaluation-manifest.json`](../evaluation-manifests/m3-001-v1.1-evaluation-manifest.json) — `sha256:6786d1a1e01b2509f7888d1a697461f9b16d2c24b6fffb8b9a049d7d26c87aab` |
+| Historical manifest | [`m3-001-v1-evaluation-manifest.json`](../evaluation-manifests/m3-001-v1-evaluation-manifest.json) — `sha256:9750d6fdd0dbb7716110b24ec2e0f25ee206db6c27cee530e7b36ec6be0b93ec` |
 
-`EE-M3-001-v1` is the sole execution-environment identifier for this study. It
+`EE-M3-001-v1.1` is the sole active execution-environment identifier for this study. It
 declares the following required environment property in addition to the bound
 inputs above:
 
@@ -108,11 +111,11 @@ The following approved values MUST NOT be changed without a controlled
 governance amendment:
 
 - Replicates: three independent Python process invocations in
-  `EE-M3-001-v1` against the same verified package and committed M2
+  `EE-M3-001-v1.1` against the same verified package and committed M2
   implementation checkpoint.
 - Environment capture: Python version, operating system, architecture, package
   dependency lock/revision, repository commit, and release/profile/shard
-  digests for every invocation, all verified against `EE-M3-001-v1`.
+  digests for every invocation, all verified against `EE-M3-001-v1.1`.
 - Input representation: each request is written as canonical UTF-8 JSON after
   Query Core normalization; its `canonical_request_digest` is recorded.
 - Output representation: each QueryResult is retained as canonical UTF-8 JSON
@@ -199,7 +202,7 @@ authorize a Candidate, Published, public, or citable Atlas Release.
       profile/shard digests verify through the Release Reader.
 - [ ] Immediately before execution, the workspace is at commit
       `6183145f8fd6018431c55fd2e4ee7e1001e5fc87` and clean.
-- [ ] `EE-M3-001-v1` is verified and recorded for all three processes.
+- [ ] `EE-M3-001-v1.1` is verified and recorded for all three processes.
 - [x] No biological, comparative, performance, scalability, or generalization
       claim has been added.
 

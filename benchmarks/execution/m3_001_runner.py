@@ -20,7 +20,7 @@ import sys
 from typing import Any, Mapping
 
 
-MANIFEST_RELATIVE = Path("benchmarks/evaluation-manifests/m3-001-v1-evaluation-manifest.json")
+MANIFEST_RELATIVE = Path("benchmarks/evaluation-manifests/m3-001-v1.1-evaluation-manifest.json")
 PROFILE_ID = "m1-generanno-prokaryote-0.5b-assembly-v1"
 PROFILE_VERSION = "1.0.0"
 ORDERING_VERSION = "score-desc-record-id-asc-v1"
@@ -202,7 +202,7 @@ def verify_environment(*, study_root: Path, implementation_root: Path, evidence_
         "dependency_lock_digest": environment["dependency_lock_digest"],
     }
     if any(checks[key] != value for key, value in expected.items()):
-        raise EvidenceError("EE-M3-001-v1 verification did not match the approved manifest")
+        raise EvidenceError("active execution-environment verification did not match the approved manifest")
     preregistration = study_root / manifest["preregistration"]["path"]
     lock = {
         "environment": checks,
@@ -216,7 +216,8 @@ def verify_environment(*, study_root: Path, implementation_root: Path, evidence_
     }
     _write_json(evidence_root / "environment.json", checks)
     _write_json(evidence_root / "evaluation-lock.json", lock)
-    _write_json(evidence_root / "incident-log.json", {"incidents": [], "study_id": "M3-001"})
+    if not (evidence_root / "incident-log.json").exists():
+        _write_json(evidence_root / "incident-log.json", {"incidents": [], "study_id": "M3-001"})
 
 
 def verify_release(*, study_root: Path, implementation_root: Path, release_package: Path, evidence_root: Path) -> None:

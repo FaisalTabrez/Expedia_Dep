@@ -1,0 +1,1 @@
+{"incidents":[{"command":"verify-environment","error":"EE-M3-001-v1 verification did not match the approved manifest","observed_at":"2026-07-21T14:48:25.256791Z","rerun_permitted":false,"type":"harness-observed-failure"}],"study_id":"M3-001"}

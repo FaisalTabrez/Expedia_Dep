@@ -53,15 +53,16 @@ class M3EvaluationPlanningTests(unittest.TestCase):
     def test_m3001_is_an_approved_manifest_bound_deterministic_retrieval_preregistration(self) -> None:
         study = (ROOT / "benchmarks" / "preregistrations" / "m3-001-deterministic-exact-query-reproducibility.md").read_text(encoding="utf-8")
         corpus = (ROOT / "benchmarks" / "data-manifests" / "M3-001-M1-V3-DRAFT-QUERY-CORPUS.md").read_text(encoding="utf-8")
-        manifest_path = ROOT / "benchmarks" / "evaluation-manifests" / "m3-001-v1-evaluation-manifest.json"
-        approval_path = ROOT / "validation" / "evidence" / "m3-001-v1-approval-2026-07-21.json"
+        manifest_path = ROOT / "benchmarks" / "evaluation-manifests" / "m3-001-v1.1-evaluation-manifest.json"
+        approval_path = ROOT / "validation" / "evidence" / "m3-001-v1.0-environment-amendment-approval-2026-07-21.json"
+        amendment_path = ROOT / "benchmarks" / "preregistrations" / "m3-001-v1.0-execution-environment-amendment.md"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         approval = json.loads(approval_path.read_text(encoding="utf-8"))
         manifest_digest = "sha256:" + hashlib.sha256(manifest_path.read_bytes()).hexdigest()
 
         self.assertIn("**Status:** Approved — execution not yet initiated.", study)
         self.assertIn("**Version:** `1.0`.", study)
-        self.assertIn("`EE-M3-001-v1`", study)
+        self.assertIn("`EE-M3-001-v1.1`", study)
         self.assertIn("Microsoft Windows 10.0.26200", study)
         self.assertIn("Deterministic retrieval", study)
         self.assertIn("three independent Python process invocations", study)
@@ -75,10 +76,12 @@ class M3EvaluationPlanningTests(unittest.TestCase):
         self.assertIn("No inferential statistics, confidence intervals, p-values", study)
         self.assertIn("hardware portability, or cross-platform", study)
         self.assertIn(manifest_digest, study)
-        self.assertEqual(manifest_digest, approval["evaluation_manifest_digest"])
+        self.assertEqual(manifest_digest, approval["effective_evaluation_manifest_digest"])
         self.assertEqual("M3-001", approval["subject_id"])
         self.assertEqual("1.0", approval["subject_version"])
-        self.assertEqual("EE-M3-001-v1", manifest["execution_environment"]["id"])
+        self.assertEqual("EE-M3-001-v1.1", manifest["execution_environment"]["id"])
+        self.assertEqual("sha256:5912d0884b23c0343983a864c6064242391e2265536f50b88624857e353882c9", manifest["execution_environment"]["python_executable_digest"])
+        self.assertIn("No scientific question, methodology, analysis, claim boundary", amendment_path.read_text(encoding="utf-8"))
         self.assertEqual("6183145f8fd6018431c55fd2e4ee7e1001e5fc87", manifest["implementation"]["required_commit"])
         self.assertEqual(3, manifest["replicate_plan"]["count"])
         self.assertEqual("canonical-json-sha256-first-v1", manifest["comparison"]["equality_algorithm"])

@@ -1,0 +1,13 @@
+{
+  "approval_id": "approval:m3-001-v1.0-environment-amendment-20260721",
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "action": "m3-001-v1.0-execution-environment-amendment-approved",
+  "amendment": "benchmarks/preregistrations/m3-001-v1.0-execution-environment-amendment.md",
+  "effective_evaluation_manifest": "benchmarks/evaluation-manifests/m3-001-v1.1-evaluation-manifest.json",
+  "effective_evaluation_manifest_digest": "sha256:6786d1a1e01b2509f7888d1a697461f9b16d2c24b6fffb8b9a049d7d26c87aab",
+  "rationale": "The originally bound Python executable matches its approved digest but cannot import the frozen jsonschema dependency needed by the frozen M1 Release Reader. No release verification, query execution, or replicate occurred. The correction binds the lock-resolved project virtual-environment executable only and introduces no methodological, analytical, or claim-boundary change.",
+  "recorded_at": "2026-07-21",
+  "subject_id": "M3-001",
+  "subject_version": "1.0",
+  "superseded_evaluation_manifest": "benchmarks/evaluation-manifests/m3-001-v1-evaluation-manifest.json"
+}
