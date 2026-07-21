@@ -1,13 +1,14 @@
 # Study M3-001: Deterministic Exact Query Reproducibility
 
-**Status:** Draft — not accepted; execution is prohibited.
-**Version:** `1.0` (Draft).
+**Status:** Approved — execution not yet initiated.
+**Version:** `1.0`.
 **Owner:** Faisal Tabrez, Project Maintainer.
 **Prepared:** 2026-07-21.
 **Governing sources:** EDS v2.1.1 section 13; accepted OQ-05; M2 completion
 checkpoint `m2.0.0-complete`.
 
 **Execution Environment:** `EE-M3-001-v1`.
+**Approval record:** [`m3-001-v1-approval-2026-07-21.json`](../../validation/evidence/m3-001-v1-approval-2026-07-21.json).
 
 ## 0. Frozen implementation and serialization binding
 
@@ -22,6 +23,7 @@ checkpoint `m2.0.0-complete`.
 | Atlas Release digest | `sha256:fb18e65424f9b1f8978b6460917f799f39137659ae83d3074d2b01a491eca37b` |
 | EmbeddingProfile digest | `sha256:5679461d5a4482b48b90e97615d9661e84c2ac7c3b01253e7be4d7909a294294` |
 | Vector-shard digest | `sha256:69204de55e57d8f3b088bba7dd63a8207c6bf55337d28b4bedc4769f1d8cf0c3` |
+| Evaluation manifest | [`m3-001-v1-evaluation-manifest.json`](../evaluation-manifests/m3-001-v1-evaluation-manifest.json) — `sha256:9750d6fdd0dbb7716110b24ec2e0f25ee206db6c27cee530e7b36ec6be0b93ec` |
 
 `EE-M3-001-v1` is the sole execution-environment identifier for this study. It
 declares the following required environment property in addition to the bound
@@ -102,8 +104,8 @@ not silently repaired.
 
 ## 4. Proposed execution design
 
-The following values are proposed for maintainer approval and MUST NOT be
-changed after acceptance without an approved amendment:
+The following approved values MUST NOT be changed without a controlled
+governance amendment:
 
 - Replicates: three independent Python process invocations in
   `EE-M3-001-v1` against the same verified package and committed M2
@@ -174,10 +176,10 @@ claim.
 
 ## 6. Evidence and analysis plan
 
-Before execution, the study MUST add and bind:
+The following required pre-execution evidence is bound:
 
-- an immutable evaluation-manifest path and digest;
-- an approval record naming this exact preregistration version;
+- the immutable evaluation-manifest path and digest above;
+- the approval record naming this exact preregistration version;
 - an output directory containing per-replicate canonical requests, results,
   environment records, and SHA-256 digests;
 - a deviation/incident record; and
@@ -189,13 +191,18 @@ authorize a Candidate, Published, public, or citable Atlas Release.
 
 ## 7. Pre-execution acceptance checklist
 
-- [ ] The maintainer accepts this exact Version `1.0` preregistration or an
-      approved successor.
-- [ ] The local M1 v3 package digest and all referenced profile/shard digests
-      verify through the Release Reader.
-- [ ] The evaluation manifest and output/retention locations are fixed.
+- [x] The maintainer accepts this exact Version `1.0` preregistration.
+- [x] The immutable evaluation manifest and output/retention locations are
+      fixed.
+- [x] The approval record and evaluation-manifest digest are bound above.
+- [ ] Immediately before execution, the local M1 v3 package and all referenced
+      profile/shard digests verify through the Release Reader.
+- [ ] Immediately before execution, the workspace is at commit
+      `6183145f8fd6018431c55fd2e4ee7e1001e5fc87` and clean.
 - [ ] `EE-M3-001-v1` is verified and recorded for all three processes.
-- [ ] No biological, comparative, performance, scalability, or generalization
+- [x] No biological, comparative, performance, scalability, or generalization
       claim has been added.
 
-Until every item is complete, M3-001 MUST NOT execute.
+M3-001 execution MUST NOT start until every unchecked pre-execution item is
+completed and retained. After execution begins, no preregistration change is
+permitted except through controlled governance.

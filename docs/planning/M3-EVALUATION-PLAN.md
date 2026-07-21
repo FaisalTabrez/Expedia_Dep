@@ -1,8 +1,8 @@
 # M3 evaluation plan: evidence before method claims
 
-**Status:** M3.1 evaluation governance is complete. M3-001 is a Draft
-preregistration; no experiment, benchmark result, or scientific claim has been
-accepted.
+**Status:** M3.1 evaluation governance and M3.2 preregistration are complete.
+M3-001 Version 1.0 is approved and manifest-bound; no experiment, benchmark
+result, or scientific claim has been accepted.
 **Governing specification:** EDS v2.1.1 sections 8, 12.4-12.7, 13, 14, and
 15.4; ERS v1.0; the accepted M2 checkpoint `m2.0.0-complete`.
 **Purpose:** Define the smallest controlled path from deterministic retrieval to
@@ -36,7 +36,7 @@ this plan does not satisfy the gate.
 |---|---|---|
 | M2 closure | M2 completion decision and immutable repository checkpoint | Satisfied: `m2.0.0-complete`. |
 | OQ-05 | Accepted claim-evidence requirements and permitted claim boundaries | Satisfied by the accepted OQ-05 disposition; every study must apply it. |
-| Study preregistration | Freeze question, cohort, inclusion/exclusion, ground truth, baselines, metrics, uncertainty treatment, failure analysis, raw-artifact plan, and claim limits before execution | **Blocking; not yet authored.** |
+| Study preregistration | Freeze question, cohort, inclusion/exclusion, ground truth, baselines, metrics, uncertainty treatment, failure analysis, raw-artifact plan, and claim limits before execution | **Satisfied:** M3-001 Version 1.0 is approved and bound to its immutable evaluation manifest; execution remains subject to its pre-execution checklist. |
 | OQ-04 | Resolve only if an ANN method is proposed for evaluation | Deferred; no ANN study is planned by this baseline. |
 | OQ-08 | Resolve only if a cross-profile comparison or BridgeProfile is proposed | Deferred; no cross-profile study is planned by this baseline. |
 
@@ -49,7 +49,7 @@ resolved by evaluation work.
 | ID | Phase | Dependencies | Deliverables | Acceptance criteria | Complexity |
 |---|---|---|---|---|---|
 | M3.1 | Evaluation governance | M2 closure; accepted OQ-05 | Claim-boundary register and preregistration template | **Complete:** reusable templates require claim categories, prohibited wording, task-specific decision rules, cohort/source provenance, baselines, metrics, uncertainty, failure analysis, raw evidence, and maintainer approval before execution. | M |
-| M3.2 | Preregister reference study | M3.1 | Versioned preregistration; cohort/source/license record; frozen baseline definition; evaluation manifest | **In progress:** M3-001 Draft binds the internal M1 v3 fixture, exact cosine baseline, request families, repeat design, and prohibited claims. Maintainer acceptance and evaluation-manifest binding remain required before execution. | L |
+| M3.2 | Preregister reference study | M3.1 | Versioned preregistration; cohort/source/license record; frozen baseline definition; evaluation manifest | **Complete:** M3-001 Version 1.0 binds the internal M1 v3 fixture, exact cosine baseline, request families, repeat design, prohibited claims, maintainer approval, and immutable evaluation manifest. | L |
 | M3.3 | Execute reference experiments | M3.2 | Immutable run manifests, raw outputs, environment/provenance records, integrity digests | Every run is reproducible from its manifest and bounded by the preregistration. Deviations are recorded as deviations, not silently folded into results. | XL |
 | M3.4 | Analyze evidence | M3.3 | Analysis notebook/script, uncertainty and failure analysis, evidence-status assessment | Analysis uses only preregistered methods or labels an approved amendment. It distinguishes method evidence from exploratory observations. | L |
 | M3.5 | Review and decision | M3.4 | Evidence report, raw-artifact index, supported/unsupported claim register, controlled decision record | Each conclusion is limited to the preregistered evidence. Unsupported hypotheses remain unsupported. Any proposal to select a default method or extend M2 requires a separate controlled decision. | M |

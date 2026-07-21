@@ -11,5 +11,6 @@ an accepted study. A completed, maintainer-approved study record is required
 before M3.2 execution.
 
 [`m3-001-deterministic-exact-query-reproducibility.md`](m3-001-deterministic-exact-query-reproducibility.md)
-is a Draft preregistration. It remains non-executable until a maintainer
-accepts the exact study version and its evaluation-manifest binding.
+is the approved Version 1.0 preregistration. Its approval record and immutable
+evaluation-manifest binding are retained; execution has not yet started and
+remains contingent on the listed pre-execution checks.

@@ -1,0 +1,18 @@
+{
+  "approval_id": "approval:m3-001-v1-20260721",
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "action": "m3-001-preregistration-v1-approved",
+  "conditions": [
+    "Execution is limited to EE-M3-001-v1.",
+    "Implementation is limited to commit 6183145f8fd6018431c55fd2e4ee7e1001e5fc87.",
+    "The fixed M1 v3 Draft package, declared profile digest, vector-shard digest, comparison algorithm, outcome definitions, and OQ-05 claim boundary are retained.",
+    "No preregistration change after evaluation-manifest creation is permitted without controlled governance.",
+    "Every deviation is retained as an incident or approved amendment; none is silently corrected.",
+    "Any conclusion remains limited to deterministic reproducibility of the preregistered corpus."
+  ],
+  "evaluation_manifest_digest": "sha256:9750d6fdd0dbb7716110b24ec2e0f25ee206db6c27cee530e7b36ec6be0b93ec",
+  "evaluation_manifest": "benchmarks/evaluation-manifests/m3-001-v1-evaluation-manifest.json",
+  "recorded_at": "2026-07-21",
+  "subject_id": "M3-001",
+  "subject_version": "1.0"
+}

@@ -23,15 +23,14 @@ retrieval-quality claims.
 - M3.1 adds only governance templates: a claim-boundary register and a
   preregistration template that refuses unapproved study execution. No cohort,
   experiment, benchmark result, or scientific claim is added.
-- M3-001 is a non-executable Draft preregistration for deterministic exact-query
-  reproducibility over the internal M1 v3 fixture. It binds the M2 tag's peeled
-  commit, canonical JSON bytes, dependency/executable digests, clean working
-  tree, three independent-process replicates, strict ordered comparison, and
-  explicit pass/fail/inconclusive/aborted handling. Version 1.0 adds the sole
-  `EE-M3-001-v1` environment identifier, a canonical-JSON hash-first comparison
-  algorithm, and an explicit no-inferential-statistics rule. It makes no
-  hardware-portability or cross-platform claim and awaits
-  maintainer acceptance and an immutable evaluation-manifest binding.
+- M3-001 Version 1.0 is the approved, immutable-manifest-bound preregistration
+  for deterministic exact-query reproducibility over the internal M1 v3
+  fixture. It binds the M2 tag's peeled commit, `EE-M3-001-v1`, canonical JSON
+  bytes, dependency/executable digests, clean working tree, three
+  independent-process replicates, strict ordered comparison, and explicit
+  pass/fail/inconclusive/aborted handling. It makes no hardware-portability or
+  cross-platform claim. Execution has not begun and remains subject to its
+  pre-execution checks.
 
 ### Changed
 
