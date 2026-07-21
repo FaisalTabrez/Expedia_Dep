@@ -50,3 +50,25 @@ M1.5 artifacts: `vectors.float32le`, `vector-shard-manifest.json`,
 snapshot and any partial resume state are execution workspace state, not
 release artifacts. The successful M1.5 output still requires M1.6 Draft
 packaging before it is an Atlas Release.
+
+## M1.6 Draft packaging
+
+The Packager accepts only the exact four-file M1.5 artifact bundle and writes a
+new, non-empty-safe Draft directory. It copies canonical records, profile and
+ADEE declarations, stage provenance, schemas, license notices, and validation
+evidence; then it computes an inventory for every payload artifact. The root
+`release-manifest.json` is the package integrity anchor and therefore does not
+list a self-referential digest.
+
+```powershell
+$env:PYTHONPATH = (Resolve-Path "atlas-builder\src")
+python -m expedia_atlas_builder.release_packaging `
+  --embedding-artifacts C:\path\to\m1-t4-release-artifacts.zip `
+  --release-directory workspaces\m1\releases\expedia-m1-draft-YYYYMMDD-vN `
+  --release-id expedia-m1-draft-YYYYMMDD-vN `
+  --created-at 2026-07-21T00:00:00Z
+```
+
+The package remains `Draft`, explicitly has no persistent identifier, and is
+not an M1 completion claim. M1.7 must independently validate it before M1.8
+can record the maintainer decision.
