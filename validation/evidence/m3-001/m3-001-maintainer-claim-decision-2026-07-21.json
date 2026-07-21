@@ -1,0 +1,28 @@
+{
+  "actor": "Faisal Tabrez, Project Maintainer",
+  "analysis": "validation/evidence/m3-001/M3-001-analysis.md",
+  "claim_category": "deterministic retrieval (engineering-conformance)",
+  "decision": "supported",
+  "decision_id": "decision:m3-001-deterministic-retrieval-20260721",
+  "decision_record": "validation/evidence/m3-001/m3-001-maintainer-claim-decision-2026-07-21.md",
+  "effective_evaluation_manifest_digest": "sha256:6786d1a1e01b2509f7888d1a697461f9b16d2c24b6fffb8b9a049d7d26c87aab",
+  "evidence_scope": "M3-001 Version 1.0 and its controlled execution-environment amendment only",
+  "outcome": "PASS",
+  "preregistration": "benchmarks/preregistrations/m3-001-deterministic-exact-query-reproducibility.md",
+  "recorded_at": "2026-07-21",
+  "supported_claim": "Under the preregistered M3-001 study conditions, the frozen M2 exact cosine Query Core reproduced deterministic QueryResults for the declared request corpus using the verified M1 v3 Draft package and the recorded execution environment.",
+  "unsupported_claim_categories": [
+    "biological validity",
+    "biological usefulness",
+    "embedding quality",
+    "annotation quality",
+    "comparative superiority",
+    "ANN quality or equivalence",
+    "latency or throughput",
+    "scalability",
+    "generalization beyond the preregistered corpus",
+    "cross-platform reproducibility",
+    "portability to different execution environments",
+    "suitability as a default scientific method"
+  ]
+}

@@ -1,8 +1,8 @@
 # M3 evaluation plan: evidence before method claims
 
-**Status:** M3.1 evaluation governance and M3.2 preregistration are complete.
-M3-001 Version 1.0 is approved and manifest-bound; no experiment, benchmark
-result, or scientific claim has been accepted.
+**Status:** M3.1–M3.5 are complete for M3-001. Its narrowly scoped
+deterministic-retrieval engineering-conformance claim is supported; no
+biological, performance, usefulness, or comparative claim is accepted.
 **Governing specification:** EDS v2.1.1 sections 8, 12.4-12.7, 13, 14, and
 15.4; ERS v1.0; the accepted M2 checkpoint `m2.0.0-complete`.
 **Purpose:** Define the smallest controlled path from deterministic retrieval to
@@ -52,7 +52,7 @@ resolved by evaluation work.
 | M3.2 | Preregister reference study | M3.1 | Versioned preregistration; cohort/source/license record; frozen baseline definition; evaluation manifest | **Complete:** M3-001 Version 1.0 binds the internal M1 v3 fixture, exact cosine baseline, request families, repeat design, prohibited claims, maintainer approval, and immutable evaluation manifest. | L |
 | M3.3 | Execute reference experiments | M3.2 | Immutable run manifests, raw outputs, environment/provenance records, integrity digests | **Complete:** M3-001 retains the amended-environment lock, frozen-release verification, three isolated replicate bundles, raw hash-first comparison observations, integrity inventory, and retained pre-execution incident. No interpretation or claim decision is included. | XL |
 | M3.4 | Analyze evidence | M3.3 | Analysis notebook/script, uncertainty and failure analysis, evidence-status assessment | **Complete:** M3-001 Draft analysis indexes only retained observations, the preregistered `PASS` outcome, the incident, and unchanged claim limits. It adds no metric, inferential statistic, biological claim, or maintainer claim decision. | L |
-| M3.5 | Review and decision | M3.4 | Evidence report, raw-artifact index, supported/unsupported claim register, controlled decision record | Each conclusion is limited to the preregistered evidence. Unsupported hypotheses remain unsupported. Any proposal to select a default method or extend M2 requires a separate controlled decision. | M |
+| M3.5 | Review and decision | M3.4 | Evidence report, raw-artifact index, supported/unsupported claim register, controlled decision record | **Complete for M3-001:** the maintainer supports only the preregistered deterministic-retrieval engineering-conformance claim. No biological, quality, comparative, performance, portability, or default-method claim is supported. Any extension requires a separate study and decision. | M |
 
 ## 4. Reference-study policy
 

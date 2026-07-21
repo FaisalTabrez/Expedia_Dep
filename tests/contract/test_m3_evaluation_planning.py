@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[2]
 class M3EvaluationPlanningTests(unittest.TestCase):
     def test_plan_preserves_m2_reference_and_deferred_decisions(self) -> None:
         plan = (ROOT / "docs" / "planning" / "M3-EVALUATION-PLAN.md").read_text(encoding="utf-8")
-        self.assertIn("**Status:** M3.1 evaluation governance and M3.2 preregistration are complete.", plan)
+        self.assertIn("**Status:** M3.1–M3.5 are complete for M3-001.", plan)
         self.assertIn("`m2.0.0-complete`", plan)
         self.assertIn("OQ-05", plan)
         self.assertIn("Accepted claim-evidence requirements", plan)

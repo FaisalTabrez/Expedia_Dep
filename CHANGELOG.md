@@ -50,6 +50,10 @@ retrieval-quality claims.
   and retained evidence, records the preregistered `PASS` outcome, and keeps
   the separate M3.5 maintainer claim decision open. No scientific, performance,
   or usefulness claim is made.
+- M3.5 records the M3-001 maintainer decision: the deterministic-retrieval
+  engineering-conformance claim is supported only under the preregistered
+  corpus and recorded environment. No biological, comparative, performance,
+  portability, scalability, or default-method claim is supported.
 
 ### Changed
 

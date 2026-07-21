@@ -11,6 +11,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 EVIDENCE = ROOT / "validation" / "evidence" / "m3-001" / "execution-v1"
 ANALYSIS = ROOT / "validation" / "evidence" / "m3-001" / "M3-001-analysis.md"
+DECISION = ROOT / "validation" / "evidence" / "m3-001" / "m3-001-maintainer-claim-decision-2026-07-21.json"
 
 
 class M3ExecutionEvidenceTests(unittest.TestCase):
@@ -58,6 +59,15 @@ class M3ExecutionEvidenceTests(unittest.TestCase):
         self.assertIn("does not constitute maintainer acceptance of the study claim", report)
         self.assertIn("sha256:35513e730cd1d3fadefd5a5dc64dd113b6eae52a978620a2193b5919dc1099a8", report)
         self.assertIn("does not establish biological meaning, retrieval", report)
+
+    def test_maintainer_decision_supports_only_the_bounded_engineering_claim(self) -> None:
+        decision = json.loads(DECISION.read_text(encoding="utf-8"))
+        self.assertEqual("supported", decision["decision"])
+        self.assertEqual("PASS", decision["outcome"])
+        self.assertIn("deterministic QueryResults for the declared request corpus", decision["supported_claim"])
+        self.assertIn("biological validity", decision["unsupported_claim_categories"])
+        self.assertIn("cross-platform reproducibility", decision["unsupported_claim_categories"])
+        self.assertIn("suitability as a default scientific method", decision["unsupported_claim_categories"])
 
 
 if __name__ == "__main__":
