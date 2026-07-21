@@ -2,16 +2,65 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://expedia.dev/schemas/json/query-request/0.1.0",
   "title": "QueryRequest",
-  "description": "M2 contract placeholder; no Query Core behavior is implemented in M1.",
+  "description": "M2.1 canonical, read-only request envelope. It declares no release-reader or search implementation.",
   "type": "object",
-  "required": ["release_selector", "operation"],
+  "required": ["schema_version", "release_selector", "operation"],
   "properties": {
-    "release_selector": {"type": "object"},
-    "operation": {"type": "string"},
-    "profile_selector": {"type": ["object", "null"]},
-    "filter": {"type": ["object", "null"]},
-    "traversal": {"type": ["object", "null"]},
-    "pagination": {"type": ["object", "null"]}
+    "schema_version": {"const": "query-request/0.1.0"},
+    "release_selector": {
+      "type": "object",
+      "required": ["release_id", "release_digest"],
+      "properties": {
+        "release_id": {"type": "string", "minLength": 1},
+        "release_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "operation": {"enum": ["similarity", "record", "traversal", "evidence"]},
+    "profile_selector": {
+      "type": ["object", "null"],
+      "properties": {
+        "profile_id": {"type": "string", "minLength": 1},
+        "profile_version": {"type": "string", "minLength": 1}
+      },
+      "required": ["profile_id", "profile_version"],
+      "additionalProperties": false
+    },
+    "similarity": {
+      "type": ["object", "null"],
+      "properties": {
+        "query_record_id": {"type": "string", "minLength": 1},
+        "metric": {"const": "cosine"},
+        "mode": {"const": "exact"}
+      },
+      "required": ["query_record_id", "metric", "mode"],
+      "additionalProperties": false
+    },
+    "filter": {"oneOf": [{"$ref": "https://expedia.dev/schemas/json/filter-expression/0.1.0"}, {"type": "null"}]},
+    "traversal": {
+      "type": ["object", "null"],
+      "properties": {
+        "start_record_ids": {"type": "array", "minItems": 1, "maxItems": 100, "items": {"type": "string", "minLength": 1}},
+        "relation_type": {"type": "string", "minLength": 1},
+        "direction": {"enum": ["outgoing", "incoming", "both"]},
+        "depth": {"type": "integer", "minimum": 1, "maximum": 2}
+      },
+      "required": ["start_record_ids", "relation_type", "direction"],
+      "additionalProperties": false
+    },
+    "pagination": {
+      "type": ["object", "null"],
+      "properties": {
+        "limit": {"type": "integer", "minimum": 1, "maximum": 12},
+        "cursor": {"type": ["string", "null"], "minLength": 1},
+        "ordering_version": {"const": "score-desc-record-id-asc-v1"}
+      },
+      "additionalProperties": false
+    }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "allOf": [
+    {"if": {"properties": {"operation": {"const": "similarity"}}}, "then": {"required": ["profile_selector", "similarity"], "properties": {"traversal": {"type": "null"}}}},
+    {"if": {"properties": {"operation": {"const": "traversal"}}}, "then": {"required": ["traversal"], "properties": {"profile_selector": {"type": "null"}, "similarity": {"type": "null"}}}}
+  ]
 }

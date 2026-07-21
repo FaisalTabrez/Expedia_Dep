@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/query-error/0.1.0",
+  "title": "QueryError",
+  "type": "object",
+  "required": ["code", "message", "stage", "correlation_id"],
+  "properties": {
+    "code": {"enum": ["validation_error", "release_untrusted", "release_not_found", "profile_incompatible", "unsupported_filter", "unsupported_relation", "ambiguous_relation", "query_cost_exceeded", "invalid_cursor", "expired_cursor", "unsupported_operation"]},
+    "message": {"type": "string", "minLength": 1},
+    "stage": {"enum": ["validate", "resolve", "plan", "execute", "materialize"]},
+    "field": {"type": ["string", "null"]},
+    "remediation": {"type": ["string", "null"]},
+    "correlation_id": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

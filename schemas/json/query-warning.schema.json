@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/query-warning/0.1.0",
+  "title": "QueryWarning",
+  "type": "object",
+  "required": ["code", "message"],
+  "properties": {
+    "code": {"enum": ["method_not_evaluated", "annotation_unavailable", "partial_result_permitted"]},
+    "message": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

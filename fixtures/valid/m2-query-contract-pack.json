@@ -1,0 +1,52 @@
+{
+  "fixtures": [
+    {
+      "contract": "QueryRequest",
+      "schema": "schemas/json/query-request.schema.json",
+      "instance": {
+        "schema_version": "query-request/0.1.0",
+        "release_selector": {"release_id": "expedia-m1-draft-20260721-v2", "release_digest": "sha256:66a0ff36d1a15c05de74fb8f66bbc02030172bf8b9d8324a0c919bd964c3f583"},
+        "operation": "similarity",
+        "profile_selector": {"profile_id": "generanno-reference", "profile_version": "1.0.0"},
+        "similarity": {"query_record_id": "GCF_000005845.2", "metric": "cosine", "mode": "exact"},
+        "filter": {"all": [{"eq": {"field": "lifecycle_state", "value": "active"}}, {"in": {"field": "record_id", "values": ["GCF_000005845.2", "GCF_000146045.2"]}}]},
+        "pagination": {"limit": 12, "cursor": null, "ordering_version": "score-desc-record-id-asc-v1"}
+      }
+    },
+    {
+      "contract": "Filter",
+      "schema": "schemas/json/filter-expression.schema.json",
+      "instance": {"any": [{"range": {"field": "record_id", "lower": 1, "upper": null, "unit": "ordinal"}}, {"state": {"field": {"kind": "annotation", "source": "public", "predicate": "evidence"}, "value": "unavailable"}}, {"relation": {"relation_type": "derived_from", "direction": "outgoing"}}]}
+    },
+    {
+      "contract": "Cursor",
+      "schema": "schemas/json/cursor.schema.json",
+      "instance": {"schema_version": "cursor/0.1.0", "release_digest": "sha256:66a0ff36d1a15c05de74fb8f66bbc02030172bf8b9d8324a0c919bd964c3f583", "canonical_request_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "ordering_version": "score-desc-record-id-asc-v1", "last_key": {"score": 0.42, "record_id": "GCF_000005845.2"}}
+    },
+    {
+      "contract": "QueryError",
+      "schema": "schemas/json/query-error.schema.json",
+      "instance": {"code": "query_cost_exceeded", "message": "The filter exceeded the M2 limit.", "stage": "validate", "field": "filter", "remediation": "Reduce predicate count.", "correlation_id": "m2-fixture-001"}
+    },
+    {
+      "contract": "QueryErrorUnsupportedFilter",
+      "schema": "schemas/json/query-error.schema.json",
+      "instance": {"code": "unsupported_filter", "message": "The requested annotation field is not available in this M2 operation.", "stage": "plan", "field": "filter", "remediation": "Use a supported filter field.", "correlation_id": "m2-fixture-unsupported-filter"}
+    },
+    {
+      "contract": "QueryWarning",
+      "schema": "schemas/json/query-warning.schema.json",
+      "instance": {"code": "method_not_evaluated", "message": "Method evidence has not been evaluated."}
+    },
+    {
+      "contract": "QueryResult",
+      "schema": "schemas/json/query-result.schema.json",
+      "instance": {"schema_version": "query-result/0.1.0", "outcome": "success", "context": {"release_id": "expedia-m1-draft-20260721-v2", "release_digest": "sha256:66a0ff36d1a15c05de74fb8f66bbc02030172bf8b9d8324a0c919bd964c3f583", "canonical_request_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "ordering_version": "score-desc-record-id-asc-v1", "profile_id": "generanno-reference", "metric": "cosine", "mode": "exact"}, "rows": [{"record_id": "GCF_000005845.2", "score": 1.0, "entity_id": null}], "next_cursor": null, "provenance": {"release_digest": "sha256:66a0ff36d1a15c05de74fb8f66bbc02030172bf8b9d8324a0c919bd964c3f583"}, "evidence_status": {"release_integrity": "verified", "method": "not-evaluated"}, "warnings": [{"code": "method_not_evaluated", "message": "Method evidence has not been evaluated."}], "error": null}
+    },
+    {
+      "contract": "QueryResultError",
+      "schema": "schemas/json/query-result.schema.json",
+      "instance": {"schema_version": "query-result/0.1.0", "outcome": "error", "warnings": [], "error": {"code": "invalid_cursor", "message": "The cursor does not match the request.", "stage": "validate", "correlation_id": "m2-fixture-002"}}
+    }
+  ]
+}

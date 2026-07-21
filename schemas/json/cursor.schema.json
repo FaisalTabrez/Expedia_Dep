@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://expedia.dev/schemas/json/cursor/0.1.0",
+  "title": "CursorPayload",
+  "description": "Decoded internal structure of an opaque M2 cursor. Clients receive only the opaque string.",
+  "type": "object",
+  "required": ["schema_version", "release_digest", "canonical_request_digest", "ordering_version", "last_key"],
+  "properties": {
+    "schema_version": {"const": "cursor/0.1.0"},
+    "release_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "canonical_request_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "ordering_version": {"const": "score-desc-record-id-asc-v1"},
+    "last_key": {"type": "object", "required": ["score", "record_id"], "properties": {"score": {"type": "number"}, "record_id": {"type": "string", "minLength": 1}}, "additionalProperties": false}
+  },
+  "additionalProperties": false
+}

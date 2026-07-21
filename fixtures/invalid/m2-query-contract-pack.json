@@ -1,0 +1,11 @@
+{
+  "fixtures": [
+    {"name": "similarity request missing profile", "schema": "schemas/json/query-request.schema.json", "instance": {"schema_version": "query-request/0.1.0", "release_selector": {"release_id": "r", "release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "operation": "similarity", "similarity": {"query_record_id": "x", "metric": "cosine", "mode": "exact"}}},
+    {"name": "filter has two operators", "schema": "schemas/json/filter-expression.schema.json", "instance": {"eq": {"field": "record_id", "value": "x"}, "in": {"field": "record_id", "values": ["x"]}}},
+    {"name": "range has no bound", "schema": "schemas/json/filter-expression.schema.json", "instance": {"range": {"field": "record_id", "unit": "ordinal"}}},
+    {"name": "cursor omits request digest", "schema": "schemas/json/cursor.schema.json", "instance": {"schema_version": "cursor/0.1.0", "release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "ordering_version": "score-desc-record-id-asc-v1", "last_key": {"score": 1, "record_id": "x"}}},
+    {"name": "unknown error code", "schema": "schemas/json/query-error.schema.json", "instance": {"code": "unknown", "message": "x", "stage": "validate", "correlation_id": "c"}},
+    {"name": "unknown warning code", "schema": "schemas/json/query-warning.schema.json", "instance": {"code": "unknown", "message": "x"}},
+    {"name": "success result omits rows", "schema": "schemas/json/query-result.schema.json", "instance": {"schema_version": "query-result/0.1.0", "outcome": "success", "warnings": [], "context": {"release_id": "r", "release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "canonical_request_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "ordering_version": "score-desc-record-id-asc-v1"}, "next_cursor": null, "provenance": {"release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "evidence_status": {"release_integrity": "verified", "method": "not-evaluated"}, "error": null}}
+  ]
+}

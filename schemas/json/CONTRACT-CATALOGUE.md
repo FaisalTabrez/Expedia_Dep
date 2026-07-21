@@ -23,6 +23,23 @@ release. Consumers reject undeclared fields in canonical objects.
 | `vector-shard-manifest` | Atlas Builder | M1.5 | Valid |
 | `plugin-descriptor` | Profiles / Atlas Builder | M1.5 | Covered by M1.1 descriptor tests |
 
+## M2.1 query contract pack
+
+| Contract | Owner | First enforcement | M2 fixture coverage |
+|---|---|---:|---|
+| `query-request` | Query Core | M2.1 | Valid similarity request; missing profile rejection |
+| `query-result` | Query Core | M2.1 | Valid success/error envelopes; incomplete success rejection |
+| `filter-expression` | Query Core | M2.1 | Boolean, state, relation, range; malformed grammar rejection |
+| `cursor` | Query Core | M2.1 | Release/request/order/last-key binding; missing binding rejection |
+| `query-error` | Query Core | M2.1 | Typed error fixture; unknown code rejection |
+| `query-warning` | Query Core | M2.1 | Typed warning fixture; unknown code rejection |
+
+The executable M2.1 fixture packs are
+`fixtures/valid/m2-query-contract-pack.json` and
+`fixtures/invalid/m2-query-contract-pack.json`. They are contract-only evidence:
+they do not implement release reading, vector search, cursor encoding, REST,
+SDK, or Explorer behavior.
+
 The executable M1 fixture packs are
 `fixtures/valid/m1-contract-pack.json` and
 `fixtures/invalid/m1-contract-pack.json`. Run them through the locked test
@@ -32,8 +49,8 @@ group with `uv run --group test python -m unittest discover -s tests/contract`.
 
 The following schemas establish EDS names and structural boundaries but are not
 behaviorally implemented or fixture-enforced in M1: `annotation-assertion`,
-`derived-relation`, `query-request`, and `query-result`. Query contracts remain
-M2 work; their presence here must not be read as a Query Core implementation.
+`derived-relation`. Their presence here must not be read as a Query Core
+implementation.
 
 `contract-meta` is a shared metadata schema, referenced where a contract
 envelope elects to carry contract metadata.
